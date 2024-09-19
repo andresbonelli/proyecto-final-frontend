@@ -1,4 +1,4 @@
-export default function ArrowLeftIcon({ width, height, fill: fill }: svgProps) {
+export default function ArrowIcon({ width, height, fill: fill }: svgProps) {
   return (
     <svg
       width={width}

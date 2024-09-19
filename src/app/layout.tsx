@@ -40,16 +40,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-Montserrat antialiased min-h-screen bg-background">
-        <Header />
-        <Navbar fixed links={navLinks} />
-        <main className="flex flex-col justify-start justify-items-center min-h-screen mt-36 2xl:px-80 xl:px-60 lg:px-40 md:px-20 px-10 -z-50">
-          <div
-            id="container"
-            className="border border-red flex flex-col flex-auto justify-items-center bg-white mb-5 -z-40"
-          >
-            {children}
-          </div>
+      <body className="font-Montserrat antialiased min-h-screen max-w-fit bg-background flex flex-col">
+        <div className="fixed top-0 w-full z-50">
+          <Header />
+          <Navbar fixed links={navLinks} />
+        </div>
+        <main className="flex flex-col min-h-screen sm:mt-36 mt-20 ">
+          {children}
         </main>
         <Footer />
       </body>

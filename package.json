@@ -13,7 +13,8 @@
     "next": "14.2.9",
     "proyecto_final_frontend": "file:",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwind-hamburgers": "^1.3.5"
   },
   "devDependencies": {
     "@types/node": "^20",

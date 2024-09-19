@@ -1,0 +1,84 @@
+import { colors } from "@/app/constants";
+import StarFilledIcon from "../icons/StarFilled";
+import StarHalfIcon from "../icons/StarHalf";
+import FingerIcon from "../icons/Finger";
+import HeartIcon from "../icons/Heart";
+
+export default function ProductCard({
+  props,
+}: {
+  // sacar el "?" de los props
+  props: { product: ProductFromDB; isFavorite: boolean };
+}) {
+  const { product, isFavorite } = props;
+  const outOfStock = product.stock === 0;
+
+  return (
+    <div
+      id="product-card-container"
+      className="relative sm:w-72 sm:h-96 w-44 h-64 flex flex-col  bg-white rounded-md hover:cursor-pointer hover:shadow-md"
+    >
+      {outOfStock && (
+        <label
+          id="out-of-stock"
+          className="absolute top-3 left-3 text-white bg-black text-xs font-MontserratSemibold py-2 px-4 rounded w-fit "
+        >
+          SIN STOCK
+        </label>
+      )}
+      <div id="is-favorite" className="absolute top-3 right-3  ">
+        <HeartIcon
+          height={25}
+          width={25}
+          fill={isFavorite ? "red" : "none"}
+          stroke={isFavorite ? "none" : colors.grey}
+        />
+      </div>
+
+      <img
+        src={product.image ?? ""}
+        className="object-scale-down h-1/2"
+        alt={product.name}
+      ></img>
+      <div className="flex flex-col justify-between h-1/2 py-2 sm:px-5 px-2 gap-1">
+        <div id="card-top">
+          <h1 className="text-left sm:text-base text-sm font-MontserratSemibold mb-1">
+            {product.name}
+          </h1>
+
+          <p className="text-xs overflow-hidden mb-2 sm:block hidden">
+            {product.description}
+          </p>
+        </div>
+        <div id="card-bottom">
+          <div className="flex flex-row justify-between place-items-center">
+            <h3 className="text-left text-lg font-MontserratSemibold mb-3">
+              ${product.price}
+              {product.old_price && (
+                <span className="pl-2 text-xs font-MontserratLight text-grey line-through">
+                  ${product.old_price}
+                </span>
+              )}
+            </h3>
+            <div className="sm:hidden block w-fit bg-softGreen hover:bg-green rounded p-1 mb-3">
+              <FingerIcon width={22} height={22} fill="white" />
+            </div>
+          </div>
+          <div className="flex flex-row justify-between place-items-center">
+            <div className="sm:flex flex-row place-items-start hidden mr-5">
+              <StarFilledIcon width={17} height={17} fill="orange" />
+              <StarFilledIcon width={17} height={17} fill="orange" />
+              <StarFilledIcon width={17} height={17} fill="orange" />
+              <StarFilledIcon width={17} height={17} fill="orange" />
+              <StarHalfIcon width={17} height={17} fill={colors.grey} />
+            </div>
+            <button className="sm:flex hidden flex-row bg-softGreen hover:bg-green text-white text-xs font-MontserratBold py-2 px-4 rounded  gap-1">
+              <FingerIcon width={17} height={17} fill="white" />
+              <p>comprar</p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

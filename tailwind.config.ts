@@ -26,6 +26,8 @@ const config: Config = {
         softBlue: "#4392F9",
         pink: "#FD6E86",
         softPink: "#FA7189",
+        softGreen: "#3BC173",
+        green: "#139047",
         rose: "#FFCCD5",
         grey: "#A4A9B3",
         softGrey: "F7F7F7",
@@ -34,6 +36,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-hamburgers")],
 };
 export default config;
