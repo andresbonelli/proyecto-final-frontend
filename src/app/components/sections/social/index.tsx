@@ -1,8 +1,8 @@
 import Link from "next/link";
-import FacebookIcon from "../icons/Facebook";
-import InstagramIcon from "../icons/Instagram";
-import TwitterIcon from "../icons/Twitter";
-import YoutubeIcon from "../icons/Youtube";
+import FacebookIcon from "../../icons/Facebook";
+import InstagramIcon from "../../icons/Instagram";
+import TwitterIcon from "../../icons/Twitter";
+import YoutubeIcon from "../../icons/Youtube";
 
 export default function Social() {
   return (

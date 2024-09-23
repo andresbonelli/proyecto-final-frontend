@@ -3,6 +3,7 @@ import StarFilledIcon from "../icons/StarFilled";
 import StarHalfIcon from "../icons/StarHalf";
 import FingerIcon from "../icons/Finger";
 import HeartIcon from "../icons/Heart";
+import { calculateDiscountPerc } from "@/app/utils";
 
 export default function ProductCard({
   props,
@@ -14,6 +15,9 @@ export default function ProductCard({
 }) {
   const { product, isFavorite } = props;
   const outOfStock = product.stock === 0;
+  const discount = product.old_price
+    ? calculateDiscountPerc(product.old_price, product.price)
+    : null;
 
   return (
     <div
@@ -28,6 +32,15 @@ export default function ProductCard({
           SIN STOCK
         </label>
       )}
+      {discount && (
+        <div
+          id="has-discount"
+          className="absolute top-3 -left-3 text-white text-xs text-center font-MontserratSemibold p-2 h-12 w-12 rounded-full bg-black"
+        >
+          {discount}% <br></br>OFF
+        </div>
+      )}
+
       <div id="is-favorite" className="absolute top-3 right-3  ">
         <HeartIcon
           height={25}

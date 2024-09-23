@@ -524,7 +524,7 @@ export const test_products: ProductFromDB[] = [
     description:
       "Merch oficial de la banda, para su nuevo disco ARCO Y FLECHA.",
     price: 56600,
-    old_price: null,
+    old_price: 60000,
     stock: 50,
     sku: "MAI-SWT-WHT",
     image:
@@ -554,7 +554,94 @@ export const test_products: ProductFromDB[] = [
     description:
       "Merch oficial de la banda, para su nuevo disco ARCO Y FLECHA.",
     price: 58540,
-    old_price: null,
+    old_price: 65000,
+    stock: 50,
+    sku: "MAI-HOOD-YLW",
+    image:
+      "https://acdn.mitiendanube.com/stores/001/555/989/products/buzo-amarillo-50638245ee6de1bdcd17182156371558-1024-1024.webp",
+    category: "clothing",
+    details: {
+      image_list: [
+        "https://acdn.mitiendanube.com/stores/001/555/989/products/buzo-amarillo-50638245ee6de1bdcd17182156371558-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/001/555/989/products/dsc04760-82951957110199c8b617182157006225-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/001/555/989/products/dsc04660-f44168e4dcf9ac760417182157035500-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/001/555/989/products/buzos-492422fe4bdcbcdaad17182156419438-1024-1024.webp",
+      ],
+      sizes: ["m", "l", "xl", "xxl"],
+      long_description:
+        "Merch oficial de la banda, para su nuevo disco ARCO Y FLECHA. Buzo canguro 'Mi Amigo Invencible', estampado en plastizol.Para tener tus prendas en perfectas condiciones, recomendamos lavarlas a mano o a máquina en procesos cortos, con agua fría, y planchar a la mínima temperatura (evitar estampa).",
+    },
+    tags: ["buzos", "musica", "bandas", "rock"],
+    id: "66e44e457852aa79302cc851",
+    staff_id: "66c89c49cac3a4ebf1880430",
+    sales_count: null,
+    created_at: "2024-09-13T11:37:57.683000",
+    modified_at: null,
+  },
+  {
+    name: "BUZO CANGURO AMARILLO 'MI AMIGO INVENCIBLE'",
+    description:
+      "Merch oficial de la banda, para su nuevo disco ARCO Y FLECHA.",
+    price: 58540,
+    old_price: 65000,
+    stock: 50,
+    sku: "MAI-HOOD-YLW",
+    image:
+      "https://acdn.mitiendanube.com/stores/001/555/989/products/buzo-amarillo-50638245ee6de1bdcd17182156371558-1024-1024.webp",
+    category: "clothing",
+    details: {
+      image_list: [
+        "https://acdn.mitiendanube.com/stores/001/555/989/products/buzo-amarillo-50638245ee6de1bdcd17182156371558-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/001/555/989/products/dsc04760-82951957110199c8b617182157006225-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/001/555/989/products/dsc04660-f44168e4dcf9ac760417182157035500-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/001/555/989/products/buzos-492422fe4bdcbcdaad17182156419438-1024-1024.webp",
+      ],
+      sizes: ["m", "l", "xl", "xxl"],
+      long_description:
+        "Merch oficial de la banda, para su nuevo disco ARCO Y FLECHA. Buzo canguro 'Mi Amigo Invencible', estampado en plastizol.Para tener tus prendas en perfectas condiciones, recomendamos lavarlas a mano o a máquina en procesos cortos, con agua fría, y planchar a la mínima temperatura (evitar estampa).",
+    },
+    tags: ["buzos", "musica", "bandas", "rock"],
+    id: "66e44e457852aa79302cc851",
+    staff_id: "66c89c49cac3a4ebf1880430",
+    sales_count: null,
+    created_at: "2024-09-13T11:37:57.683000",
+    modified_at: null,
+  },
+  {
+    name: "BUZO CANGURO AMARILLO 'MI AMIGO INVENCIBLE'",
+    description:
+      "Merch oficial de la banda, para su nuevo disco ARCO Y FLECHA.",
+    price: 58540,
+    old_price: 65000,
+    stock: 50,
+    sku: "MAI-HOOD-YLW",
+    image:
+      "https://acdn.mitiendanube.com/stores/001/555/989/products/buzo-amarillo-50638245ee6de1bdcd17182156371558-1024-1024.webp",
+    category: "clothing",
+    details: {
+      image_list: [
+        "https://acdn.mitiendanube.com/stores/001/555/989/products/buzo-amarillo-50638245ee6de1bdcd17182156371558-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/001/555/989/products/dsc04760-82951957110199c8b617182157006225-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/001/555/989/products/dsc04660-f44168e4dcf9ac760417182157035500-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/001/555/989/products/buzos-492422fe4bdcbcdaad17182156419438-1024-1024.webp",
+      ],
+      sizes: ["m", "l", "xl", "xxl"],
+      long_description:
+        "Merch oficial de la banda, para su nuevo disco ARCO Y FLECHA. Buzo canguro 'Mi Amigo Invencible', estampado en plastizol.Para tener tus prendas en perfectas condiciones, recomendamos lavarlas a mano o a máquina en procesos cortos, con agua fría, y planchar a la mínima temperatura (evitar estampa).",
+    },
+    tags: ["buzos", "musica", "bandas", "rock"],
+    id: "66e44e457852aa79302cc851",
+    staff_id: "66c89c49cac3a4ebf1880430",
+    sales_count: null,
+    created_at: "2024-09-13T11:37:57.683000",
+    modified_at: null,
+  },
+  {
+    name: "BUZO CANGURO AMARILLO 'MI AMIGO INVENCIBLE'",
+    description:
+      "Merch oficial de la banda, para su nuevo disco ARCO Y FLECHA.",
+    price: 58540,
+    old_price: 65000,
     stock: 50,
     sku: "MAI-HOOD-YLW",
     image:

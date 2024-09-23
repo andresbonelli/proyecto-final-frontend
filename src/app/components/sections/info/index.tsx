@@ -1,8 +1,8 @@
 import Link from "next/link";
-import WhatsappIcon from "../icons/Whatsapp";
-import MailIcon from "../icons/Mail";
-import PhoneIcon from "../icons/Phone";
-import LocationIcon from "../icons/Location";
+import WhatsappIcon from "../../icons/Whatsapp";
+import MailIcon from "../../icons/Mail";
+import PhoneIcon from "../../icons/Phone";
+import LocationIcon from "../../icons/Location";
 
 export default function Info() {
   const fore = "black";
