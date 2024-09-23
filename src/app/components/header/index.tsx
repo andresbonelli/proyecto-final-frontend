@@ -56,12 +56,12 @@ export default function Header() {
             </div>
           </a>
           <div className="flex flex-row place-items-center gap-4">
-            <a href="/">
+            <Link href="/favorites">
               <HeartIcon width={25} height={25} fill="none" stroke="black" />
-            </a>
-            <a href="/">
+            </Link>
+            <Link href="/cart">
               <CartIcon width={25} height={25} fill="black" />
-            </a>
+            </Link>
           </div>
         </div>
         <div

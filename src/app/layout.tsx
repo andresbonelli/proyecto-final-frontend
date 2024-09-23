@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "./components/footer/index";
 import Header from "./components/header/index";
@@ -17,11 +16,11 @@ const navLinks = [
   },
   {
     label: "Ropa",
-    link: "/clothing",
+    link: "/products/clothing",
   },
   {
     label: "Accesorios",
-    link: "/office",
+    link: "/products/office",
   },
   {
     label: "Contacto",
@@ -29,7 +28,7 @@ const navLinks = [
   },
   {
     label: "Ayuda",
-    link: "/help",
+    link: "/https://wa.me/5491160198300",
   },
 ];
 

@@ -1,5 +1,15 @@
 import Link from "next/link";
 
+interface navLink {
+  label: string;
+  link: string;
+}
+interface navbarProps {
+  fixed?: boolean;
+  padded?: boolean;
+  inverted?: boolean;
+  links: navLink[];
+}
 export default function Navbar({ padded, inverted, links }: navbarProps) {
   const padding = padded ? "py-10" : "py-2";
   const bgColor = inverted ? "bg-white" : "bg-pink";

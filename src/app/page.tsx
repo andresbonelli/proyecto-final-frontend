@@ -1,14 +1,17 @@
+import Link from "next/link";
 import Carrousel from "./components/carrousel";
 import ArrowIcon from "./components/icons/Arrow";
 import ProductCard from "./components/product_card";
+import Social from "./components/social";
 import { colors } from "./constants";
 import { test_products } from "@/public/test_data/test_products";
+import Info from "./components/info";
 
 export default function Home() {
   return (
     <>
       {/* HOME PAGE TOP  */}
-      <div
+      <section
         id="carrousel"
         className="w-screen overflow-hidden place-self-center"
       >
@@ -18,14 +21,14 @@ export default function Home() {
             "../public/images/slide2.webp",
           ]}
         />
-      </div>
+      </section>
       {/* HOME PAGE SECTIONS */}
       <div
         id="main-sections"
         className="fex flex-col 2xl:px-80 xl:px-60 lg:px-40 md:px-20 px-3 mb-5"
       >
         {/* PRODUCTS */}
-        <div
+        <section
           id="products-section-container"
           className="flex flex-col  place-items-center"
         >
@@ -37,11 +40,11 @@ export default function Home() {
               return (
                 <>
                   {product.old_price === null && (
-                    <div key={index}>
+                    <Link href={`/products/${product.id}`} key={index}>
                       <ProductCard
                         props={{ product: product, isFavorite: false }}
                       />
-                    </div>
+                    </Link>
                   )}
                 </>
               );
@@ -51,9 +54,9 @@ export default function Home() {
           <div className="-rotate-90 bg-white w-fit rounded-full shadow-lg opacity-70 hover:cursor-pointer hover:opacity-85 mt-3">
             <ArrowIcon width={40} height={40} fill={colors.grey} />
           </div>
-        </div>
+        </section>
         {/* BILLBOARD */}
-        <div
+        <section
           id="billboard-section-container"
           className="flex flex-col place-items-center text-center py-20 gap-5"
         >
@@ -67,9 +70,9 @@ export default function Home() {
             Apoyamos al arte local en todas sus formas y buscamos hacer crecer a
             la cultura"
           </p>
-        </div>
+        </section>
         {/* OFERTAS */}
-        <div
+        <section
           id="ofertas-section-container"
           className="relative flex flex-col gap-10"
         >
@@ -82,11 +85,11 @@ export default function Home() {
               return (
                 <>
                   {product.old_price && (
-                    <div key={index}>
+                    <Link href={`/products/${product.id}`} key={index}>
                       <ProductCard
-                        props={{ product: product, isFavorite: false }}
+                        props={{ product: product, isFavorite: true }}
                       />
-                    </div>
+                    </Link>
                   )}
                 </>
               );
@@ -103,29 +106,11 @@ export default function Home() {
               <ArrowIcon width={40} height={40} fill={colors.grey} />
             </div>
           </div>
-        </div>
+        </section>
         {/* SOCIAL */}
-        <div
-          id="social-container"
-          className="flex flex-col justify-start text-center  py-10 gap-10"
-        >
-          <h1 className="text-2xl font-MontserratBold">links a redes</h1>
-          <div className="flex flex-row flex-wrap justify-center gap-5">
-            <p>instagram</p>
-            <p>instagram</p>
-            <p>instagram</p>
-            <p>instagram</p>
-            <p>instagram</p>
-            <p>instagram</p>
-          </div>
-        </div>
-        {/* CONTACTO */}
-        <div
-          id="contact-container"
-          className="flex flex-col justify-start text-center bg-white py-10 gap-10"
-        >
-          <h1 className="text-2xl font-MontserratBold ">contacto</h1>
-        </div>
+        <Social />
+        {/* INFO */}
+        <Info />
       </div>
     </>
   );

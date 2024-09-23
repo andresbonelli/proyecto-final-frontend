@@ -7,8 +7,10 @@ import HeartIcon from "../icons/Heart";
 export default function ProductCard({
   props,
 }: {
-  // sacar el "?" de los props
-  props: { product: ProductFromDB; isFavorite: boolean };
+  props: {
+    product: ProductFromDB;
+    isFavorite: boolean;
+  };
 }) {
   const { product, isFavorite } = props;
   const outOfStock = product.stock === 0;
@@ -16,7 +18,7 @@ export default function ProductCard({
   return (
     <div
       id="product-card-container"
-      className="relative sm:w-72 sm:h-96 w-44 h-64 flex flex-col  bg-white rounded-md hover:cursor-pointer hover:shadow-md"
+      className="relative sm:w-72 sm:h-96 w-44 h-64 flex flex-col  bg-white rounded-md  hover:cursor-pointer hover:shadow-lg ease-in-out"
     >
       {outOfStock && (
         <label
@@ -30,7 +32,7 @@ export default function ProductCard({
         <HeartIcon
           height={25}
           width={25}
-          fill={isFavorite ? "red" : "none"}
+          fill={isFavorite ? colors.red : "none"}
           stroke={isFavorite ? "none" : colors.grey}
         />
       </div>

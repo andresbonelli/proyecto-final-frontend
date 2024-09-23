@@ -3,7 +3,7 @@ import Logo from "../icons/Logo";
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="w-full flex flex-row justify-between place-items-center bg-softPink md:px-40 px-5 py-5 text-white">
+    <footer className="w-screen flex flex-row justify-between place-items-center bg-softPink md:px-40 px-5 py-5 text-white">
       <div className="flex flex-row justify-between gap-5">
         <Logo width={79} height={60} fill="white" />
         <div className="flex flex-col text-center">
