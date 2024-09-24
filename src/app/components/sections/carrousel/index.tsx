@@ -14,16 +14,22 @@ export default function Carrousel({ images }: { images: StaticImageData[] }) {
     );
   };
   return (
-    <div className="relative ">
+    <div className="relative hidden md:block">
       <div
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        className={`flex flex-row transition-transform duration-500 ease-in-out overflow-visible `}
+        style={{
+          transform: `translateX(-${currentIndex * 100}%)`,
+          // minHeight: 547,
+        }}
+        className={`flex flex-row transition-transform duration-500 ease-in-out`}
       >
         {images.map((image, index) => {
           return (
-            <div key={index} className="min-w-full z-40">
-              <Image src={image} alt={`slide-${index}`} />
-            </div>
+            <Image
+              key={index}
+              src={image}
+              alt={`slide-${index}`}
+              objectPosition="center"
+            />
           );
         })}
       </div>

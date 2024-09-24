@@ -17,7 +17,7 @@ export default function ProductList({
     >
       <div
         id="products-list"
-        className="flex flex-row flex-wrap justify-between py-10 gap-5"
+        className="flex flex-row flex-wrap justify-around py-10 gap-5"
       >
         {products.map((product, index) => {
           return (

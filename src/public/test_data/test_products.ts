@@ -555,7 +555,7 @@ export const test_products: ProductFromDB[] = [
       "Merch oficial de la banda, para su nuevo disco ARCO Y FLECHA.",
     price: 58540,
     old_price: 65000,
-    stock: 50,
+    stock: 0,
     sku: "MAI-HOOD-YLW",
     image:
       "https://acdn.mitiendanube.com/stores/001/555/989/products/buzo-amarillo-50638245ee6de1bdcd17182156371558-1024-1024.webp",

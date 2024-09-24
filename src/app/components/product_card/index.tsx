@@ -15,9 +15,10 @@ export default function ProductCard({
 }) {
   const { product, isFavorite } = props;
   const outOfStock = product.stock === 0;
-  const discount = product.old_price
-    ? calculateDiscountPerc(product.old_price, product.price)
-    : null;
+  const discount =
+    product.old_price && !outOfStock
+      ? calculateDiscountPerc(product.old_price, product.price)
+      : null;
 
   return (
     <div
@@ -27,7 +28,7 @@ export default function ProductCard({
       {outOfStock && (
         <label
           id="out-of-stock"
-          className="absolute top-3 left-3 text-white bg-black text-xs font-MontserratSemibold py-2 px-4 rounded w-fit "
+          className="z-50 absolute top-3 left-3 text-white bg-black text-xs font-MontserratSemibold py-2 px-4 rounded w-fit "
         >
           SIN STOCK
         </label>
