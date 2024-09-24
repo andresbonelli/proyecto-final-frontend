@@ -16,7 +16,7 @@ export default function CarrouselArrow({
 }: CarrouselArrowProps) {
   return (
     <div
-      className={`z-50 absolute ${xOffset}  top-1/2 flex -translate-y-1/2 transform justify-between`}
+      className={`absolute ${xOffset}  top-1/2 flex -translate-y-1/2 transform justify-between`}
     >
       <button
         disabled={isDisabled}

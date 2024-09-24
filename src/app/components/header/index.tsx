@@ -8,11 +8,14 @@ import { colors } from "../../constants";
 import UserIcon from "../icons/User";
 import HeartIcon from "../icons/Heart";
 import CartIcon from "../icons/Cart";
-import Login from "../login_signup";
-import { useState } from "react";
+import LoginOrSignupForm from "../sections/login_signup";
+import { use, useState } from "react";
+import AccountIcon from "../icons/Account";
+import AccountForm from "../sections/account";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isloggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <header className="bg-background flex flex-row xl:px-60 lg:px-40 md:px-20 px-5 sm:py-8 py-5 text-black ">
@@ -57,8 +60,17 @@ export default function Header() {
         >
           <button onClick={() => setIsModalOpen(true)}>
             <div className="flex flex-row place-items-center gap-2">
-              <UserIcon width={25} height={25} fill="black" />
-              <p className="text-sm ">Ingresar</p>
+              {isloggedIn ? (
+                <>
+                  <AccountIcon width={25} height={25} fill="black" />
+                  <p className="text-sm ">Mi cuenta</p>
+                </>
+              ) : (
+                <>
+                  <UserIcon width={25} height={25} fill="black" />
+                  <p className="text-sm ">Ingresar</p>
+                </>
+              )}
             </div>
           </button>
           <div className="flex flex-row place-items-center gap-4">
@@ -81,12 +93,21 @@ export default function Header() {
           </div>
         </div>
       </div>
-      <Login
-        onClose={() => {
-          setIsModalOpen(false);
-        }}
-        isOpen={isModalOpen}
-      />
+      {isloggedIn ? (
+        <AccountForm
+          onClose={() => {
+            setIsModalOpen(false);
+          }}
+          isOpen={isModalOpen}
+        />
+      ) : (
+        <LoginOrSignupForm
+          onClose={() => {
+            setIsModalOpen(false);
+          }}
+          isOpen={isModalOpen}
+        />
+      )}
     </header>
   );
 }

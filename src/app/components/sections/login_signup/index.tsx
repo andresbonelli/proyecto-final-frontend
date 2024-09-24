@@ -1,16 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import UserIcon from "../icons/User";
-import LockIcon from "../icons/Lock";
-import EyeIcon from "../icons/Eye";
-import ArrowIcon from "../icons/Arrow";
+import UserIcon from "../../icons/User";
+import LockIcon from "../../icons/Lock";
+import EyeIcon from "../../icons/Eye";
+import ArrowIcon from "../../icons/Arrow";
 import { colors } from "@/app/constants";
 import { LoginDto, RegisterUserDto } from "@/app/utils/interfaces";
-import Loader from "../loader";
-import EmailIcon from "../icons/Email";
+import Loader from "../../loader";
+import EmailIcon from "../../icons/Email";
 
-export default function Login({
+export default function LoginOrSignupForm({
   isOpen,
   onClose,
 }: {
@@ -25,7 +25,7 @@ export default function Login({
   const [forgotPassword, setForgotPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("error mesg");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function onLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
