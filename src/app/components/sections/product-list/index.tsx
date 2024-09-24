@@ -1,4 +1,4 @@
-"use-client";
+"use client";
 
 import { colors } from "@/app/constants";
 import Link from "next/link";
