@@ -39,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-Montserrat antialiased min-h-screen max-w-fit bg-background flex flex-col">
+      <body className="relative font-Montserrat antialiased min-h-screen max-w-fit bg-background flex flex-col">
         <div className="fixed top-0 w-full z-50">
           <Header />
           <Navbar fixed links={navLinks} />

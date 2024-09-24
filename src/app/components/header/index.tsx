@@ -1,3 +1,5 @@
+"use client";
+
 import Logo from "../icons/Logo";
 import Link from "next/link";
 import SearchIcon from "../icons/Search";
@@ -6,8 +8,12 @@ import { colors } from "../../constants";
 import UserIcon from "../icons/User";
 import HeartIcon from "../icons/Heart";
 import CartIcon from "../icons/Cart";
+import Login from "../login_signup";
+import { useState } from "react";
 
 export default function Header() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <header className="bg-background flex flex-row xl:px-60 lg:px-40 md:px-20 px-5 sm:py-8 py-5 text-black ">
       <div className="flex flex-row justify-between w-full gap-3 ">
@@ -49,12 +55,12 @@ export default function Header() {
           id="user-and-cart-icon-container"
           className="sm:flex hidden flex-row justify-between place-items-center w-auto gap-8 ml-3 "
         >
-          <a href="/">
+          <button onClick={() => setIsModalOpen(true)}>
             <div className="flex flex-row place-items-center gap-2">
               <UserIcon width={25} height={25} fill="black" />
               <p className="text-sm ">Ingresar</p>
             </div>
-          </a>
+          </button>
           <div className="flex flex-row place-items-center gap-4">
             <Link href="/favorites">
               <HeartIcon width={25} height={25} fill="none" stroke="black" />
@@ -75,6 +81,12 @@ export default function Header() {
           </div>
         </div>
       </div>
+      <Login
+        onClose={() => {
+          setIsModalOpen(false);
+        }}
+        isOpen={isModalOpen}
+      />
     </header>
   );
 }

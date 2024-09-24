@@ -1,6 +1,8 @@
+import Image from "next/image";
 import { test_products } from "@/public/test_data/test_products";
 import slide1 from "../public/images/slide1.webp";
 import slide2 from "../public/images/slide2.webp";
+import slideMobile from "../public/images/slide_mobile.webp";
 import Carrousel from "./components/sections/carrousel";
 import ProductList from "./components/sections/product-list";
 import ProductDealsCarrousel from "./components/sections/product_deals_carrousel";
@@ -19,6 +21,9 @@ export default function Home() {
   return (
     <>
       {/* HOME PAGE TOP  */}
+      <section className="md:hidden">
+        <Image src={slideMobile} alt="mobile-welcome-img" />
+      </section>
       <section
         id="carrousel"
         className="w-screen overflow-hidden place-self-center"

@@ -30,6 +30,7 @@ const config: Config = {
         green: "#139047",
         rose: "#FFCCD5",
         grey: "#A4A9B3",
+        hardGrey: "#A8A8A9",
         softGrey: "F7F7F7",
         background: "var(--background)",
         foreground: "var(--foreground)",
