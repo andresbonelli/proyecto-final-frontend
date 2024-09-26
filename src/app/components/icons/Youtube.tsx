@@ -1,3 +1,5 @@
+import { svgProps } from "@/app/utils/interfaces";
+
 export default function YoutubeIcon({ width, height, fill }: svgProps) {
   return (
     <svg

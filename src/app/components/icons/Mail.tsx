@@ -1,3 +1,5 @@
+import { svgProps } from "@/app/utils/interfaces";
+
 export default function MailIcon({ width, height, stroke }: svgProps) {
   return (
     <svg

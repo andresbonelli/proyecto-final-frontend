@@ -1,17 +1,17 @@
 "use client";
 
-import Logo from "../icons/Logo";
+import { useState } from "react";
 import Link from "next/link";
-import SearchIcon from "../icons/Search";
-import MicIcon from "../icons/Mic";
-import { colors } from "../../constants";
-import UserIcon from "../icons/User";
-import HeartIcon from "../icons/Heart";
-import CartIcon from "../icons/Cart";
 import LoginOrSignupForm from "../sections/login_signup";
-import { use, useState } from "react";
-import AccountIcon from "../icons/Account";
 import AccountForm from "../sections/account";
+import AccountIcon from "../icons/Account";
+import HeartIcon from "../icons/Heart";
+import Logo from "../icons/Logo";
+import MicIcon from "../icons/Mic";
+import SearchIcon from "../icons/Search";
+import UserIcon from "../icons/User";
+import CartIcon from "../icons/Cart";
+import { colors } from "../../constants";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,3 +1,4 @@
+import { svgProps } from "@/app/utils/interfaces";
 export default function AddIcon({ width, height, fill: fill }: svgProps) {
   return (
     <svg

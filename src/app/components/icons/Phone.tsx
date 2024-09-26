@@ -1,3 +1,5 @@
+import { svgProps } from "@/app/utils/interfaces";
+
 export default function PhoneIcon({ width, height, stroke }: svgProps) {
   return (
     <svg

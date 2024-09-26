@@ -1,3 +1,5 @@
+import { svgProps } from "@/app/utils/interfaces";
+
 export default function InstagramIcon({ width, height, fill }: svgProps) {
   return (
     <svg

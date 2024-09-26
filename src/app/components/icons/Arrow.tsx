@@ -1,3 +1,5 @@
+import { svgProps } from "@/app/utils/interfaces";
+
 export default function ArrowIcon({ width, height, fill: fill }: svgProps) {
   return (
     <svg

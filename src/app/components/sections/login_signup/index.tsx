@@ -6,9 +6,9 @@ import LockIcon from "../../icons/Lock";
 import EyeIcon from "../../icons/Eye";
 import ArrowIcon from "../../icons/Arrow";
 import { colors } from "@/app/constants";
-import { LoginDto, RegisterUserDto } from "@/app/utils/interfaces";
 import Loader from "../../loader";
 import EmailIcon from "../../icons/Email";
+import { LoginDto, RegisterUserDto } from "@/app/utils/interfaces";
 
 export default function LoginOrSignupForm({
   isOpen,
@@ -93,7 +93,8 @@ export default function LoginOrSignupForm({
 
   return (
     <aside
-      className={`absolute top-0 bg-background px-12 shadow-2xl
+      className={`absolute top-0 
+        bg-background px-12 shadow-2xl
         flex flex-col place-content-center
         min-w-fit min-h-screen 
         transition-transform ease-in-out duration-300 ${

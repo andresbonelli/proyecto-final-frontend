@@ -1,3 +1,5 @@
+import { svgProps } from "@/app/utils/interfaces";
+
 export default function Logo({ width, height, fill: fill }: svgProps) {
   return (
     <div id="logo-container">

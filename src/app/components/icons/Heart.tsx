@@ -1,3 +1,5 @@
+import { svgProps } from "@/app/utils/interfaces";
+
 export default function HeartIcon({ width, height, fill, stroke }: svgProps) {
   return (
     <svg

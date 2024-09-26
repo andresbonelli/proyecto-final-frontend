@@ -4,6 +4,7 @@ import Link from "next/link";
 import ProductCard from "../../product_card";
 import CarrouselArrow from "../../buttons/carrousel_arrow";
 import { useState } from "react";
+import { ProductFromDB } from "@/app/utils/interfaces";
 
 export default function ProductDealsCarrousel({
   products,

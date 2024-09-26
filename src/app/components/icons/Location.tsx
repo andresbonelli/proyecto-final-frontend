@@ -1,6 +1,9 @@
+import { svgProps } from "@/app/utils/interfaces";
+
 export default function LocationIcon({ width, height, stroke }: svgProps) {
   return (
     <svg
+      className="flex-shrink-0"
       width={width}
       height={height}
       viewBox="0 0 24 24"

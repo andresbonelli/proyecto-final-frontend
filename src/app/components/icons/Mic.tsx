@@ -1,3 +1,5 @@
+import { svgProps } from "@/app/utils/interfaces";
+
 export default function MicIcon({ width, height, fill }: svgProps) {
   return (
     <svg

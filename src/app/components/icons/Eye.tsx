@@ -1,3 +1,5 @@
+import { svgProps } from "@/app/utils/interfaces";
+
 export default function EyeIcon({ width, height, fill: fill }: svgProps) {
   return (
     <svg
