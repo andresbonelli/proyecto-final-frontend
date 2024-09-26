@@ -20,6 +20,7 @@ const config: Config = {
     },
     extend: {
       colors: {
+        redder: "#ff0000",
         red: "#F83758",
         softRed: "#FE735C",
         blue: "#3163E2",

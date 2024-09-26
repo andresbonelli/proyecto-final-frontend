@@ -8,7 +8,8 @@ import { colors } from "@/app/constants";
 import { Address, EditUserInfoDto } from "@/app/utils/interfaces";
 import AddIcon from "../../icons/Add";
 import EditSquareIcon from "../../icons/EditSquare";
-import LocationIcon from "../../icons/Location";
+import AddNewAddressForm from "../../forms/add_new_address";
+import EditAddressForm from "../../forms/edit_address";
 
 export default function AccountForm({
   isOpen,
@@ -20,14 +21,24 @@ export default function AccountForm({
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [addresses, setAddresses] = useState<Address[]>([]);
-  const [newAdress, setNewAddress] = useState<Address | null>(null);
   const [isAddingNewAddress, setIsAddingNewAddress] = useState(false);
+  const [isEditingAddress, setIsEdittingAddress] = useState(false);
+  const [editAddressIndex, setEditAddressIndex] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("error from backend");
+
+  console.log(addresses);
+  console.log("editing?" + isEditingAddress);
+  console.log("adding?" + isAddingNewAddress);
 
   async function onUpdateUser(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
+    const user: EditUserInfoDto = {
+      firstname: firstName,
+      lastname: lastName,
+      address: addresses,
+    };
     try {
       alert("updating user");
     } catch (error) {
@@ -36,6 +47,31 @@ export default function AccountForm({
       setIsLoading(false);
     }
   }
+
+  function handleAddNewAddress(newAddress: Address) {
+    setAddresses((addresses) => [newAddress, ...addresses]);
+    setIsAddingNewAddress(!isAddingNewAddress);
+  }
+
+  function handleEditAddress(editedAddress: Address) {
+    const updated_addresses = addresses.map((address, index) => {
+      if (index === editAddressIndex) {
+        return editedAddress;
+      }
+      return address;
+    });
+    setAddresses(updated_addresses);
+    setIsEdittingAddress(!isEditingAddress);
+  }
+
+  function handleDeleteAddress() {
+    const updated_addresses = addresses.filter(
+      (_, index) => index !== editAddressIndex
+    );
+    setAddresses(updated_addresses);
+    setIsEdittingAddress(!isEditingAddress);
+  }
+
   return (
     <aside
       className={`absolute top-0 bg-background px-12 shadow-2xl
@@ -47,7 +83,7 @@ export default function AccountForm({
     >
       <div
         id="account-details-container"
-        className="relative flex flex-col justify-between place-items-center min-w-96  py-5 px-5 gap-5 pt-8 bg-white "
+        className="relative flex flex-col justify-between place-items-center min-w-96  px-5 gap-5 pt-7 pb-10 bg-white shadow-lg"
       >
         <button
           onClick={() => {
@@ -66,6 +102,13 @@ export default function AccountForm({
         <h1 className="font-MontserratBold text-xl w-full text-center ">
           Account details
         </h1>
+        <p
+          className={`text-xs ${
+            errorMessage ?? "hidden"
+          } text-red text-center py-2`}
+        >
+          {errorMessage}
+        </p>
         {/* UPDATE USER INFO FORM */}
         <form
           onSubmit={(e) => onUpdateUser(e)}
@@ -112,44 +155,66 @@ export default function AccountForm({
             id="my-addresses"
             className="w-full flex flex-col justify-between place-items-center gap-5  mb-2 "
           >
-            <div className="w-full flex flex-row justify-between place-items-center mb-3">
+            <div className="w-full flex flex-row justify-between place-items-center ">
               <h1 className="font-MontserratBold text-lg  text-left">
                 My addresses:
               </h1>
-              <button type="button">
-                <AddIcon height={28} width={28} fill="black" />
-              </button>
+              <div
+                className={`${
+                  (isAddingNewAddress || isEditingAddress) && "rotate-45"
+                }  transition-transform duration-200 ease-in-out`}
+              >
+                <button
+                  type="button"
+                  onClick={() => {
+                    isEditingAddress
+                      ? setIsEdittingAddress(false)
+                      : setIsAddingNewAddress(!isAddingNewAddress);
+                  }}
+                >
+                  <AddIcon height={28} width={28} fill="black" />
+                </button>
+              </div>
             </div>
-            <div
-              id="address"
-              className="w-full flex flex-row justify-between place-items-center text-left text-xs "
-            >
-              {/* <LocationIcon width={22} height={22} stroke="black" /> */}
-              <p className="flex-auto ">
-                Scalabrini Ortiz 2088, CABA, Argentina
-              </p>
-              <EditSquareIcon width={18} height={18} fill="black" />
-            </div>
-            <div
-              id="address"
-              className="w-full flex flex-row justify-between place-items-center text-left text-xs "
-            >
-              {/* <LocationIcon width={22} height={22} stroke="black" /> */}
-              <p className="flex-auto ">
-                Scalabrini Ortiz 2088, CABA, Argentina
-              </p>
-              <EditSquareIcon width={18} height={18} fill="black" />
-            </div>
-            <div
-              id="address"
-              className="w-full flex flex-row justify-between place-items-center text-left text-xs "
-            >
-              {/* <LocationIcon width={22} height={22} stroke="black" /> */}
-              <p className="flex-auto ">
-                Scalabrini Ortiz 2088, CABA, Argentina
-              </p>
-              <EditSquareIcon width={18} height={18} fill="black" />
-            </div>
+            {isAddingNewAddress && (
+              <AddNewAddressForm onAddNewAddress={handleAddNewAddress} />
+            )}
+            {isEditingAddress && (
+              <EditAddressForm
+                onEditAddress={handleEditAddress}
+                onDeleteAddress={handleDeleteAddress}
+                address={addresses[editAddressIndex ?? 0]}
+              />
+            )}
+            {!isEditingAddress && !isAddingNewAddress && (
+              <>
+                {addresses.map((address, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="w-full flex flex-row justify-between place-items-center text-left text-xs "
+                    >
+                      {/* <LocationIcon width={22} height={22} stroke="black" /> */}
+                      <p className="flex-auto ">
+                        {address.address_street_name ?? ""}{" "}
+                        {address.address_street_no ?? ""},{" "}
+                        {address.address_city ?? ""},{" "}
+                        {address.address_country_code ?? ""}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setEditAddressIndex(index);
+                          setIsEdittingAddress(true);
+                        }}
+                      >
+                        <EditSquareIcon width={18} height={18} fill="black" />
+                      </button>
+                    </div>
+                  );
+                })}
+              </>
+            )}
           </section>
           <div
             id="divider-line"
@@ -160,12 +225,14 @@ export default function AccountForm({
               <Loader />
             </div>
           )}
-          <button
-            type="submit"
-            className="w-full bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md"
-          >
-            Save
-          </button>
+          {!isAddingNewAddress && !isEditingAddress && (
+            <button
+              type="submit"
+              className="w-full bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md"
+            >
+              Save
+            </button>
+          )}
         </form>
       </div>
     </aside>

@@ -54,6 +54,6 @@ export interface Address {
   address_street_name?: string | null;
   address_city?: string | null;
   address_state?: string | null;
-  address_country_code?: CountryCode | null;
+  address_country_code?: string | null;
   address_postal_code?: string | null;
 }

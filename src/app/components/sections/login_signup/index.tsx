@@ -103,7 +103,7 @@ export default function LoginOrSignupForm({
     >
       <div
         id="login-form-container"
-        className="relative flex flex-col justify-between min-w-96 py-6 px-6 gap-2 bg-white"
+        className="relative flex flex-col justify-between min-w-96 py-6 px-6 gap-2 bg-white shadow-lg"
       >
         <button
           onClick={() => {
