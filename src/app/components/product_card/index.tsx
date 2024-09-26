@@ -4,6 +4,7 @@ import StarHalfIcon from "../icons/StarHalf";
 import FingerIcon from "../icons/Finger";
 import HeartIcon from "../icons/Heart";
 import { calculateDiscountPerc } from "@/app/utils";
+import { ProductFromDB } from "@/app/utils/interfaces";
 
 export default function ProductCard({
   props,
@@ -23,7 +24,11 @@ export default function ProductCard({
   return (
     <div
       id="product-card-container"
-      className="relative sm:w-72 sm:h-96 w-44 h-64 flex flex-col  bg-white rounded-md  hover:cursor-pointer hover:shadow-lg ease-in-out"
+      className="relative 
+                 sm:w-72 sm:h-96 w-44 h-64
+                 flex flex-col bg-white shadow-lg rounded-md
+                 hover:cursor-pointer hover:scale-105
+                 ease-in-out transition-all duration-300"
     >
       {outOfStock && (
         <label

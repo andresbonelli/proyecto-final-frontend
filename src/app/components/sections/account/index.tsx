@@ -1,15 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import Loader from "../../loader";
-import ArrowIcon from "../../icons/Arrow";
-import UserIcon from "../../icons/User";
-import { colors } from "@/app/constants";
-import { Address, EditUserInfoDto } from "@/app/utils/interfaces";
-import AddIcon from "../../icons/Add";
-import EditSquareIcon from "../../icons/EditSquare";
 import AddNewAddressForm from "../../forms/add_new_address";
 import EditAddressForm from "../../forms/edit_address";
+import Loader from "../../loader";
+import { Address, UserInfoDto } from "@/app/utils/interfaces";
+import { colors } from "@/app/constants";
+import AddIcon from "../../icons/Add";
+import ArrowIcon from "../../icons/Arrow";
+import PencilIcon from "../../icons/Pencil";
+import UserIcon from "../../icons/User";
+import EditCircleIcon from "../../icons/EditCircle";
 
 export default function AccountForm({
   isOpen,
@@ -25,16 +26,12 @@ export default function AccountForm({
   const [isEditingAddress, setIsEdittingAddress] = useState(false);
   const [editAddressIndex, setEditAddressIndex] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("error from backend");
-
-  console.log(addresses);
-  console.log("editing?" + isEditingAddress);
-  console.log("adding?" + isAddingNewAddress);
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function onUpdateUser(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
-    const user: EditUserInfoDto = {
+    const user: UserInfoDto = {
       firstname: firstName,
       lastname: lastName,
       address: addresses,
@@ -95,9 +92,12 @@ export default function AccountForm({
         </button>
         <div
           id="profile-pic-container"
-          className="w-16 h-16 rounded-full flex flex-col justify-center place-items-center shadow-xl"
+          className="relative w-20 h-20 rounded-full flex flex-col justify-center place-items-center shadow-xl"
         >
-          <UserIcon width={30} height={30} fill="gray" />
+          <UserIcon width={35} height={35} fill="gray" />
+          <button type="button" className="absolute bottom-0 right-0 ">
+            <EditCircleIcon height={20} width={20} fill="#3163E2" />
+          </button>
         </div>
         <h1 className="font-MontserratBold text-xl w-full text-center ">
           Account details
@@ -202,13 +202,14 @@ export default function AccountForm({
                         {address.address_country_code ?? ""}
                       </p>
                       <button
+                        className="mr-1"
                         type="button"
                         onClick={() => {
                           setEditAddressIndex(index);
                           setIsEdittingAddress(true);
                         }}
                       >
-                        <EditSquareIcon width={18} height={18} fill="black" />
+                        <PencilIcon width={18} height={18} fill="black" />
                       </button>
                     </div>
                   );

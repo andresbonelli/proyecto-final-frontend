@@ -1,3 +1,5 @@
+import { ProductFromDB } from "@/app/utils/interfaces";
+
 export const test_products: ProductFromDB[] = [
   {
     name: "REMERA NEGRA 'MI AMIGO INVENCIBLE'",

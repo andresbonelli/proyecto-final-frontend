@@ -9,6 +9,7 @@ import ProductDealsCarrousel from "./components/sections/product_deals_carrousel
 import Social from "./components/sections/social";
 import Info from "./components/sections/info";
 import Billboard from "./components/sections/billboard";
+import { ProductFromDB } from "./utils/interfaces";
 
 export default function Home() {
   const products: ProductFromDB[] = test_products.filter(

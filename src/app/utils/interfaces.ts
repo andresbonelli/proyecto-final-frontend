@@ -1,5 +1,3 @@
-import { CountryCode } from ".";
-
 export interface svgProps {
   width: number;
   height: number;
@@ -8,18 +6,18 @@ export interface svgProps {
 }
 
 export interface ProductFromDB {
+  id: string;
   name: string;
   description: string;
   price: number;
   old_price?: any;
   stock: number;
+  staff_id: string;
   sku?: string | null;
   image?: string | null;
   category?: string;
   details?: ProductDetails;
   tags?: string[] | null;
-  id: string;
-  staff_id: string;
   sales_count?: number | null;
   created_at: string;
   modified_at?: string | null;
@@ -42,11 +40,21 @@ export interface LoginDto {
   password: string;
 }
 
-export interface EditUserInfoDto {
+export interface UserInfoDto {
   firstname?: string | null;
   lastname?: string | null;
   image?: string | null;
   address?: Address[] | null;
+}
+
+export interface UserFromDB extends UserInfoDto {
+  _id: string;
+  username: string;
+  email: string;
+  role: Role;
+  created_at: string;
+  modified_at?: string | null;
+  is_active: boolean;
 }
 
 export interface Address {
@@ -56,4 +64,10 @@ export interface Address {
   address_state?: string | null;
   address_country_code?: string | null;
   address_postal_code?: string | null;
+}
+
+enum Role {
+  CUSTOMER = "customer",
+  STAFF = "staff",
+  ADMIN = "admin",
 }
