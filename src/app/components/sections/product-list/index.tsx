@@ -24,7 +24,7 @@ export default function ProductList({
       >
         {products.slice(0, sliceIndex).map((product, index) => {
           return (
-            <Link href={`/products/${product.id}`} key={index}>
+            <Link href={`/products/${product.id}`} key={product.id}>
               <ProductCard props={{ product: product, isFavorite: false }} />
             </Link>
           );

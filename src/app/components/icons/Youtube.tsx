@@ -12,9 +12,9 @@ export default function YoutubeIcon({ width, height, fill }: svgProps) {
       <g
         id="Page-1"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill={fill}
-        fill-rule="evenodd"
+        fillRule="evenodd"
       >
         <g
           id="Dribbble-Light-Preview"

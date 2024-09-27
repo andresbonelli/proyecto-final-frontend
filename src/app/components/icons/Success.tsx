@@ -26,7 +26,7 @@ export default function SuccessIcon({ width, height, fill, stroke }: svgProps) {
       <path
         d="M68.1608 60.9481L79.8062 74.7937C80.1617 75.2164 80.7926 75.2709 81.2152 74.9154L110.213 50.5257"
         stroke={stroke}
-        stroke-width="4"
+        strokeWidth="4"
       />
       <path
         opacity="0.4"

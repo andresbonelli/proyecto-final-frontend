@@ -72,15 +72,21 @@ export default function AccountForm({
   return (
     <aside
       className={`absolute top-0 bg-background px-12 shadow-2xl
-        flex flex-col place-content-center
-        min-w-fit min-h-screen 
-        transition-transform ease-in-out duration-300 ${
-          isOpen ? "right-0 translate-x-0 " : "-right-full translate-x-full "
-        }`}
+                  flex flex-col place-content-center
+                  min-w-fit min-h-screen 
+                  transition-transform ease-in-out duration-300 ${
+                    isOpen
+                      ? "right-0 translate-x-0 "
+                      : "-right-full translate-x-full "
+                  }`}
     >
       <div
         id="account-details-container"
-        className="relative flex flex-col justify-between place-items-center min-w-96  px-5 gap-5 pt-7 pb-10 bg-white shadow-lg"
+        className="relative flex flex-col
+                   justify-between place-items-center
+                   min-w-96 max-h-full 
+                   px-5 gap-5 pt-7 pb-10
+                   bg-white shadow-lg"
       >
         <button
           onClick={() => {

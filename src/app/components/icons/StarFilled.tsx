@@ -9,7 +9,7 @@ export default function StarFilledIcon({ width, height, fill }: svgProps) {
       fill={fill}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_120_1633)">
+      <g clipPath="url(#clip0_120_1633)">
         <path d="M12.542 17.7464L18.5644 21.3849L16.9662 14.5275L22.2871 9.91358L15.2803 9.31855L12.542 2.85132L9.8036 9.31855L2.79688 9.91358L8.1177 14.5275L6.5195 21.3849L12.542 17.7464Z" />
       </g>
       <defs>
