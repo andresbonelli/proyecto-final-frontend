@@ -7,12 +7,9 @@ import { useState } from "react";
 import useProducts from "@/app/hooks/useProducts";
 import { ProductQuery } from "@/app/utils/interfaces";
 
-export default function ProductDealsCarrousel() {
+export default function ProductCarrousel({ query }: { query: ProductQuery }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const query: ProductQuery = {
-    filter: "old_price>=0",
-  };
   const { products, status, errorMsg } = useProducts(query);
 
   const handleNext = () => {

@@ -1,15 +1,16 @@
-import ProductList from "./components/sections/product-list";
-import ProductDealsCarrousel from "./components/sections/product_deals_carrousel";
+import ProductGrid from "./components/sections/product_grid";
+import ProductCarrousel from "./components/sections/product_carrousel";
 import Social from "./components/sections/social";
 import Info from "./components/sections/info";
 import Billboard from "./components/sections/billboard";
+import { ProductQuery } from "./utils/interfaces";
 
 export default function Home() {
   return (
     <>
-      <ProductList />
+      <ProductGrid query={{ filter: "old_price%00" }} />
       <Billboard />
-      <ProductDealsCarrousel />
+      <ProductCarrousel query={{ filter: "old_price>0" }} />
       <Social />
       <Info />
     </>

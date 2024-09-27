@@ -9,10 +9,10 @@ import { ProductQuery } from "@/app/utils/interfaces";
 import useProducts from "@/app/hooks/useProducts";
 import Loader from "../../loader";
 
-export default function ProductList() {
+export default function ProductGrid({ query }: { query: ProductQuery }) {
   const [sliceIndex, setSliceIndex] = useState(8);
 
-  const { products, status, errorMsg, refetch } = useProducts({});
+  const { products, status, errorMsg, refetch } = useProducts(query);
 
   if (errorMsg) {
     console.error(errorMsg);
