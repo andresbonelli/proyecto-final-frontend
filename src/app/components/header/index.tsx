@@ -12,14 +12,21 @@ import SearchIcon from "../icons/Search";
 import UserIcon from "../icons/User";
 import CartIcon from "../icons/Cart";
 import { colors } from "../../constants";
+import Navbar from "../navbar";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isloggedIn, setIsLoggedIn] = useState(true);
 
   return (
-    <header className="bg-background flex flex-row xl:px-60 lg:px-40 md:px-20 px-5 sm:py-8 py-5 text-black ">
-      <div className="flex flex-row justify-between w-full gap-3 ">
+    <header className="fixed top-0 w-full z-50">
+      <div
+        id="header-container"
+        className="bg-background
+                   flex flex-row justify-between place-items-center
+                   w-full gap-3
+                   xl:px-60 lg:px-40 md:px-20 px-5 sm:py-8 py-5"
+      >
         {/* LOGO */}
         <Link href="/">
           <div
@@ -92,22 +99,24 @@ export default function Header() {
             </div>
           </div>
         </div>
+
+        {isloggedIn ? (
+          <AccountForm
+            onClose={() => {
+              setIsModalOpen(false);
+            }}
+            isOpen={isModalOpen}
+          />
+        ) : (
+          <LoginOrSignupForm
+            onClose={() => {
+              setIsModalOpen(false);
+            }}
+            isOpen={isModalOpen}
+          />
+        )}
       </div>
-      {isloggedIn ? (
-        <AccountForm
-          onClose={() => {
-            setIsModalOpen(false);
-          }}
-          isOpen={isModalOpen}
-        />
-      ) : (
-        <LoginOrSignupForm
-          onClose={() => {
-            setIsModalOpen(false);
-          }}
-          isOpen={isModalOpen}
-        />
-      )}
+      <Navbar />
     </header>
   );
 }
