@@ -1,19 +1,53 @@
+"use client";
+
+import ArrowIcon from "@/app/components/icons/Arrow";
+import Loader from "@/app/components/loader";
+import ProductCard from "@/app/components/product_card";
+import { colors } from "@/app/constants";
+import useProducts from "@/app/hooks/useProducts";
+import { ProductQuery } from "@/app/utils/interfaces";
+import Link from "next/link";
+import { useState } from "react";
+
 export default function ProductCategory({
   params,
 }: {
   params: { category: string };
 }) {
+  const [sliceIndex, setSliceIndex] = useState(8);
+  const query: ProductQuery = {
+    filter: `category=${params.category}`,
+  };
+  const { products, status, errorMsg, refetch } = useProducts(query);
   return (
-    <div
-      id="main-sections"
-      className="fex flex-col 2xl:px-80 xl:px-60 lg:px-40 md:px-20 px-3 pt-10 mb-5"
+    <section
+      id="products-section-container"
+      className="flex flex-col  place-items-center"
     >
-      <h2 className="text-3xl text-center font-MontserratBold">
-        Products by category
-      </h2>
-      <h2 className="text-3xl text-center font-MontserratBold">
-        {params.category}
-      </h2>
-    </div>
+      {status === "loading" && <Loader />}
+      <div
+        id="products-list"
+        className="flex flex-row flex-wrap justify-around py-10 gap-5"
+      >
+        {products.slice(0, sliceIndex).map((product) => {
+          return (
+            <Link href={`/products/${product.id}`} key={product.id}>
+              <ProductCard props={{ product: product, isFavorite: false }} />
+            </Link>
+          );
+        })}
+      </div>
+      <h5 className="text-lg text-center font-MontserratBold ">VER MAS</h5>
+
+      <button
+        onClick={() => {
+          setSliceIndex(sliceIndex + 4);
+          refetch();
+        }}
+        className="-rotate-90 bg-white w-fit rounded-full shadow-lg opacity-70 hover:cursor-pointer hover:opacity-85 mt-3"
+      >
+        <ArrowIcon width={40} height={40} fill={colors.grey} />
+      </button>
+    </section>
   );
 }

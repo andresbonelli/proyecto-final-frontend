@@ -4,14 +4,17 @@ import Link from "next/link";
 import ProductCard from "../../product_card";
 import CarrouselArrow from "../../buttons/carrousel_arrow";
 import { useState } from "react";
-import { ProductFromDB } from "@/app/utils/interfaces";
+import useProducts from "@/app/hooks/useProducts";
+import { ProductQuery } from "@/app/utils/interfaces";
 
-export default function ProductDealsCarrousel({
-  products,
-}: {
-  products: ProductFromDB[];
-}) {
+export default function ProductDealsCarrousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const query: ProductQuery = {
+    filter: "old_price>=0",
+  };
+  const { products, status, errorMsg } = useProducts(query);
+
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? 0 : prevIndex - 1));
   };
@@ -32,11 +35,11 @@ export default function ProductDealsCarrousel({
           style={{ transform: `translateX(-${currentIndex * 25}%)` }}
           className="flex flex-row sm:py-10 py-5 pl-5 sm:pl-10 sm:gap-5 gap-28 transition-transform duration-500 ease-in-out  "
         >
-          {products.map((product, index) => {
+          {products.map((product) => {
             return (
               <Link
                 href={`/products/${product.id}`}
-                key={index}
+                key={product.id}
                 className="w-1/4"
               >
                 <ProductCard props={{ product: product, isFavorite: false }} />

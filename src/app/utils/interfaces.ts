@@ -29,6 +29,23 @@ export interface ProductDetails {
   long_description?: string | null;
 }
 
+export interface ProductQuery {
+  filter?: string | null;
+  limit?: number;
+  offset?: number | null;
+  sortBy?:
+    | "name"
+    | "description"
+    | "price"
+    | "old_price"
+    | "stock"
+    | "category"
+    | "created_at"
+    | "modified_at";
+  sortDir?: "asc" | "desc";
+  projection?: string;
+}
+
 export interface RegisterUserDto {
   username: string;
   email: string;

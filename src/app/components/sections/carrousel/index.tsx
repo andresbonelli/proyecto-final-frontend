@@ -14,7 +14,10 @@ export default function Carrousel({ images }: { images: StaticImageData[] }) {
     );
   };
   return (
-    <div className="relative hidden md:block">
+    <section
+      id="carrousel"
+      className="relative hidden place-self-center md:block w-screen overflow-hidden "
+    >
       <div
         style={{
           transform: `translateX(-${currentIndex * 100}%)`,
@@ -41,6 +44,6 @@ export default function Carrousel({ images }: { images: StaticImageData[] }) {
       />
       {/* Cool debugging feature: preview image index */}
       {/* <h1 className="text-5xl text-center">{currentIndex}</h1> */}
-    </div>
+    </section>
   );
 }

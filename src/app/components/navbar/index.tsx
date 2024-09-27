@@ -18,11 +18,11 @@ const navLinks = [
   },
   {
     label: "Ropa",
-    link: "/products/clothing",
+    link: "/products/category/clothing",
   },
   {
     label: "Accesorios",
-    link: "/products/office",
+    link: "/products/category/office",
   },
   {
     label: "Contacto",
