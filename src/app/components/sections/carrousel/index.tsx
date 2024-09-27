@@ -23,14 +23,7 @@ export default function Carrousel({ images }: { images: StaticImageData[] }) {
         className={`flex flex-row transition-transform duration-500 ease-in-out`}
       >
         {images.map((image, index) => {
-          return (
-            <Image
-              key={index}
-              src={image}
-              alt={`slide-${index}`}
-              objectPosition="center"
-            />
-          );
+          return <Image key={index} src={image} alt={`slide-${index}`} />;
         })}
       </div>
       {/* component */}
