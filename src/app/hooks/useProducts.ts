@@ -46,8 +46,6 @@ export default function useProducts(query: ProductQuery) {
       setErrorMsg("unexpected error");
     }
   }
-  console.log(status);
-  console.log(products);
 
   useEffect(() => {
     refetch();
