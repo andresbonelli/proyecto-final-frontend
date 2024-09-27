@@ -29,7 +29,6 @@ export default function Carrousel({ images }: { images: StaticImageData[] }) {
           return <Image key={index} src={image} alt={`slide-${index}`} />;
         })}
       </div>
-      {/* component */}
       <CarrouselArrow
         isDisabled={currentIndex === images.length - 1}
         onPress={handlePrev}
@@ -42,7 +41,6 @@ export default function Carrousel({ images }: { images: StaticImageData[] }) {
         xOffset="right-20"
         direction="rotate-180"
       />
-      {/* Cool debugging feature: preview image index */}
       {/* <h1 className="text-5xl text-center">{currentIndex}</h1> */}
     </section>
   );
