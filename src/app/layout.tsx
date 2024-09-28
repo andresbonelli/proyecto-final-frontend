@@ -31,7 +31,7 @@ export default function RootLayout({
           <Carrousel images={[slide1, slide2]} />
           <div
             id="main-sections"
-            className="fex flex-col 2xl:px-80 xl:px-60 lg:px-40 md:px-20 px-3 mb-5"
+            className="flex flex-col 2xl:px-80 xl:px-60 lg:px-40 md:px-20 px-3 mb-5"
           >
             {children}
           </div>
