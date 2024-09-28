@@ -7,7 +7,13 @@ import { useState } from "react";
 import useProducts from "@/app/hooks/useProducts";
 import { ProductQuery } from "@/app/utils/interfaces";
 
-export default function ProductCarrousel({ query }: { query: ProductQuery }) {
+export default function ProductCarrousel({
+  query,
+  title,
+}: {
+  query: ProductQuery;
+  title: string;
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const { products, status, errorMsg } = useProducts(query);
@@ -25,7 +31,7 @@ export default function ProductCarrousel({ query }: { query: ProductQuery }) {
       id="ofertas-section-container"
       className="relative flex flex-col sm:gap-10 "
     >
-      <h2 className="text-3xl text-center font-MontserratBold">OFERTAS</h2>
+      <h2 className="text-3xl text-center font-MontserratBold">{title}</h2>
       <div className="sm:overflow-hidden overflow-scroll">
         <div
           id="ofertas-cards-container"

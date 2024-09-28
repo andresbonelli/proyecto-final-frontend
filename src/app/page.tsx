@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <ProductGrid query={{}} />
       <Billboard />
-      <ProductCarrousel query={{ filter: "old_price>0" }} />
+      <ProductCarrousel query={{ filter: "old_price>0" }} title="OFERTAS" />
       <Social />
       <Info />
     </>
