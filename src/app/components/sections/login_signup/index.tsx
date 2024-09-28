@@ -9,6 +9,7 @@ import { colors } from "@/app/utils/constants";
 import Loader from "../../loader";
 import EmailIcon from "../../icons/Email";
 import { LoginDto, RegisterUserDto } from "@/app/utils/interfaces";
+import { RegisterForm } from "../../forms/register";
 
 export default function LoginOrSignupForm({
   isOpen,
@@ -141,7 +142,8 @@ export default function LoginOrSignupForm({
           {errorMessage}
         </p>
         {/* LOGIN/SIGNUP/RESET PASSWORD FORM */}
-        <form
+        <RegisterForm />
+        {/* <form
           onSubmit={(e) =>
             forgotPassword
               ? onForgotPassword(e)
@@ -151,7 +153,7 @@ export default function LoginOrSignupForm({
           }
           className="flex flex-col justify-between gap-5"
         >
-          {/* Username input */}
+          
           {!forgotPassword && (
             <div
               className={`flex flex-row place-items-center justify-start py-2 px-2 gap-2 bg-gray-200  rounded-md border border-gray-300`}
@@ -169,7 +171,7 @@ export default function LoginOrSignupForm({
               />
             </div>
           )}
-          {/* Email input required for register */}
+          
           {(isRegistering || forgotPassword) && (
             <div
               className={`flex flex-row place-items-center justify-start py-2 px-2 gap-2 bg-gray-200  rounded-md border border-gray-300`}
@@ -185,7 +187,7 @@ export default function LoginOrSignupForm({
               />
             </div>
           )}
-          {/* Password input */}
+         
           {!forgotPassword && (
             <div
               className={`flex flex-row place-items-center justify-between py-2 px-2 gap-2 bg-gray-200  rounded-md border border-gray-300`}
@@ -207,7 +209,7 @@ export default function LoginOrSignupForm({
               </button>
             </div>
           )}
-          {/* Pass confirm input */}
+        
           {isRegistering && (
             <div
               className={`flex flex-row place-items-center justify-start py-2 px-2 gap-2 bg-gray-200  rounded-md border border-gray-300`}
@@ -247,14 +249,14 @@ export default function LoginOrSignupForm({
               <Loader />
             </div>
           )}
-          {/* FORM SUBMIT BTN */}
+        
           <button
             type="submit"
             className="w-full bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md"
           >
             {forgotPassword ? "Continue" : isRegistering ? "Register" : "Login"}
           </button>
-        </form>
+        </form> */}
         {forgotPassword ? (
           <button onClick={() => setForgotPassword(!forgotPassword)}>
             Back to <strong>login</strong>
