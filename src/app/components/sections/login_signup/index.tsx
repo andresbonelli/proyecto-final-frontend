@@ -5,7 +5,7 @@ import UserIcon from "../../icons/User";
 import LockIcon from "../../icons/Lock";
 import EyeIcon from "../../icons/Eye";
 import ArrowIcon from "../../icons/Arrow";
-import { colors } from "@/app/constants";
+import { colors } from "@/app/utils/constants";
 import Loader from "../../loader";
 import EmailIcon from "../../icons/Email";
 import { LoginDto, RegisterUserDto } from "@/app/utils/interfaces";

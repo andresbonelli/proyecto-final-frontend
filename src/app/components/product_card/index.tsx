@@ -1,4 +1,4 @@
-import { colors } from "@/app/constants";
+import { colors } from "@/app/utils/constants";
 import StarFilledIcon from "../icons/StarFilled";
 import StarHalfIcon from "../icons/StarHalf";
 import FingerIcon from "../icons/Finger";

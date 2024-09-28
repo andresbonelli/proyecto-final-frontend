@@ -5,7 +5,7 @@ import AddNewAddressForm from "../../forms/add_new_address";
 import EditAddressForm from "../../forms/edit_address";
 import Loader from "../../loader";
 import { Address, UserInfoDto } from "@/app/utils/interfaces";
-import { colors } from "@/app/constants";
+import { colors } from "@/app/utils/constants";
 import AddIcon from "../../icons/Add";
 import ArrowIcon from "../../icons/Arrow";
 import PencilIcon from "../../icons/Pencil";

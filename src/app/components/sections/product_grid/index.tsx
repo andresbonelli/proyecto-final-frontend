@@ -1,6 +1,6 @@
 "use client";
 
-import { colors } from "@/app/constants";
+import { colors } from "@/app/utils/constants";
 import Link from "next/link";
 import ArrowIcon from "../../icons/Arrow";
 import ProductCard from "../../product_card";

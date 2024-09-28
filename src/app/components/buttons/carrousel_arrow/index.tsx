@@ -1,4 +1,4 @@
-import { colors } from "@/app/constants";
+import { colors } from "@/app/utils/constants";
 import ArrowIcon from "../../icons/Arrow";
 
 interface CarrouselArrowProps {

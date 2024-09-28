@@ -11,12 +11,12 @@ import MicIcon from "../icons/Mic";
 import SearchIcon from "../icons/Search";
 import UserIcon from "../icons/User";
 import CartIcon from "../icons/Cart";
-import { colors } from "../../constants";
+import { colors } from "../../utils/constants";
 import Navbar from "../navbar";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isloggedIn, setIsLoggedIn] = useState(true);
+  const [isloggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <header className="fixed top-0 w-full z-50">
