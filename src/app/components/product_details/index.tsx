@@ -8,7 +8,7 @@ import { useState } from "react";
 import Modal from "../modal";
 import Link from "next/link";
 
-export default function ProductDetails({
+export default function ProductDetailsComponent({
   product,
   cart,
 }: {
