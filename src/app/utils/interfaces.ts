@@ -46,6 +46,11 @@ export interface ProductQuery {
   projection?: string;
 }
 
+export interface OrderProduct {
+  product_id: string;
+  quantity: number;
+}
+
 export interface RegisterUserDto {
   username: string;
   email: string;

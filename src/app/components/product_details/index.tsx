@@ -1,30 +1,32 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
+import { useCart } from "@/app/context/CartContextProvider";
 import { calculateDiscountPerc } from "@/app/utils";
 import { ProductFromDB } from "@/app/utils/interfaces";
 import FingerIcon from "../icons/Finger";
-import GoToCartIcon from "../icons/GoToCart";
-import { useState } from "react";
 import Modal from "../modal";
-import Link from "next/link";
+import GoToCartIcon from "../icons/GoToCart";
 
 export default function ProductDetailsComponent({
   product,
-  cart,
 }: {
   product: ProductFromDB;
-  cart?: any;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { category, name, description, image, price, old_price, details } =
     product;
+  const { cart, addToCart } = useCart();
 
   const discount = product.old_price
     ? calculateDiscountPerc(product.old_price, product.price)
     : null;
 
   function handleAddToCart() {
+    addToCart({ product_id: product.id, quantity: 1 });
     console.log("adding to cart " + product.id);
+    console.log(cart);
     setIsModalOpen(!isModalOpen);
   }
 
