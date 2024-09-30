@@ -3,6 +3,7 @@
 import { useCart } from "@/app/context/CartContextProvider";
 import { calculateDiscountPerc } from "@/app/utils";
 import { ProductFromCart } from "@/app/utils/interfaces";
+import Link from "next/link";
 
 export default function CartProductCard({
   product,
@@ -17,16 +18,20 @@ export default function CartProductCard({
       className="w-full h-44 flex flex-row justify-between place-items-center pl-8 "
     >
       <div className="w-1/4 ">
-        <img
-          src={product.image ?? ""}
-          alt={product.name}
-          className="object-scale-down h-44"
-        />
+        <Link href={`/products/${product.id}`}>
+          <img
+            src={product.image ?? ""}
+            alt={product.name}
+            className="object-scale-down h-44"
+          />
+        </Link>
       </div>
       <div className="w-1/2 h-full flex flex-col justify-between place-items-start ">
         <div>
-          <h1 className="font-MontserratBold text-lg">{product.name}</h1>
-          <p className="text-sm">{product.description}</p>
+          <Link href={`/products/${product.id}`}>
+            <h1 className="font-MontserratBold text-lg">{product.name}</h1>
+            <p className="text-sm">{product.description}</p>
+          </Link>
         </div>
         <div className="flex flex-row justify-start place-items-center gap-2">
           <h3 className="text-left text-md font-MontserratSemibold ">
