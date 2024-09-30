@@ -5,6 +5,11 @@ export interface svgProps {
   stroke?: string;
 }
 
+export interface ProductDetails {
+  image_list?: string[] | null;
+  sizes?: string[] | null;
+  long_description?: string | null;
+}
 export interface ProductFromDB {
   id: string;
   name: string;
@@ -23,10 +28,12 @@ export interface ProductFromDB {
   modified_at?: string | null;
 }
 
-export interface ProductDetails {
-  image_list?: string[] | null;
-  sizes?: string[] | null;
-  long_description?: string | null;
+export interface ProductFromCart extends Partial<ProductFromDB> {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  quantity: number;
 }
 
 export interface ProductQuery {
@@ -44,11 +51,6 @@ export interface ProductQuery {
     | "modified_at";
   sortDir?: "asc" | "desc";
   projection?: string;
-}
-
-export interface OrderProduct {
-  product_id: string;
-  quantity: number;
 }
 
 export interface RegisterUserDto {

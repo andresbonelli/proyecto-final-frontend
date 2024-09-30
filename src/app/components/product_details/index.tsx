@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/app/context/CartContextProvider";
 import { calculateDiscountPerc } from "@/app/utils";
-import { ProductFromDB } from "@/app/utils/interfaces";
+import { ProductFromCart, ProductFromDB } from "@/app/utils/interfaces";
 import FingerIcon from "../icons/Finger";
 import Modal from "../modal";
 import GoToCartIcon from "../icons/GoToCart";
@@ -17,16 +17,23 @@ export default function ProductDetailsComponent({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { category, name, description, image, price, old_price, details } =
     product;
-  const { cart, addToCart } = useCart();
+  const { cart, addToCart, clearCart } = useCart();
 
   const discount = product.old_price
     ? calculateDiscountPerc(product.old_price, product.price)
     : null;
 
   function handleAddToCart() {
-    addToCart({ product_id: product.id, quantity: 1 });
-    console.log("adding to cart " + product.id);
-    console.log(cart);
+    const addingProduct: ProductFromCart = {
+      id: product.id,
+      name: name,
+      price: price,
+      image: image ?? null,
+      old_price: old_price ?? null,
+      description: description ?? null,
+      quantity: 1,
+    };
+    addToCart(addingProduct);
     setIsModalOpen(!isModalOpen);
   }
 
@@ -124,7 +131,10 @@ export default function ProductDetailsComponent({
               <GoToCartIcon width={22} height={22} fill="white" />
               <p>Add to cart</p>
             </button>
-            <button className="flex flex-row justify-around w-40 place-items-center bg-softGreen hover:bg-green text-white text-md font-MontserratRegular py-2 px-4 rounded gap-2">
+            <button
+              onClick={clearCart}
+              className="flex flex-row justify-around w-40 place-items-center bg-softGreen hover:bg-green text-white text-md font-MontserratRegular py-2 px-4 rounded gap-2"
+            >
               <FingerIcon width={22} height={22} fill="white" />
               <p>Buy now</p>
             </button>

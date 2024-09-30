@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import LoginOrSignupForm from "../sections/login_signup";
 import AccountForm from "../sections/account";
@@ -13,10 +13,12 @@ import UserIcon from "../icons/User";
 import CartIcon from "../icons/Cart";
 import { colors } from "../../utils/constants";
 import Navbar from "../navbar";
+import { useCart } from "@/app/context/CartContextProvider";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isloggedIn, setIsLoggedIn] = useState(false);
+  const { cart, totalItems } = useCart();
 
   return (
     <header className="fixed top-0 w-full z-50">
@@ -84,8 +86,15 @@ export default function Header() {
             <Link href="/favorites">
               <HeartIcon width={25} height={25} fill="none" stroke="black" />
             </Link>
-            <Link href="/cart">
+            <Link href="/cart" className="relative">
               <CartIcon width={25} height={25} fill="black" />
+              <p
+                className="absolute -top-3 right-0
+                            font-MontserratBold text-sm text-pink
+                            w-4 h-4 rounded-full text-center bg-background "
+              >
+                {totalItems}
+              </p>
             </Link>
           </div>
         </div>
