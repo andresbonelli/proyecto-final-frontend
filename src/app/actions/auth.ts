@@ -9,6 +9,10 @@ import {
 import api from "../services/api";
 import { RegisterUserDto } from "../utils/interfaces";
 import { LoginDto } from "../utils/interfaces";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
+const cookieStore = cookies();
 
 export async function signup(state: FormState, formData: FormData) {
   // Validate form fields
@@ -71,12 +75,17 @@ export async function login(state: LoginFormState, formData: FormData) {
   await api
     .post("/auth/login", loginData)
     .then((res) => {
-      if (res.status === 201) {
-        return res.data["message"];
-      } else
+      if (res.status === 200) {
+        console.log(res.data);
+        cookieStore.set("access_token", res.data["access_token"]);
+        cookieStore.set("refresh_token", res.data["refresh_token"]);
+        redirect("/");
+      } else {
+        console.log(res.data);
         return {
           errors: { backend: [res.data["detail"]] },
         };
+      }
     })
     .catch(function (error) {
       if (error.response) {

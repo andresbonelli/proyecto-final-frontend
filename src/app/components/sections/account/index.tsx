@@ -11,6 +11,8 @@ import ArrowIcon from "../../icons/Arrow";
 import PencilIcon from "../../icons/Pencil";
 import UserIcon from "../../icons/User";
 import EditCircleIcon from "../../icons/EditCircle";
+import { useUser } from "@/app/context/UserContextProvider";
+import { useRouter } from "next/navigation";
 
 export default function AccountForm({
   isOpen,
@@ -27,6 +29,8 @@ export default function AccountForm({
   const [editAddressIndex, setEditAddressIndex] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const { user, logout } = useUser();
+  const router = useRouter();
 
   async function onUpdateUser(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -67,6 +71,12 @@ export default function AccountForm({
     );
     setAddresses(updated_addresses);
     setIsEdittingAddress(!isEditingAddress);
+  }
+
+  function handleLogout() {
+    logout();
+    onClose();
+    router.push("/");
   }
 
   return (
@@ -240,6 +250,13 @@ export default function AccountForm({
               Save
             </button>
           )}
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="w-full bg-grey hover:bg-gray-500 text-white py-2 px-4 rounded-md"
+          >
+            Logout
+          </button>
         </form>
       </div>
     </aside>
