@@ -25,6 +25,17 @@ export const RegisterFormSchema = z
     path: ["confirmPassword"],
   });
 
+export const LoginFormSchema = z.object({
+  usernameOrEmail: z
+    .string()
+    .min(1, { message: "Username or email is required." })
+    .trim(),
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters long." })
+    .trim(),
+});
+
 export type FormState =
   | {
       errors?: {
@@ -32,6 +43,16 @@ export type FormState =
         email?: string[];
         password?: string[];
         confirmPassword?: string[];
+      };
+      message?: string;
+    }
+  | undefined;
+
+export type LoginFormState =
+  | {
+      errors?: {
+        usernameOrEmail?: string[];
+        password?: string[];
       };
       message?: string;
     }

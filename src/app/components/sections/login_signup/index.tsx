@@ -1,15 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import UserIcon from "../../icons/User";
-import LockIcon from "../../icons/Lock";
-import EyeIcon from "../../icons/Eye";
 import ArrowIcon from "../../icons/Arrow";
 import { colors } from "@/app/utils/constants";
 import Loader from "../../loader";
-import EmailIcon from "../../icons/Email";
-import { LoginDto, RegisterUserDto } from "@/app/utils/interfaces";
 import { RegisterForm } from "../../forms/register";
+import { LoginForm } from "../../forms/login";
 
 export default function LoginOrSignupForm({
   isOpen,
@@ -18,79 +14,8 @@ export default function LoginOrSignupForm({
   isOpen: boolean;
   onClose: Function;
 }) {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [forgotPassword, setForgotPassword] = useState(false);
+  const [formType, setFormType] = useState("Login");
   const [isLoading, setIsLoading] = useState(false);
-  const [isRegistering, setIsRegistering] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
-  async function onLogin(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setIsLoading(true);
-    const user: LoginDto = {
-      username_or_email: username,
-      password: password,
-    };
-    try {
-      alert("loggin in");
-    } catch (error) {
-      alert(error);
-    } finally {
-      setIsLoading(false);
-      setUsername("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setErrorMessage("");
-    }
-  }
-
-  async function onRegister(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      setErrorMessage("passwords do not match!");
-      return;
-    }
-    setIsLoading(true);
-    const user: RegisterUserDto = {
-      username: username,
-      email: email,
-      password: password,
-    };
-    try {
-      alert("registering");
-    } catch (error) {
-      alert(error);
-    } finally {
-      setIsLoading(false);
-      setUsername("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setErrorMessage("");
-    }
-  }
-
-  async function onForgotPassword(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setIsLoading(true);
-    try {
-      alert("send forgot password email");
-    } catch (error) {
-      alert(error);
-    } finally {
-      setIsLoading(false);
-      setUsername("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setErrorMessage("");
-    }
-  }
 
   return (
     <aside
@@ -109,21 +34,15 @@ export default function LoginOrSignupForm({
         <button
           onClick={() => {
             onClose();
-            setIsRegistering(false);
+            setFormType("Login");
           }}
           className="absolute top-5 left-5"
         >
           <ArrowIcon width={40} height={40} fill={colors.softBlue} />
         </button>
-        <h1 className="font-MontserratBold text-xl text-center">
-          {forgotPassword
-            ? "Password reset"
-            : isRegistering
-            ? "Register"
-            : "Login"}
-        </h1>
+        <h1 className="font-MontserratBold text-xl text-center">{formType}</h1>
 
-        {forgotPassword ? (
+        {formType === "Password Reset" ? (
           <p className="text-center text-sm text-wrap">
             Please enter your account email.<br></br>If your account is active
             you will
@@ -134,145 +53,43 @@ export default function LoginOrSignupForm({
           <p className="text-center">Access to our dashboard</p>
         )}
 
-        <p
-          className={`text-xs ${
-            errorMessage ?? "invisible"
-          } text-red text-center py-2`}
-        >
-          {errorMessage}
-        </p>
         {/* LOGIN/SIGNUP/RESET PASSWORD FORM */}
-        <RegisterForm />
-        {/* <form
-          onSubmit={(e) =>
-            forgotPassword
-              ? onForgotPassword(e)
-              : isRegistering
-              ? onRegister(e)
-              : onLogin(e)
-          }
-          className="flex flex-col justify-between gap-5"
-        >
-          
-          {!forgotPassword && (
-            <div
-              className={`flex flex-row place-items-center justify-start py-2 px-2 gap-2 bg-gray-200  rounded-md border border-gray-300`}
+
+        {formType === "Login" && (
+          <>
+            <LoginForm />
+            <button
+              type="button"
+              onClick={() => setFormType("Password Reset")}
+              className="w-full text-right text-xs text-red"
             >
-              <UserIcon width={25} height={25} fill="gray" />
-              <input
-                required
-                type="text"
-                placeholder={
-                  isRegistering ? "Username (*)" : "Username or Email"
-                }
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="bg-gray-200 flex-auto  text-sm"
-              />
-            </div>
-          )}
-          
-          {(isRegistering || forgotPassword) && (
-            <div
-              className={`flex flex-row place-items-center justify-start py-2 px-2 gap-2 bg-gray-200  rounded-md border border-gray-300`}
-            >
-              <EmailIcon width={20} height={20} fill="gray" />
-              <input
-                required
-                type="email"
-                placeholder="Email (*)"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-gray-200 flex-auto text-sm"
-              />
-            </div>
-          )}
-         
-          {!forgotPassword && (
-            <div
-              className={`flex flex-row place-items-center justify-between py-2 px-2 gap-2 bg-gray-200  rounded-md border border-gray-300`}
-            >
-              <LockIcon width={20} height={20} fill="gray" />
-              <input
-                required
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="bg-gray-200 flex-auto text-sm"
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                <EyeIcon width={20} height={20} fill="gray" />
+              forgot password?
+            </button>
+            <p className="text-center mt-5">
+              "Don't have an account yet?"
+              {"  "}
+              <button onClick={() => setFormType("Register")}>
+                <strong>Register</strong>
               </button>
-            </div>
-          )}
-        
-          {isRegistering && (
-            <div
-              className={`flex flex-row place-items-center justify-start py-2 px-2 gap-2 bg-gray-200  rounded-md border border-gray-300`}
-            >
-              <LockIcon width={20} height={20} fill="gray" />
-              <input
-                required
-                type={showPassword ? "text" : "password"}
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="bg-gray-200 flex-auto text-sm"
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                <EyeIcon width={20} height={20} fill="gray" />
+            </p>
+          </>
+        )}
+        {formType === "Register" && (
+          <>
+            <RegisterForm />
+            <p className="text-center  mt-5">
+              "Have an account?"
+              {"  "}
+              <button onClick={() => setFormType("Login")}>
+                <strong>Login</strong>
               </button>
-            </div>
-          )}
-          {!forgotPassword && (
-            <>
-              {!isRegistering && (
-                <button
-                  type="button"
-                  onClick={() => setForgotPassword(!forgotPassword)}
-                  className="text-right text-xs text-red -mt-3"
-                >
-                  Forgot password?
-                </button>
-              )}
-            </>
-          )}
-          {isLoading && (
-            <div className="flex flex-row justify-center">
-              <Loader />
-            </div>
-          )}
-        
-          <button
-            type="submit"
-            className="w-full bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md"
-          >
-            {forgotPassword ? "Continue" : isRegistering ? "Register" : "Login"}
-          </button>
-        </form> */}
-        {forgotPassword ? (
-          <button onClick={() => setForgotPassword(!forgotPassword)}>
+            </p>
+          </>
+        )}
+        {formType === "Password Reset" && (
+          <button onClick={() => setFormType("Login")}>
             Back to <strong>login</strong>
           </button>
-        ) : (
-          <p className="  text-center">
-            {isRegistering ? "Have an account?" : "Don't have an account yet?"}
-            {"  "}
-            <button
-              onClick={() =>
-                isRegistering ? setIsRegistering(false) : setIsRegistering(true)
-              }
-            >
-              <strong>{isRegistering ? "Login" : "Register"}</strong>
-            </button>
-          </p>
         )}
       </div>
     </aside>

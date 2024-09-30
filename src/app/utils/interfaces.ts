@@ -60,7 +60,7 @@ export interface RegisterUserDto {
 }
 
 export interface LoginDto {
-  username_or_email: string;
+  input: string;
   password: string;
 }
 
