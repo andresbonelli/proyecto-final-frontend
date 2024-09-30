@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import ProductCard from "../../product_card";
+import ProductCard from "../../cards/product_card";
 import CarrouselArrow from "../../buttons/carrousel_arrow";
 import { useState } from "react";
 import useProducts from "@/app/hooks/useProducts";

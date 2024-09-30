@@ -1,8 +1,8 @@
 import { colors } from "@/app/utils/constants";
-import StarFilledIcon from "../icons/StarFilled";
-import StarHalfIcon from "../icons/StarHalf";
-import FingerIcon from "../icons/Finger";
-import HeartIcon from "../icons/Heart";
+import StarFilledIcon from "../../icons/StarFilled";
+import StarHalfIcon from "../../icons/StarHalf";
+import FingerIcon from "../../icons/Finger";
+import HeartIcon from "../../icons/Heart";
 import { calculateDiscountPerc } from "@/app/utils";
 import { ProductFromDB } from "@/app/utils/interfaces";
 

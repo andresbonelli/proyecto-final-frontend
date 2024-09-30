@@ -3,7 +3,7 @@
 import { colors } from "@/app/utils/constants";
 import Link from "next/link";
 import ArrowIcon from "../../icons/Arrow";
-import ProductCard from "../../product_card";
+import ProductCard from "../../cards/product_card";
 import { useState } from "react";
 import { ProductQuery } from "@/app/utils/interfaces";
 import useProducts from "@/app/hooks/useProducts";

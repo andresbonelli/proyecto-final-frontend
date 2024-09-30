@@ -18,12 +18,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     return [];
   });
   const [totalItems, setTotalItems] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    // Update LocalStorage whenever cart changes
     if (typeof window !== "undefined") {
       localStorage.setItem("cart", JSON.stringify(cart));
       setTotalItems(getTotalQuantity());
+      setTotalPrice(calculateTotalPrice());
     }
   }, [cart]);
 
@@ -65,11 +66,15 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const clearCart = () => setCart([]);
-
   const getTotalQuantity = () => {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
+
+  const calculateTotalPrice = () => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+
+  const clearCart = () => setCart([]);
 
   return (
     <CartContext.Provider
@@ -80,6 +85,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         removeFromCart,
         clearCart,
         totalItems,
+        totalPrice,
       }}
     >
       {children}
