@@ -71,6 +71,28 @@ export interface UserInfoDto {
   address?: Address[] | null;
 }
 
+export interface AccessToken {
+  subject: SubjectFromToken;
+  type: string;
+  exp: number;
+  iat: number;
+  jti: string;
+}
+
+export interface SubjectFromToken {
+  username: string;
+  role: string;
+  email: string;
+  firstname?: string | null;
+  lastname?: string | null;
+  image?: string | null;
+  address?: Address[] | null;
+  id: string;
+  is_active: boolean;
+  created_at: string;
+  modified_at?: string | null;
+}
+
 export interface UserFromDB extends UserInfoDto {
   _id: string;
   username: string;

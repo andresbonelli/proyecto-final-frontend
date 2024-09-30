@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { use, useState } from "react";
 import Link from "next/link";
 import LoginOrSignupForm from "../sections/login_signup";
 import AccountForm from "../sections/account";
@@ -14,11 +14,12 @@ import CartIcon from "../icons/Cart";
 import { colors } from "../../utils/constants";
 import Navbar from "../navbar";
 import { useCart } from "@/app/context/CartContextProvider";
+import { useUser } from "@/app/context/UserContextProvider";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isloggedIn, setIsLoggedIn] = useState(false);
-  const { cart, totalItems } = useCart();
+  const { totalItems } = useCart();
+  const { user } = useUser();
 
   return (
     <header className="fixed top-0 w-full z-50">
@@ -69,7 +70,7 @@ export default function Header() {
         >
           <button onClick={() => setIsModalOpen(true)}>
             <div className="flex flex-row place-items-center gap-2">
-              {isloggedIn ? (
+              {user ? (
                 <>
                   <AccountIcon width={25} height={25} fill="black" />
                   <p className="text-sm ">Mi cuenta</p>
@@ -109,7 +110,7 @@ export default function Header() {
           </div>
         </div>
 
-        {isloggedIn ? (
+        {user ? (
           <AccountForm
             onClose={() => {
               setIsModalOpen(false);
