@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AutocompleteResult } from "../utils/interfaces";
 import api from "../services/api";
 
