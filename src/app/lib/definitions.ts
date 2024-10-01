@@ -13,12 +13,7 @@ export const RegisterFormSchema = z
       .regex(/[a-zA-Z]/, { message: "Contain at least one letter." })
       .regex(/[0-9]/, { message: "Contain at least one number." })
       .trim(),
-    confirmPassword: z
-      .string()
-      .min(8, { message: "Be at least 8 characters long" })
-      .regex(/[a-zA-Z]/, { message: "Contain at least one letter." })
-      .regex(/[0-9]/, { message: "Contain at least one number." })
-      .trim(),
+    confirmPassword: z.string().trim(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
