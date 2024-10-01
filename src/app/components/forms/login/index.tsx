@@ -1,11 +1,12 @@
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
-import { useState } from "react";
+import { FormEvent, FormEventHandler, useState } from "react";
 import { login } from "@/app/actions/auth";
 import UserIcon from "../../icons/User";
 import EyeIcon from "../../icons/Eye";
 import LockIcon from "../../icons/Lock";
+import Loader from "../../loader";
 
 export function LoginForm() {
   const [state, action] = useFormState(login, undefined);
@@ -67,7 +68,7 @@ function SubmitButton() {
       type="submit"
       className="w-full bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md"
     >
-      Login
+      {pending ? <Loader /> : "Login"}
     </button>
   );
 }

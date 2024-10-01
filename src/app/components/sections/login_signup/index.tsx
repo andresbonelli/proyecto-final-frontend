@@ -3,7 +3,6 @@
 import { useState } from "react";
 import ArrowIcon from "../../icons/Arrow";
 import { colors } from "@/app/utils/constants";
-import Loader from "../../loader";
 import { RegisterForm } from "../../forms/register";
 import { LoginForm } from "../../forms/login";
 
@@ -15,7 +14,6 @@ export default function LoginOrSignupForm({
   onClose: Function;
 }) {
   const [formType, setFormType] = useState("Login");
-  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <aside
@@ -87,9 +85,11 @@ export default function LoginOrSignupForm({
           </>
         )}
         {formType === "Password Reset" && (
-          <button onClick={() => setFormType("Login")}>
-            Back to <strong>login</strong>
-          </button>
+          <>
+            <button onClick={() => setFormType("Login")}>
+              Back to <strong>login</strong>
+            </button>
+          </>
         )}
       </div>
     </aside>

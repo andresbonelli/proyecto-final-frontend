@@ -95,7 +95,7 @@ export default function AccountForm({
         className="relative flex flex-col
                    justify-between place-items-center
                    min-w-96 max-h-full 
-                   px-5 gap-5 pt-7 pb-10
+                   px-5  pt-7 pb-10
                    bg-white shadow-lg"
       >
         <button
@@ -108,7 +108,9 @@ export default function AccountForm({
         </button>
         <div
           id="profile-pic-container"
-          className="relative w-20 h-20 rounded-full flex flex-col justify-center place-items-center shadow-xl"
+          className="relative w-20 h-20
+                     flex flex-col justify-center place-items-center
+                     rounded-full shadow-xl mb-8"
         >
           <UserIcon width={35} height={35} fill="gray" />
           <button type="button" className="absolute bottom-0 right-0 ">
@@ -128,7 +130,7 @@ export default function AccountForm({
         {/* UPDATE USER INFO FORM */}
         <form
           onSubmit={(e) => onUpdateUser(e)}
-          className="w-full flex flex-col justify-between place-items-center gap-2 px-8"
+          className="w-full flex flex-col justify-between place-items-center gap-2 px-8 "
         >
           {/* First name */}
           <div>
