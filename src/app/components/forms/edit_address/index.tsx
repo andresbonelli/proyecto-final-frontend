@@ -1,8 +1,6 @@
-import { CountryCode } from "@/app/utils";
+import { useState } from "react";
 import { countryCodes } from "@/app/utils/constants";
 import { Address } from "@/app/utils/interfaces";
-
-import { useState } from "react";
 
 export default function EditAddressForm({
   address,
