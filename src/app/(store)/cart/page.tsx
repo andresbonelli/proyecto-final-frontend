@@ -13,8 +13,10 @@ export default function Cart() {
   return (
     <>
       <div id="products-container" className="sm:w-2/3 pt-10">
-        <div className="w-11/12 flex flex-col bg-white shadow-xl gap-5 pt-5 pb-10">
-          <h2 className="w-full text-xl text-left pl-8 text-red">Cart</h2>
+        <div className="w-11/12 flex flex-col bg-white shadow-xl gap-5 pt-5 pb-8">
+          <h2 className="w-full text-xl text-left pl-8 text-red">
+            Cart{totalItems === 0 && " is empty"}
+          </h2>
           {cart.map((product: ProductFromCart) => {
             return <CartProductCard product={product} />;
           })}
@@ -34,34 +36,36 @@ export default function Cart() {
             <AddIcon height={30} width={30} fill="black" />
           </div>
         </div>
-        <div
-          id="cart-summary-container"
-          className="w-full flex flex-col justify-between bg-white shadow-xl px-5 py-5 gap-2"
-        >
-          <h1 className="font-MontserratSemibold">Cart summary:</h1>
+        {totalItems > 0 && (
           <div
-            id="divider-line"
-            className="border border-grey w-full my-3"
-          ></div>
-          <div className="w-full flex flex-row justify-between place-items-center">
-            <p className="flex-auto text-left">Products ({totalItems}) : </p>
-            <p className="text-right">${totalPrice}</p>
-          </div>
-          <div className="w-full flex flex-row justify-between place-items-center">
-            <p className="flex-auto text-left">Shipping:</p>
-            <p className="text-right">${shippingCost}</p>
-          </div>
+            id="cart-summary-container"
+            className="w-full flex flex-col justify-between bg-white shadow-xl px-5 py-5 gap-2"
+          >
+            <h1 className="font-MontserratSemibold">Cart summary:</h1>
+            <div
+              id="divider-line"
+              className="border border-grey w-full my-3"
+            ></div>
+            <div className="w-full flex flex-row justify-between place-items-center">
+              <p className="flex-auto text-left">Products ({totalItems}) : </p>
+              <p className="text-right">${totalPrice}</p>
+            </div>
+            <div className="w-full flex flex-row justify-between place-items-center">
+              <p className="flex-auto text-left">Shipping:</p>
+              <p className="text-right">${shippingCost}</p>
+            </div>
 
-          <div className="w-full flex flex-row justify-between place-items-center">
-            <p className="flex-auto text-left font-MontserratBold">TOTAL:</p>
-            <p className="text-right font-MontserratBold">
-              ${totalPrice + shippingCost}
-            </p>
+            <div className="w-full flex flex-row justify-between place-items-center">
+              <p className="flex-auto text-left font-MontserratBold">TOTAL:</p>
+              <p className="text-right font-MontserratBold">
+                ${totalPrice + shippingCost}
+              </p>
+            </div>
+            <button className="w-full bg-red hover:bg-redder text-white py-2 px-4 rounded-md text-center mt-5">
+              Proceed to checkout
+            </button>
           </div>
-          <button className="w-full bg-red hover:bg-redder text-white py-2 px-4 rounded-md text-center mt-5">
-            Proceed to checkout
-          </button>
-        </div>
+        )}
       </div>
     </>
   );

@@ -1,25 +1,26 @@
 "use client";
 
 import { useState } from "react";
+import { useCart } from "@/app/context/CartContextProvider";
 import Link from "next/link";
+
 import LoginOrSignupForm from "../sections/login_signup";
 import AccountForm from "../sections/account";
+import Navbar from "../navbar";
+
+import SearchBar from "../search_bar";
 import AccountIcon from "../icons/Account";
 import HeartIcon from "../icons/Heart";
 import Logo from "../icons/Logo";
-import MicIcon from "../icons/Mic";
-import SearchIcon from "../icons/Search";
 import UserIcon from "../icons/User";
 import CartIcon from "../icons/Cart";
+
 import { colors } from "../../utils/constants";
-import Navbar from "../navbar";
-import { useCart } from "@/app/context/CartContextProvider";
-import SearchBar from "../search_bar";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isloggedIn, setIsLoggedIn] = useState(false);
-  const { cart, totalItems } = useCart();
+  const { totalItems } = useCart();
 
   return (
     <header className="fixed top-0 w-full z-50">
@@ -45,7 +46,6 @@ export default function Header() {
             </div>
           </div>
         </Link>
-
         <SearchBar />
         {/* Right Side Links */}
         <div
@@ -73,13 +73,15 @@ export default function Header() {
             </Link>
             <Link href="/cart" className="relative">
               <CartIcon width={25} height={25} fill="black" />
-              <p
-                className="absolute -top-3 right-0
+              {totalItems > 0 && (
+                <p
+                  className="absolute -top-3 right-0
                             font-MontserratBold text-sm text-pink
                             w-4 h-4 rounded-full text-center bg-background "
-              >
-                {totalItems}
-              </p>
+                >
+                  {totalItems}
+                </p>
+              )}
             </Link>
           </div>
         </div>
