@@ -1,14 +1,29 @@
-import { colors } from "@/app/utils/constants";
-import MicIcon from "../icons/Mic";
-import SearchIcon from "../icons/Search";
-import { useState } from "react";
-import { AutocompleteResult } from "@/app/utils/interfaces";
+import { useEffect, useRef } from "react";
 import useAutocomplete from "@/app/hooks/useAutocomplete";
-import Loader from "../loader";
+import { colors } from "@/app/utils/constants";
+import SearchIcon from "../icons/Search";
 import Link from "next/link";
+import MicIcon from "../icons/Mic";
+import Loader from "../loader";
 
 export default function SearchBar() {
   const { search, results, status } = useAutocomplete();
+  const searchResultsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchResultsRef.current &&
+        !searchResultsRef.current.contains(event.target as Node)
+      ) {
+        search("");
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [search]);
 
   return (
     <div
@@ -20,7 +35,7 @@ export default function SearchBar() {
 
         <input
           onChange={(e) => search(e.target.value)}
-          type="email"
+          type="text"
           placeholder="Buscar productos..."
           className="lg:w-96 w-auto outline-none bg-transparent text-grey text-sm"
         />
@@ -29,7 +44,10 @@ export default function SearchBar() {
         </a>
       </div>
       {results.length > 0 && (
-        <div className="absolute top-16 w-full flex flex-col gap-2 max-h-80 bg-white rounded-lg shadow-md p-3">
+        <div
+          ref={searchResultsRef}
+          className="absolute top-16 w-full flex flex-col gap-2 max-h-80 bg-white rounded-lg shadow-md p-3"
+        >
           {status === "loading" && <Loader />}
 
           {results.map((result) => {

@@ -5,6 +5,7 @@ import api from "../services/api";
 export default function useAutocomplete() {
   const [results, setResults] = useState<AutocompleteResult[]>([]);
   const [status, setStatus] = useState("idle");
+  let timeoutId: NodeJS.Timeout;
 
   async function search(query: string) {
     if (query.length >= 3) {
@@ -40,5 +41,12 @@ export default function useAutocomplete() {
     }
   }
 
-  return { search, results, status };
+  const debounceSearch = (query: string) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      search(query);
+    }, 200);
+  };
+
+  return { search: debounceSearch, results, status };
 }
