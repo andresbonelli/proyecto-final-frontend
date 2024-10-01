@@ -5,6 +5,7 @@ import FingerIcon from "../../icons/Finger";
 import HeartIcon from "../../icons/Heart";
 import { calculateDiscountPerc } from "@/app/utils";
 import { ProductFromDB } from "@/app/utils/interfaces";
+import Image from "next/image";
 
 export default function ProductCard({
   props,
@@ -26,7 +27,7 @@ export default function ProductCard({
       id="product-card-container"
       className="relative 
                  sm:w-72 sm:h-96 w-44 h-64
-                 flex flex-col bg-white shadow-lg rounded-md
+                 flex flex-col bg-white shadow-lg rounded-md place-items-center
                  hover:cursor-pointer hover:scale-105
                  ease-in-out transition-all duration-300"
     >
@@ -56,11 +57,13 @@ export default function ProductCard({
         />
       </div>
 
-      <img
+      <Image
         src={product.image ?? ""}
+        width={200}
+        height={200}
         className="object-scale-down h-1/2"
         alt={product.name}
-      ></img>
+      ></Image>
       <div className="flex flex-col justify-between h-1/2 py-2 sm:px-5 px-2 gap-1">
         <div id="card-top">
           <h1 className="text-left sm:text-base text-sm font-MontserratSemibold mb-1">

@@ -1,6 +1,7 @@
 import { useCart } from "@/app/context/CartContextProvider";
 import { calculateDiscountPerc } from "@/app/utils";
 import { ProductFromCart } from "@/app/utils/interfaces";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function CartProductCard({
@@ -13,13 +14,15 @@ export default function CartProductCard({
   return (
     <div
       key={product.id}
-      className="w-full h-44 flex flex-row justify-between place-items-center pl-8 "
+      className="w-full h-44 flex flex-row justify-between place-items-center gap-2 pl-3 sm:pl-8 "
     >
       <div className="w-1/4 ">
         <Link href={`/products/${product.id}`}>
-          <img
+          <Image
             src={product.image ?? ""}
             alt={product.name}
+            height={200}
+            width={200}
             className="object-scale-down h-44"
           />
         </Link>
@@ -47,13 +50,13 @@ export default function CartProductCard({
           )}
         </div>
       </div>
-      <div className="w-1/4 h-full flex flex-col  place-items-start gap-2 pl-3 ">
+      <div className="w-1/4 h-full flex flex-col justify-between sm:justify-normal place-items-start gap-2 pl-3 ">
         {product.price && (
           <h1 className="font-MontserratBold ">
             Price: ${product.price * product.quantity}
           </h1>
         )}
-        <div className="flex flex-row justify-between place-items-center bg-white shadow-lg py-1 px-2 gap-3 w-28">
+        <div className="flex flex-row justify-between place-items-center bg-white shadow-lg py-1 px-2 gap-3 sm:w-28">
           <button
             onClick={() => substractOneFromCart(product.id)}
             className="text-red text-xl"

@@ -13,7 +13,7 @@ export default function Cart() {
   return (
     <div className="flex sm:flex-row flex-col">
       <div id="products-container" className="sm:w-2/3 pt-10">
-        <div className="w-11/12 flex flex-col bg-white shadow-xl gap-5 pt-5 pb-8">
+        <div className="sm:w-11/12 flex flex-col bg-white shadow-xl gap-5 pt-5 pb-8">
           <h2 className="w-full text-xl text-left pl-8 text-red">
             Cart{totalItems === 0 && " is empty"}
           </h2>

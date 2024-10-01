@@ -8,6 +8,7 @@ import { ProductFromCart, ProductFromDB } from "@/app/utils/interfaces";
 import FingerIcon from "../icons/Finger";
 import Modal from "../modal";
 import GoToCartIcon from "../icons/GoToCart";
+import Image from "next/image";
 
 export default function ProductDetailsComponent({
   product,
@@ -51,7 +52,6 @@ export default function ProductDetailsComponent({
       <div
         id="product-details-layout"
         className="w-full sm:h-[500px] flex flex-col sm:flex-row justify-between gap-5"
-        // style={{ height: 500 }}
       >
         <div
           id="image-list"
@@ -60,12 +60,14 @@ export default function ProductDetailsComponent({
           {product.details?.image_list && (
             <>
               {product.details?.image_list.map((img, index) => (
-                <img
+                <Image
                   key={index}
                   src={img}
+                  width={200}
+                  height={200}
                   className="object-scale-down  sm:h-1/3"
                   alt={name + "img" + index}
-                ></img>
+                ></Image>
               ))}
             </>
           )}
@@ -74,12 +76,13 @@ export default function ProductDetailsComponent({
           id="main-image"
           className="w-1/2 hidden sm:flex flex-row justify-center place-items-center "
         >
-          <img
+          <Image
             src={image ?? ""}
-            // style={{ height: 400 }}
+            height={400}
+            width={400}
             className="object-scale-down h-full"
             alt={name}
-          ></img>
+          ></Image>
         </div>
         <div
           id="details"
