@@ -2,7 +2,7 @@
 
 import {
   RegisterFormSchema,
-  FormState,
+  RegisterFormState,
   LoginFormState,
   LoginFormSchema,
 } from "@/app/lib/definitions";
@@ -15,7 +15,7 @@ import { redirect } from "next/navigation";
 const cookieStore = cookies();
 
 export async function signup(
-  state: FormState,
+  state: RegisterFormState,
   formData: FormData
 ): Promise<any> {
   // Validate form fields

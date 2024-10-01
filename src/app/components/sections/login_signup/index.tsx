@@ -5,6 +5,7 @@ import ArrowIcon from "../../icons/Arrow";
 import { colors } from "@/app/utils/constants";
 import { RegisterForm } from "../../forms/register";
 import { LoginForm } from "../../forms/login";
+import { ForgotPasswordForm } from "../../forms/forgot_password";
 
 export default function LoginOrSignupForm({
   isOpen,
@@ -86,6 +87,7 @@ export default function LoginOrSignupForm({
         )}
         {formType === "Password Reset" && (
           <>
+            <ForgotPasswordForm />
             <button onClick={() => setFormType("Login")}>
               Back to <strong>login</strong>
             </button>

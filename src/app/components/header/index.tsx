@@ -91,8 +91,8 @@ export default function Header() {
               <CartIcon width={25} height={25} fill="black" />
               <p
                 className="absolute -top-3 right-0
-                            font-MontserratBold text-sm text-pink
-                            w-4 h-4 rounded-full text-center bg-background "
+                font-MontserratBold text-sm text-pink
+                w-4 h-4 rounded-full text-center bg-background "
               >
                 {totalItems}
               </p>
@@ -109,24 +109,23 @@ export default function Header() {
             </div>
           </div>
         </div>
-
-        {user ? (
-          <AccountForm
-            onClose={() => {
-              setIsModalOpen(false);
-            }}
-            isOpen={isModalOpen}
-          />
-        ) : (
-          <LoginOrSignupForm
-            onClose={() => {
-              setIsModalOpen(false);
-            }}
-            isOpen={isModalOpen}
-          />
-        )}
       </div>
       <Navbar />
+      {user ? (
+        <AccountForm
+          onClose={() => {
+            setIsModalOpen(false);
+          }}
+          isOpen={isModalOpen}
+        />
+      ) : (
+        <LoginOrSignupForm
+          onClose={() => {
+            setIsModalOpen(false);
+          }}
+          isOpen={isModalOpen}
+        />
+      )}
     </header>
   );
 }

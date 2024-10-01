@@ -33,7 +33,15 @@ export const LoginFormSchema = z.object({
   password: z.string().min(1, { message: "Password is required." }).trim(),
 });
 
-export type FormState =
+export const ForgotPasswordFormSchema = z.object({
+  email: z
+    .string()
+    .min(1, { message: "Email is required." })
+    .email({ message: "Please enter a valid email." })
+    .trim(),
+});
+
+export type RegisterFormState =
   | {
       errors?: {
         username?: string[];

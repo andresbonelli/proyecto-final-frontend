@@ -1,18 +1,16 @@
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
-import { FormEvent, FormEventHandler, useEffect, useState } from "react";
+import { useState } from "react";
 import { login } from "@/app/actions/auth";
 import UserIcon from "../../icons/User";
 import EyeIcon from "../../icons/Eye";
 import LockIcon from "../../icons/Lock";
 import Loader from "../../loader";
-import { stat } from "fs";
 
 export function LoginForm() {
   const [state, action] = useFormState(login, undefined);
   const [showPassword, setShowPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
   return (
     <form action={action} className="flex flex-col justify-between gap-5">
@@ -49,7 +47,6 @@ export function LoginForm() {
       {state?.errors?.password && (
         <p className="text-xs text-red">{state.errors.password}</p>
       )}
-      {/* {isPending && <Loader />} */}
       <SubmitButton />
     </form>
   );

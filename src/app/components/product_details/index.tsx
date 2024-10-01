@@ -17,7 +17,7 @@ export default function ProductDetailsComponent({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { category, name, description, image, price, old_price, details } =
     product;
-  const { cart, addToCart, clearCart } = useCart();
+  const { addToCart } = useCart();
 
   const discount = product.old_price
     ? calculateDiscountPerc(product.old_price, product.price)
@@ -132,7 +132,7 @@ export default function ProductDetailsComponent({
               <p>Add to cart</p>
             </button>
             <button
-              onClick={clearCart}
+              onClick={() => {}}
               className="flex flex-row justify-around w-40 place-items-center bg-softGreen hover:bg-green text-white text-md font-MontserratRegular py-2 px-4 rounded gap-2"
             >
               <FingerIcon width={22} height={22} fill="white" />
