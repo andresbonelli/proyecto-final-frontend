@@ -1,20 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import { useCart } from "@/app/context/CartContextProvider";
+import { useUser } from "@/app/context/UserContextProvider";
 import Link from "next/link";
+
 import LoginOrSignupForm from "../sections/login_signup";
 import AccountForm from "../sections/account";
+import Navbar from "../navbar";
+import SearchBar from "../search_bar";
+
 import AccountIcon from "../icons/Account";
 import HeartIcon from "../icons/Heart";
 import Logo from "../icons/Logo";
-import MicIcon from "../icons/Mic";
-import SearchIcon from "../icons/Search";
 import UserIcon from "../icons/User";
 import CartIcon from "../icons/Cart";
+
 import { colors } from "../../utils/constants";
-import Navbar from "../navbar";
-import { useCart } from "@/app/context/CartContextProvider";
-import { useUser } from "@/app/context/UserContextProvider";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,24 +47,7 @@ export default function Header() {
             </div>
           </div>
         </Link>
-        {/* Search Bar */}
-        <div
-          id="searchbar-container"
-          className="flex flex-row place-items-center w-auto "
-        >
-          <div className="flex flex-row place-items-center px-4 py-3 gap-2 rounded-lg bg-white shadow-md overflow-hidden w-auto  ">
-            <SearchIcon width={17} height={17} fill={colors.grey} />
-
-            <input
-              type="email"
-              placeholder="Buscar productos..."
-              className="lg:w-96 w-auto outline-none bg-transparent text-grey text-sm"
-            />
-            <a href="/">
-              <MicIcon width={20} height={20} fill={colors.grey} />
-            </a>
-          </div>
-        </div>
+        <SearchBar />
         {/* Right Side Links */}
         <div
           id="user-and-cart-icon-container"
@@ -89,13 +74,15 @@ export default function Header() {
             </Link>
             <Link href="/cart" className="relative">
               <CartIcon width={25} height={25} fill="black" />
-              <p
-                className="absolute -top-3 right-0
-                font-MontserratBold text-sm text-pink
-                w-4 h-4 rounded-full text-center bg-background "
-              >
-                {totalItems}
-              </p>
+              {totalItems > 0 && (
+                <p
+                  className="absolute -top-3 right-0
+                            font-MontserratBold text-sm text-pink
+                            w-4 h-4 rounded-full text-center bg-background "
+                >
+                  {totalItems}
+                </p>
+              )}
             </Link>
           </div>
         </div>

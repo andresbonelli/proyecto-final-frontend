@@ -65,7 +65,7 @@ export default function Info() {
           </a>
           <div className="font-MontserratMedium text-sm">
             <div className="flex flex-row place-items-center gap-2">
-              <LocationIcon width={35} height={35} stroke={fore} />
+              <LocationIcon width={22} height={22} stroke={fore} />
               <span>Av. Perú 765, Mendoza, Argentina</span>
             </div>
           </div>
