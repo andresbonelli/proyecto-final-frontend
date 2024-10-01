@@ -14,7 +14,7 @@ export default function CartProductCard({
   return (
     <div
       key={product.id}
-      className="w-full h-44 flex flex-row justify-between place-items-center gap-2 pl-3 sm:pl-8 "
+      className="w-full h-44 flex flex-row justify-between place-items-center gap-2 pl-3 md:pl-8 "
     >
       <div className="w-1/4 ">
         <Link href={`/products/${product.id}`}>
@@ -50,13 +50,13 @@ export default function CartProductCard({
           )}
         </div>
       </div>
-      <div className="w-1/4 h-full flex flex-col justify-between sm:justify-normal place-items-start gap-2 pl-3 ">
+      <div className="w-1/4 h-full flex flex-col justify-between md:justify-normal place-items-start gap-2 pl-3 ">
         {product.price && (
           <h1 className="font-MontserratBold ">
             Price: ${product.price * product.quantity}
           </h1>
         )}
-        <div className="flex flex-row justify-between place-items-center bg-white shadow-lg py-1 px-2 gap-3 sm:w-28">
+        <div className="flex flex-row justify-between place-items-center bg-white shadow-lg py-1 px-2 gap-3 md:w-28">
           <button
             onClick={() => substractOneFromCart(product.id)}
             className="text-red text-xl"

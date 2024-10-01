@@ -11,9 +11,9 @@ export default function Cart() {
   const { cart, totalItems, totalPrice } = useCart();
 
   return (
-    <div className="flex sm:flex-row flex-col">
-      <div id="products-container" className="sm:w-2/3 pt-10">
-        <div className="sm:w-11/12 flex flex-col bg-white shadow-xl gap-5 pt-5 pb-8">
+    <div className="flex md:flex-row flex-col">
+      <div id="products-container" className="md:w-2/3 pt-10">
+        <div className="md:w-11/12 flex flex-col bg-white shadow-xl gap-5 pt-5 pb-8">
           <h2 className="w-full text-xl text-left pl-8 text-red">
             Cart{totalItems === 0 && " is empty"}
           </h2>
@@ -22,7 +22,7 @@ export default function Cart() {
           })}
         </div>
       </div>
-      <div className="sm:w-1/3 flex flex-col justify-start place-items-end min-h-screen py-10 gap-5">
+      <div className="md:w-1/3 flex flex-col justify-start place-items-end min-h-screen py-10 gap-5">
         <div
           id="address-container"
           className="w-full flex flex-row justify-between gap-2"
