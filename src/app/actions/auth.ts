@@ -11,6 +11,7 @@ import { RegisterUserDto } from "../utils/interfaces";
 import { LoginDto } from "../utils/interfaces";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { AxiosResponse } from "axios";
 
 const cookieStore = cookies();
 
@@ -71,15 +72,20 @@ export async function login(state: LoginFormState, formData: FormData) {
   };
 
   try {
-    const res = await api.post("/auth/login", loginData);
+    const res: AxiosResponse<{ access_token: string; refresh_token: string }> =
+      await api.post("/auth/login", loginData);
 
     if (res.status === 200) {
       console.log(res.data);
-      cookieStore.set("access_token", res.data["access_token"], {
+      cookieStore.set("access_token", res.data.access_token, {
+        secure: true,
         httpOnly: true,
+        sameSite: true,
       });
-      cookieStore.set("refresh_token", res.data["refresh_token"], {
+      cookieStore.set("refresh_token", res.data.refresh_token, {
+        secure: true,
         httpOnly: true,
+        sameSite: true,
       });
       redirect("/");
     } else {

@@ -1,5 +1,3 @@
-"use client";
-
 import { useCart } from "@/app/context/CartContextProvider";
 import { calculateDiscountPerc } from "@/app/utils";
 import { ProductFromCart } from "@/app/utils/interfaces";
