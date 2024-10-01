@@ -53,6 +53,11 @@ export interface ProductQuery {
   projection?: string;
 }
 
+export interface AutocompleteResult {
+  id: string;
+  name: string;
+}
+
 export interface RegisterUserDto {
   username: string;
   email: string;

@@ -14,6 +14,7 @@ import CartIcon from "../icons/Cart";
 import { colors } from "../../utils/constants";
 import Navbar from "../navbar";
 import { useCart } from "@/app/context/CartContextProvider";
+import SearchBar from "../search_bar";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,24 +45,8 @@ export default function Header() {
             </div>
           </div>
         </Link>
-        {/* Search Bar */}
-        <div
-          id="searchbar-container"
-          className="flex flex-row place-items-center w-auto "
-        >
-          <div className="flex flex-row place-items-center px-4 py-3 gap-2 rounded-lg bg-white shadow-md overflow-hidden w-auto  ">
-            <SearchIcon width={17} height={17} fill={colors.grey} />
 
-            <input
-              type="email"
-              placeholder="Buscar productos..."
-              className="lg:w-96 w-auto outline-none bg-transparent text-grey text-sm"
-            />
-            <a href="/">
-              <MicIcon width={20} height={20} fill={colors.grey} />
-            </a>
-          </div>
-        </div>
+        <SearchBar />
         {/* Right Side Links */}
         <div
           id="user-and-cart-icon-container"
