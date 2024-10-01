@@ -50,12 +50,12 @@ export default function ProductDetailsComponent({
       </h1>
       <div
         id="product-details-layout"
-        className="w-full flex sm:flex-row flex-col justify-between gap-5"
-        style={{ height: 500 }}
+        className="w-full sm:h-[500px] flex flex-col sm:flex-row justify-between gap-5"
+        // style={{ height: 500 }}
       >
         <div
           id="image-list"
-          className="flex flex-col justify-between gap-2 w-2/12 overflow-auto "
+          className="flex flex-row sm:flex-col justify-between gap-2 h-80 sm:h-full sm:w-2/12 overflow-auto "
         >
           {product.details?.image_list && (
             <>
@@ -63,7 +63,7 @@ export default function ProductDetailsComponent({
                 <img
                   key={index}
                   src={img}
-                  className="object-scale-down h-1/3"
+                  className="object-scale-down  sm:h-1/3"
                   alt={name + "img" + index}
                 ></img>
               ))}
@@ -72,7 +72,7 @@ export default function ProductDetailsComponent({
         </div>
         <div
           id="main-image"
-          className="w-1/2  flex flex-row justify-center place-items-center "
+          className="w-1/2 hidden sm:flex flex-row justify-center place-items-center "
         >
           <img
             src={image ?? ""}
@@ -83,7 +83,7 @@ export default function ProductDetailsComponent({
         </div>
         <div
           id="details"
-          className="flex flex-col justify-between text-left w-4/12 max-h-full gap-2 "
+          className="flex flex-col justify-between text-left px-3 sm:w-4/12 max-h-full gap-2 "
         >
           <h1 className="w-full font-MontserratSemibold text-xl">{name}</h1>
           <p className="text-sm">{description}</p>
