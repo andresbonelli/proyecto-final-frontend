@@ -1,12 +1,13 @@
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
-import { FormEvent, FormEventHandler, useState } from "react";
+import { FormEvent, FormEventHandler, useEffect, useState } from "react";
 import { login } from "@/app/actions/auth";
 import UserIcon from "../../icons/User";
 import EyeIcon from "../../icons/Eye";
 import LockIcon from "../../icons/Lock";
 import Loader from "../../loader";
+import { stat } from "fs";
 
 export function LoginForm() {
   const [state, action] = useFormState(login, undefined);
@@ -15,13 +16,7 @@ export function LoginForm() {
 
   return (
     <form action={action} className="flex flex-col justify-between gap-5">
-      <p
-        className={`text-xs ${
-          errorMessage ?? "invisible"
-        } text-red text-center py-2`}
-      >
-        {errorMessage}
-      </p>
+      <p className="text-xs text-red text-center py-2">{state?.error ?? ""}</p>
       <div
         className={`flex flex-row place-items-center justify-start py-2 px-2 gap-2 bg-gray-200  rounded-md border border-gray-300`}
       >

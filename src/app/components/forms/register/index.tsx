@@ -12,17 +12,13 @@ import Loader from "../../loader";
 export function RegisterForm() {
   const [state, action] = useFormState(signup, undefined);
   const [showPassword, setShowPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
   return (
     <form action={action} className="flex flex-col justify-between gap-5">
-      <p
-        className={`text-xs ${
-          errorMessage ?? "invisible"
-        } text-red text-center py-2`}
-      >
-        {errorMessage}
+      <p className="text-xs text-green text-center py-2">
+        {state?.success ?? ""}
       </p>
+      <p className="text-xs text-red text-center py-2">{state?.error ?? ""}</p>
       <div
         className={`flex flex-row place-items-center justify-start py-2 px-2 gap-2 bg-gray-200  rounded-md border border-gray-300`}
       >
@@ -96,7 +92,6 @@ export function RegisterForm() {
       {state?.errors?.confirmPassword && (
         <p className="text-xs text-red">{state.errors.confirmPassword}</p>
       )}
-      {/* {isPending && <Loader />} */}
       <SubmitButton />
     </form>
   );
@@ -110,7 +105,7 @@ function SubmitButton() {
       type="submit"
       className="w-full bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md"
     >
-      Register
+      {pending ? <Loader /> : "Register"}
     </button>
   );
 }

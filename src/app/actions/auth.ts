@@ -14,7 +14,10 @@ import { redirect } from "next/navigation";
 
 const cookieStore = cookies();
 
-export async function signup(state: FormState, formData: FormData) {
+export async function signup(
+  state: FormState,
+  formData: FormData
+): Promise<any> {
   // Validate form fields
   const validatedFields = RegisterFormSchema.safeParse({
     username: formData.get("username"),
@@ -36,23 +39,18 @@ export async function signup(state: FormState, formData: FormData) {
     password: validatedFields.data.password,
   };
 
-  await api
-    .post("/auth/register", registerData)
-    .then((res) => {
-      if (res.status === 201) {
-        return res.data["message"];
-      } else
-        return {
-          errors: { backend: [res.data["detail"]] },
-        };
-    })
-    .catch(function (error) {
-      if (error.response) {
-        return {
-          errors: { backend: [error.response.data["detail"]] },
-        };
-      }
-    });
+  try {
+    const res = await api.post("/auth/register", registerData);
+    if (res.status === 201) {
+      return { success: res.data["message"] };
+    } else {
+      console.error(res.data);
+      return { error: res.data };
+    }
+  } catch (error: any) {
+    console.error(error.response.data);
+    return { error: error.response.data.detail };
+  }
 }
 
 export async function login(state: LoginFormState, formData: FormData) {
@@ -72,26 +70,26 @@ export async function login(state: LoginFormState, formData: FormData) {
     password: validatedFields.data.password,
   };
 
-  await api
-    .post("/auth/login", loginData)
-    .then((res) => {
-      if (res.status === 200) {
-        console.log(res.data);
-        cookieStore.set("access_token", res.data["access_token"]);
-        cookieStore.set("refresh_token", res.data["refresh_token"]);
-        redirect("/");
-      } else {
-        console.log(res.data);
-        return {
-          errors: { backend: [res.data["detail"]] },
-        };
-      }
-    })
-    .catch(function (error) {
-      if (error.response) {
-        return {
-          errors: { backend: [error.response.data["detail"]] },
-        };
-      }
-    });
+  try {
+    const res = await api.post("/auth/login", loginData);
+
+    if (res.status === 200) {
+      console.log(res.data);
+      cookieStore.set("access_token", res.data["access_token"], {
+        httpOnly: true,
+      });
+      cookieStore.set("refresh_token", res.data["refresh_token"], {
+        httpOnly: true,
+      });
+      redirect("/");
+    } else {
+      console.error(res.data);
+      return { error: res.data };
+    }
+  } catch (error: any) {
+    if (error.response) {
+      console.error(error.response.data);
+      return { error: error.response.data.detail };
+    }
+  }
 }
