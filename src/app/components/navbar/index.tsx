@@ -44,7 +44,10 @@ export default function Navbar({
   const textColor = inverted ? "text-pink" : "text-white";
   return (
     <nav
-      className={`${padding} ${bgColor} ${textColor} hidden sm:flex flex-row place-items-center justify-center gap-5 z-50`}
+      className={`${padding} ${bgColor} ${textColor}
+                 hidden sm:flex flex-row 
+                 place-items-center justify-center
+                 gap-5 h-[35px]`}
     >
       {links.map((nav, index) => {
         return (

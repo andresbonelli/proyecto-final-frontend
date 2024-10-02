@@ -17,7 +17,7 @@ export default function RootLayout({
         <UserProvider>
           <CartProvider>
             <Header />
-            <main className="flex flex-col min-h-screen sm:mt-36 mt-20 ">
+            <main className="flex flex-col min-h-screen sm:mt-[135px] mt-[100px] ">
               {children}
             </main>
             <Footer />

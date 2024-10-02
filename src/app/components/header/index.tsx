@@ -24,12 +24,12 @@ export default function Header() {
   const { user } = useUser();
 
   return (
-    <header className="fixed top-0 w-full z-50">
+    <header className="fixed top-0 w-full z-50 ">
       <div
         id="header-container"
         className="bg-background
                    flex flex-row justify-between place-items-center
-                   w-full gap-3
+                   w-full gap-3 h-[100px]
                    xl:px-60 lg:px-40 md:px-20 px-5 sm:py-8 py-5"
       >
         {/* LOGO */}
