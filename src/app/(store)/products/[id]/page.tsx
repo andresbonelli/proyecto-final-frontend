@@ -1,5 +1,5 @@
 import ProductDetailsComponent from "@/app/components/product_details";
-import ProductCarrousel from "@/app/components/sections/product_carrousel";
+import ProductCarrouselSection from "@/app/components/sections/product_carrousel";
 import api from "@/app/services/api";
 import { ProductFromDB } from "@/app/utils/interfaces";
 
@@ -14,7 +14,7 @@ export default async function ProductDetailsPage({
   return (
     <>
       <ProductDetailsComponent product={product} />
-      <ProductCarrousel
+      <ProductCarrouselSection
         query={{ filter: `tags~${product.tags}` }}
         title="Similar Products"
       />
