@@ -28,16 +28,16 @@ export default function SearchBar() {
   return (
     <div
       id="searchbar-container"
-      className="relative flex flex-row place-items-center w-auto "
+      className="relative flex flex-row place-items-center w-full px-5  "
     >
-      <div className="flex flex-row place-items-center px-4 py-3 gap-2 rounded-lg bg-white shadow-md overflow-hidden w-auto  ">
+      <div className="lg:w-96 flex flex-row place-items-center px-4 py-3 gap-2 rounded-lg bg-white shadow-md overflow-hidden w-full">
         <SearchIcon width={17} height={17} fill={colors.grey} />
 
         <input
           onChange={(e) => search(e.target.value)}
           type="text"
           placeholder="Buscar productos..."
-          className="lg:w-96 w-auto outline-none bg-transparent text-grey text-sm"
+          className="flex-grow  outline-none bg-transparent text-grey text-sm"
         />
         <a href="/">
           <MicIcon width={20} height={20} fill={colors.grey} />

@@ -12,6 +12,29 @@ export const colors = {
   foreground: "var(--foreground)",
 };
 
+export const navLinks = [
+  {
+    label: "Inicio",
+    link: "/",
+  },
+  {
+    label: "Ropa",
+    link: "/products/category/clothing",
+  },
+  {
+    label: "Accesorios",
+    link: "/products/category/office",
+  },
+  {
+    label: "Contacto",
+    link: "/contact",
+  },
+  {
+    label: "Ayuda",
+    link: "/https://wa.me/5491160198300",
+  },
+];
+
 export const countryCodes = {
   AFGHANISTAN: ["AFG", "004"],
   ALBANIA: ["ALB", "008"],

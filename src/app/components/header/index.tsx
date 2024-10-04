@@ -17,9 +17,11 @@ import UserIcon from "../icons/User";
 import CartIcon from "../icons/Cart";
 
 import { colors } from "../../utils/constants";
+import Sidebar from "../sidebar";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { totalItems } = useCart();
   const { user } = useUser();
 
@@ -29,17 +31,17 @@ export default function Header() {
         id="header-container"
         className="bg-background
                    flex flex-row justify-between place-items-center
-                   w-full gap-3 h-[100px]
+                   w-full sm:gap-3 h-[100px]
                    xl:px-60 lg:px-40 md:px-20 px-5 sm:py-8 py-5"
       >
         {/* LOGO */}
         <Link href="/">
           <div
             id="brand-container"
-            className="flex flex-row place-items-center sm:w-70 w-auto gap-5 "
+            className="flex flex-row place-items-center  "
           >
             <Logo width={50} height={50} fill={colors.blue} />
-            <div className="sm:flex flex-col text-left hidden text-black ">
+            <div className="flex flex-col text-left text-black ml-3 ">
               <p className=" lg:text-2xl text-sm font-MontserratBold">
                 E-Commerce
               </p>
@@ -47,23 +49,25 @@ export default function Header() {
             </div>
           </div>
         </Link>
-        <SearchBar />
+        <div className="hidden sm:block">
+          <SearchBar />
+        </div>
         {/* Right Side Links */}
         <div
           id="user-and-cart-icon-container"
-          className="sm:flex hidden flex-row justify-between place-items-center w-auto gap-8 ml-3 "
+          className="flex flex-row justify-between place-items-center sm:gap-8 gap-5 sm:ml-3 "
         >
           <button onClick={() => setIsModalOpen(true)}>
-            <div className="flex flex-row place-items-center gap-2">
+            <div className="flex flex-row place-items-center sm:gap-2">
               {user ? (
                 <>
                   <AccountIcon width={25} height={25} fill="black" />
-                  <p className="text-sm ">Mi cuenta</p>
+                  <p className="text-sm sm:block hidden ">Mi cuenta</p>
                 </>
               ) : (
                 <>
                   <UserIcon width={25} height={25} fill="black" />
-                  <p className="text-sm ">Ingresar</p>
+                  <p className="text-sm sm:block hidden">Ingresar</p>
                 </>
               )}
             </div>
@@ -85,18 +89,24 @@ export default function Header() {
               )}
             </Link>
           </div>
-        </div>
-        <div
-          id="hamburguer-container"
-          className="sm:hidden flex flex-row  place-items-center"
-        >
-          <div className="tham tham-e-squeeze tham-w-6">
-            <div className="tham-box">
-              <div className="tham-inner bg-grey" />
+          <div
+            id="hamburguer-container"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="sm:hidden flex flex-row  place-items-center"
+          >
+            <div className="tham tham-e-squeeze tham-w-8">
+              <div className="tham-box">
+                <div className="tham-inner bg-black" />
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div className="sm:hidden bg-background -mt-2 pb-3">
+        <SearchBar />
+      </div>
+      <Sidebar isOpen={isSidebarOpen} />
+
       <Navbar />
       {user ? (
         <AccountForm

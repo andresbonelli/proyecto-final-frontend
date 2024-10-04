@@ -1,3 +1,4 @@
+import { navLinks } from "@/app/utils/constants";
 import Link from "next/link";
 
 interface navLink {
@@ -10,29 +11,6 @@ interface navbarProps {
   inverted?: boolean;
   links?: navLink[];
 }
-
-const navLinks = [
-  {
-    label: "Inicio",
-    link: "/",
-  },
-  {
-    label: "Ropa",
-    link: "/products/category/clothing",
-  },
-  {
-    label: "Accesorios",
-    link: "/products/category/office",
-  },
-  {
-    label: "Contacto",
-    link: "/contact",
-  },
-  {
-    label: "Ayuda",
-    link: "/https://wa.me/5491160198300",
-  },
-];
 
 export default function Navbar({
   padded,
