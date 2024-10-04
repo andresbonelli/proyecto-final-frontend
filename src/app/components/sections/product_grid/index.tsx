@@ -8,6 +8,12 @@ export default async function ProductGridSection({
   query: ProductQuery;
 }) {
   const { products, validationErrors } = await useProducts(query);
-  console.log("Product grid I am a server component");
+
+  if (validationErrors.length > 0) {
+    console.error(
+      "[Encountered validation errors from DB] - ",
+      validationErrors
+    );
+  }
   return <ProductGridComponent products={products} />;
 }
