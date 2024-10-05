@@ -12,7 +12,7 @@ import { SubjectFromToken } from "@/app/utils/interfaces";
 import { useCart } from "@/app/context/CartContextProvider";
 import { useState } from "react";
 
-export default function HeaderLinks({ user }: { user: any }) {
+export default function HeaderLinks({ user }: { user: SubjectFromToken }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { totalItems } = useCart();
@@ -66,6 +66,7 @@ export default function HeaderLinks({ user }: { user: any }) {
       </div>
       {user ? (
         <AccountForm
+          user={user}
           onClose={() => {
             setIsModalOpen(false);
           }}

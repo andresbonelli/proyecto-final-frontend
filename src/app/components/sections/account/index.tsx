@@ -4,7 +4,7 @@ import { useState } from "react";
 import AddNewAddressForm from "../../forms/add_new_address";
 import EditAddressForm from "../../forms/edit_address";
 import Loader from "../../loader";
-import { Address, UserInfoDto } from "@/app/utils/interfaces";
+import { Address, SubjectFromToken, UserInfoDto } from "@/app/utils/interfaces";
 import { colors } from "@/app/utils/constants";
 import AddIcon from "../../icons/Add";
 import ArrowIcon from "../../icons/Arrow";
@@ -17,9 +17,11 @@ import { logout } from "@/app/actions/auth";
 export default function AccountForm({
   isOpen,
   onClose,
+  user,
 }: {
   isOpen: boolean;
   onClose: Function;
+  user: SubjectFromToken;
 }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -115,7 +117,7 @@ export default function AccountForm({
           </button>
         </div>
         <h1 className="font-MontserratBold text-xl w-full text-center ">
-          Account details
+          Hi, {user.username}
         </h1>
         <p
           className={`text-xs ${

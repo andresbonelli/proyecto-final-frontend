@@ -1,12 +1,14 @@
 import "server-only";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
-import { AxiosResponse } from "axios";
+import { SubjectFromToken } from "../utils/interfaces";
 
 const secretKey = process.env.SECRET_KEY;
 const encodedKey = new TextEncoder().encode(secretKey);
 
-export async function decrypt(session: string | undefined = "") {
+export async function decrypt(
+  session: string | undefined = ""
+): Promise<SubjectFromToken | any> {
   try {
     const { payload } = await jwtVerify(session, encodedKey, {
       algorithms: ["HS256"],
@@ -24,19 +26,19 @@ export function createSession({
   access_token: string;
   refresh_token: string;
 }) {
-  cookies().set("access_token", access_token, {
+  cookies().set("access_token_cookie", access_token, {
     secure: true,
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: "none",
   });
-  cookies().set("refresh_token", refresh_token, {
+  cookies().set("refresh_token_cookie", refresh_token, {
     secure: true,
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: "none",
   });
 }
 
 export function deleteSession() {
-  cookies().delete("access_token");
-  cookies().delete("refresh_token");
+  cookies().delete("access_token_cookie");
+  cookies().delete("refresh_token_cookie");
 }
