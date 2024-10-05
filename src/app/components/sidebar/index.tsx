@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Sidebar({ isOpen }: { isOpen: boolean }) {
   return (
     <aside
-      className={`absolute top-[100px] 
+      className={`absolute top-[150px] z-50
         bg-white  shadow-2xl
         sm:hidden flex flex-col justify-start
         w-2/3 

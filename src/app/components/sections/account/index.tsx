@@ -11,7 +11,6 @@ import ArrowIcon from "../../icons/Arrow";
 import PencilIcon from "../../icons/Pencil";
 import UserIcon from "../../icons/User";
 import EditCircleIcon from "../../icons/EditCircle";
-import { useUser } from "@/app/context/UserContextProvider";
 import { useRouter } from "next/navigation";
 
 export default function AccountForm({
@@ -29,7 +28,6 @@ export default function AccountForm({
   const [editAddressIndex, setEditAddressIndex] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const { user, logout } = useUser();
   const router = useRouter();
 
   async function onUpdateUser(e: React.FormEvent<HTMLFormElement>) {
@@ -74,7 +72,6 @@ export default function AccountForm({
   }
 
   function handleLogout() {
-    logout();
     onClose();
     router.push("/");
   }

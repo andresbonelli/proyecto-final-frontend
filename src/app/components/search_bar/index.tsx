@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import useAutocomplete from "@/app/hooks/useAutocomplete";
 import { colors } from "@/app/utils/constants";

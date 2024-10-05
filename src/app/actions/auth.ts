@@ -77,16 +77,16 @@ export async function login(state: LoginFormState, formData: FormData) {
 
     if (res.status === 200) {
       console.log(res.data);
-      cookieStore.set("access_token", res.data.access_token, {
-        secure: true,
-        httpOnly: true,
-        sameSite: true,
-      });
-      cookieStore.set("refresh_token", res.data.refresh_token, {
-        secure: true,
-        httpOnly: true,
-        sameSite: true,
-      });
+      // cookieStore.set("access_token", res.data.access_token, {
+      //   secure: true,
+      //   httpOnly: true,
+      //   sameSite: true,
+      // });
+      // cookieStore.set("refresh_token", res.data.refresh_token, {
+      //   secure: true,
+      //   httpOnly: true,
+      //   sameSite: true,
+      // });
       redirect("/");
     } else {
       console.error(res.data);
