@@ -12,6 +12,7 @@ import { LoginDto } from "../utils/interfaces";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { AxiosResponse } from "axios";
+import { createSession, deleteSession } from "../lib/session";
 
 const cookieStore = cookies();
 
@@ -77,16 +78,7 @@ export async function login(state: LoginFormState, formData: FormData) {
 
     if (res.status === 200) {
       console.log(res.data);
-      // cookieStore.set("access_token", res.data.access_token, {
-      //   secure: true,
-      //   httpOnly: true,
-      //   sameSite: true,
-      // });
-      // cookieStore.set("refresh_token", res.data.refresh_token, {
-      //   secure: true,
-      //   httpOnly: true,
-      //   sameSite: true,
-      // });
+      createSession(res.data);
       redirect("/");
     } else {
       console.error(res.data);
@@ -98,4 +90,9 @@ export async function login(state: LoginFormState, formData: FormData) {
       return { error: error.response.data.detail };
     }
   }
+}
+
+export async function logout() {
+  deleteSession();
+  redirect("/");
 }

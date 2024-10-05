@@ -12,6 +12,7 @@ import PencilIcon from "../../icons/Pencil";
 import UserIcon from "../../icons/User";
 import EditCircleIcon from "../../icons/EditCircle";
 import { useRouter } from "next/navigation";
+import { logout } from "@/app/actions/auth";
 
 export default function AccountForm({
   isOpen,
@@ -28,7 +29,6 @@ export default function AccountForm({
   const [editAddressIndex, setEditAddressIndex] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const router = useRouter();
 
   async function onUpdateUser(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -72,8 +72,8 @@ export default function AccountForm({
   }
 
   function handleLogout() {
+    logout();
     onClose();
-    router.push("/");
   }
 
   return (

@@ -7,13 +7,13 @@ import Logo from "../icons/Logo";
 import { colors } from "../../utils/constants";
 import { cookies } from "next/headers";
 import HeaderLinks from "./header_links";
-
+import { decrypt } from "@/app/lib/session";
 
 export default async function Header() {
-
   const cookie = cookies().get("access_token");
-  console.log("header", cookie);
-  const user = cookie?.value;
+
+  const user = await decrypt(cookie?.value);
+  console.log(user);
 
   return (
     <header className="fixed top-0 w-full z-50 ">
@@ -43,8 +43,7 @@ export default async function Header() {
           <SearchBar />
         </div>
         {/* Right Side Links */}
-        <HeaderLinks user={user}/>
-        
+        <HeaderLinks user={user} />
       </div>
       <div className="sm:hidden bg-background -mt-2 pb-3">
         <SearchBar />
