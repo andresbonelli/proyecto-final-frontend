@@ -1,5 +1,3 @@
-// "use client";
-
 import Link from "next/link";
 import Navbar from "../navbar";
 import SearchBar from "../search_bar";
@@ -8,13 +6,17 @@ import { colors } from "../../utils/constants";
 import { cookies } from "next/headers";
 import HeaderLinks from "./header_links";
 import { decrypt } from "@/app/lib/session";
-import { SubjectFromToken } from "@/app/utils/interfaces";
+import { getUserData } from "@/app/actions/auth";
 
 export default async function Header() {
   const cookie = cookies().get("access_token_cookie");
 
   const user = await decrypt(cookie?.value);
-  console.log(user);
+  if (user) {
+    console.log(user);
+    const userFromDB = await getUserData(user.id);
+    console.log(userFromDB);
+  }
 
   return (
     <header className="fixed top-0 w-full z-50 ">

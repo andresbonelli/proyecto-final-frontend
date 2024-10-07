@@ -4,14 +4,13 @@ import { useState } from "react";
 import AddNewAddressForm from "../../forms/add_new_address";
 import EditAddressForm from "../../forms/edit_address";
 import Loader from "../../loader";
-import { Address, SubjectFromToken, UserInfoDto } from "@/app/utils/interfaces";
+import { Address, UserFromDB, UserInfoDto } from "@/app/utils/interfaces";
 import { colors } from "@/app/utils/constants";
 import AddIcon from "../../icons/Add";
 import ArrowIcon from "../../icons/Arrow";
 import PencilIcon from "../../icons/Pencil";
 import UserIcon from "../../icons/User";
 import EditCircleIcon from "../../icons/EditCircle";
-import { useRouter } from "next/navigation";
 import { logout } from "@/app/actions/auth";
 
 export default function AccountForm({
@@ -21,7 +20,7 @@ export default function AccountForm({
 }: {
   isOpen: boolean;
   onClose: Function;
-  user: SubjectFromToken;
+  user: UserFromDB;
 }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

@@ -8,11 +8,11 @@ import UserIcon from "../../icons/User";
 import AccountForm from "../../sections/account";
 import LoginOrSignupForm from "../../sections/login_signup";
 import Sidebar from "../../sidebar";
-import { SubjectFromToken } from "@/app/utils/interfaces";
+import { UserFromDB } from "@/app/utils/interfaces";
 import { useCart } from "@/app/context/CartContextProvider";
 import { useState } from "react";
 
-export default function HeaderLinks({ user }: { user: SubjectFromToken }) {
+export default function HeaderLinks({ user }: { user: UserFromDB }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { totalItems } = useCart();

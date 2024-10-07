@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
-import { SubjectFromToken, AccessToken } from "../utils/interfaces";
+import { UserFromDB, AccessToken } from "../utils/interfaces";
 import { cookies } from "next/headers";
 
 const UserContext = createContext<any>(null);
@@ -8,7 +8,7 @@ const UserContext = createContext<any>(null);
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [user, setUser] = useState<SubjectFromToken | null>(null);
+  const [user, setUser] = useState<UserFromDB | null>(null);
 
   useEffect(() => {
     const accessToken = document.cookie

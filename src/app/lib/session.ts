@@ -1,14 +1,14 @@
 import "server-only";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
-import { SubjectFromToken } from "../utils/interfaces";
+import { UserFromDB } from "../utils/interfaces";
 
 const secretKey = process.env.SECRET_KEY;
 const encodedKey = new TextEncoder().encode(secretKey);
 
 export async function decrypt(
   session: string | undefined = ""
-): Promise<SubjectFromToken | any> {
+): Promise<UserFromDB | any> {
   try {
     const { payload } = await jwtVerify(session, encodedKey, {
       algorithms: ["HS256"],
@@ -18,7 +18,6 @@ export async function decrypt(
     console.log("Failed to verify session");
   }
 }
-
 export function createSession({
   access_token,
   refresh_token,
@@ -27,14 +26,16 @@ export function createSession({
   refresh_token: string;
 }) {
   cookies().set("access_token_cookie", access_token, {
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
     httpOnly: true,
     sameSite: "none",
+    path: "/",
   });
   cookies().set("refresh_token_cookie", refresh_token, {
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
     httpOnly: true,
     sameSite: "none",
+    path: "/",
   });
 }
 

@@ -9,12 +9,9 @@ import {
 import api from "../services/api";
 import { RegisterUserDto } from "../utils/interfaces";
 import { LoginDto } from "../utils/interfaces";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { AxiosResponse } from "axios";
 import { createSession, deleteSession } from "../lib/session";
-
-const cookieStore = cookies();
 
 export async function signup(
   state: RegisterFormState,
@@ -80,6 +77,25 @@ export async function login(state: LoginFormState, formData: FormData) {
       console.log(res.data);
       createSession(res.data);
       redirect("/");
+    } else {
+      console.error(res.data);
+      return { error: res.data };
+    }
+  } catch (error: any) {
+    if (error.response) {
+      console.error(error.response.data);
+      return { error: error.response.data.detail };
+    }
+  }
+}
+
+export async function getUserData(id: string) {
+  try {
+    const res = await api.get(`/api/Users/${id}`);
+
+    if (res.status === 200) {
+      console.log(res.data);
+      return res.data;
     } else {
       console.error(res.data);
       return { error: res.data };
