@@ -18,7 +18,7 @@ export default function LoginOrSignupForm({
 
   return (
     <aside
-      className={`absolute top-0 
+      className={`absolute top-0 z-50
         bg-background sm:px-12 px-5 shadow-2xl
         flex flex-col place-content-center
         w-screen sm:w-1/4 min-h-screen 

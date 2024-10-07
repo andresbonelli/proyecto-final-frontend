@@ -80,7 +80,8 @@ export default function AccountForm({
 
   return (
     <aside
-      className={`absolute top-0 bg-background sm:px-12 px-5 shadow-2xl
+      className={`absolute top-0 z-50 
+                  bg-background sm:px-12 px-5 shadow-2xl
                   flex flex-col place-content-center
                   min-w-fit min-h-screen 
                   transition-transform ease-in-out duration-300 ${
