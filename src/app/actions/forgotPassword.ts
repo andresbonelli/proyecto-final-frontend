@@ -5,7 +5,7 @@ import api from "../services/api";
 
 export async function forgotPassword(state: any, formData: FormData) {
   const validatedFields = ForgotPasswordFormSchema.safeParse({
-    email: formData.get("usernameOrEmail"),
+    email: formData.get("email"),
   });
 
   if (!validatedFields.success) {

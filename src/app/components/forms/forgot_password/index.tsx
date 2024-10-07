@@ -19,8 +19,8 @@ export function ForgotPasswordForm() {
       >
         <EmailIcon width={25} height={25} fill="gray" />
         <input
-          id="usernameOrEmail"
-          name="usernameOrEmail"
+          id="email"
+          name="email"
           placeholder="Email"
           className="bg-gray-200 flex-auto  text-sm"
         />
