@@ -6,7 +6,7 @@ import { UserFromDB } from "../utils/interfaces";
 const secretKey = process.env.SECRET_KEY;
 const encodedKey = new TextEncoder().encode(secretKey);
 
-export async function decrypt(
+export async function verifySession(
   session: string | undefined = ""
 ): Promise<UserFromDB | any> {
   try {
@@ -28,13 +28,13 @@ export function createSession({
   cookies().set("access_token_cookie", access_token, {
     secure: process.env.NODE_ENV === "production",
     httpOnly: true,
-    sameSite: "none",
+    sameSite: "lax",
     path: "/",
   });
   cookies().set("refresh_token_cookie", refresh_token, {
     secure: process.env.NODE_ENV === "production",
     httpOnly: true,
-    sameSite: "none",
+    sameSite: "lax",
     path: "/",
   });
 }

@@ -4,9 +4,10 @@ import CartProductCard from "@/app/components/cards/cart_product_card";
 import AddIcon from "@/app/components/icons/Add";
 import { useCart } from "@/app/context/CartContextProvider";
 import { ProductFromCart } from "@/app/utils/interfaces";
+import Link from "next/link";
 import { useState } from "react";
 
-export default function Cart() {
+export default function CartPage() {
   const [shippingCost, setShippingCost] = useState(0);
   const { cart, totalItems, totalPrice } = useCart();
 

@@ -89,12 +89,15 @@ export async function login(state: LoginFormState, formData: FormData) {
   }
 }
 
-export async function getUserData(id: string) {
+export async function getUserData(id: string, token: string) {
   try {
-    const res = await api.get(`/api/Users/${id}`);
+    const res = await api.get(`/api/Users/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     if (res.status === 200) {
-      console.log(res.data);
       return res.data;
     } else {
       console.error(res.data);
