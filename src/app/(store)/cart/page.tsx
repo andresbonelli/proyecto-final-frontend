@@ -4,9 +4,10 @@ import CartProductCard from "@/app/components/cards/cart_product_card";
 import AddIcon from "@/app/components/icons/Add";
 import { useCart } from "@/app/context/CartContextProvider";
 import { ProductFromCart } from "@/app/utils/interfaces";
+import Link from "next/link";
 import { useState } from "react";
 
-export default function Cart() {
+export default function CartPage() {
   const [shippingCost, setShippingCost] = useState(0);
   const { cart, totalItems, totalPrice } = useCart();
 
@@ -61,9 +62,12 @@ export default function Cart() {
                 ${totalPrice + shippingCost}
               </p>
             </div>
-            <button className="w-full bg-red hover:bg-redder text-white py-2 px-4 rounded-md text-center mt-5">
+            <Link
+              href="/checkout"
+              className="w-full bg-red hover:bg-redder text-white py-2 px-4 rounded-md text-center mt-5"
+            >
               Proceed to checkout
-            </button>
+            </Link>
           </div>
         )}
       </div>
