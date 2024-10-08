@@ -15,7 +15,7 @@ export default function Cart() {
       <div id="products-container" className="md:w-2/3 pt-10">
         <div className="md:w-11/12 flex flex-col bg-white shadow-xl gap-5 pt-5 pb-8">
           <h2 className="w-full text-xl text-left pl-8 text-red">
-            Cart{totalItems === 0 && " is empty"}
+            Carrito de compras{totalItems === 0 && " vacío"}
           </h2>
           {cart.map((product: ProductFromCart) => {
             return <CartProductCard product={product} />;
@@ -28,7 +28,7 @@ export default function Cart() {
           className="w-full flex flex-row justify-between gap-2"
         >
           <div className="flex flex-col gap-2 bg-white shadow-xl px-5 py-3 h-20 flex-auto overflow-hidden">
-            <h1 className="font-MontserratSemibold">Address:</h1>
+            <h1 className="font-MontserratSemibold">Domicilio de envío:</h1>
             <p className="text-xs">123 Fake St., Santa Monica, CA 23946 USA</p>
           </div>
           <div className="flex flex-col justify-center place-items-center bg-white shadow-xl p-3 w-20 h-20">
@@ -41,17 +41,17 @@ export default function Cart() {
             id="cart-summary-container"
             className="w-full flex flex-col justify-between bg-white shadow-xl px-5 py-5 gap-2"
           >
-            <h1 className="font-MontserratSemibold">Cart summary:</h1>
+            <h1 className="font-MontserratSemibold">resumen:</h1>
             <div
               id="divider-line"
               className="border border-grey w-full my-3"
             ></div>
             <div className="w-full flex flex-row justify-between place-items-center">
-              <p className="flex-auto text-left">Products ({totalItems}) : </p>
+              <p className="flex-auto text-left">Productos ({totalItems}) : </p>
               <p className="text-right">${totalPrice}</p>
             </div>
             <div className="w-full flex flex-row justify-between place-items-center">
-              <p className="flex-auto text-left">Shipping:</p>
+              <p className="flex-auto text-left">Envío:</p>
               <p className="text-right">${shippingCost}</p>
             </div>
 
@@ -62,7 +62,7 @@ export default function Cart() {
               </p>
             </div>
             <button className="w-full bg-red hover:bg-redder text-white py-2 px-4 rounded-md text-center mt-5">
-              Proceed to checkout
+              Continuar compra
             </button>
           </div>
         )}

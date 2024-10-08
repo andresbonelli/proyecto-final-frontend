@@ -22,7 +22,7 @@ export function LoginForm() {
         <input
           id="usernameOrEmail"
           name="usernameOrEmail"
-          placeholder="Username or Email"
+          placeholder="Nombre de usuario o Email"
           className="bg-gray-200 flex-auto  text-sm"
         />
       </div>
@@ -37,7 +37,7 @@ export function LoginForm() {
           type={showPassword ? "text" : "password"}
           id="password"
           name="password"
-          placeholder="password"
+          placeholder="contraseña"
           className="bg-gray-200 flex-auto text-sm"
         />
         <button type="button" onClick={() => setShowPassword(!showPassword)}>
@@ -60,7 +60,7 @@ function SubmitButton() {
       type="submit"
       className="w-full bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md"
     >
-      {pending ? <Loader /> : "Login"}
+      {pending ? <Loader /> : "Ingresar"}
     </button>
   );
 }

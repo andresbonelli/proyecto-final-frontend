@@ -137,11 +137,11 @@ export default function AccountForm({
               htmlFor="first-name"
               className="w-full font-MontserratLight text-sm ml-2"
             >
-              First name:
+              Nombre:
             </label>
             <input
               type="text"
-              placeholder="first name"
+              placeholder="nombre"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               className="w-full py-2 px-3 rounded-md border border-gray-300 mt-2"
@@ -153,11 +153,11 @@ export default function AccountForm({
               htmlFor="last-name"
               className="w-full font-MontserratLight text-sm ml-2"
             >
-              Last name:
+              Apellido:
             </label>
             <input
               type="text"
-              placeholder="last name"
+              placeholder="apellido"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               className="w-full py-2 px-3 rounded-md border border-gray-300 mt-2"
@@ -174,7 +174,7 @@ export default function AccountForm({
           >
             <div className="w-full flex flex-row justify-between place-items-center ">
               <h1 className="font-MontserratBold text-lg  text-left">
-                My addresses:
+                Mis direcciones:
               </h1>
               <div
                 className={`${
@@ -248,7 +248,7 @@ export default function AccountForm({
               type="submit"
               className="w-full bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md"
             >
-              Save
+              Guardar
             </button>
           )}
           <button
@@ -256,7 +256,7 @@ export default function AccountForm({
             onClick={handleLogout}
             className="w-full bg-grey hover:bg-gray-500 text-white py-2 px-4 rounded-md"
           >
-            Logout
+            Cerrar sesión
           </button>
         </form>
       </div>

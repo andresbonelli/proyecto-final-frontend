@@ -41,7 +41,7 @@ function SubmitButton() {
       type="submit"
       className="w-full bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md"
     >
-      {pending ? <Loader /> : "Continue"}
+      {pending ? <Loader /> : "Continuar"}
     </button>
   );
 }

@@ -4,35 +4,40 @@ export const RegisterFormSchema = z
   .object({
     username: z
       .string()
-      .min(2, { message: "Name must be at least 2 characters long." })
+      .min(2, {
+        message: "El nombre de usuario debe tener al menos 2 caracteres.",
+      })
       .trim(),
-    email: z.string().email({ message: "Please enter a valid email." }).trim(),
+    email: z.string().email({ message: "Ingrese un email válido." }).trim(),
     password: z
       .string()
-      .min(8, { message: "Be at least 8 characters long" })
-      .regex(/[a-zA-Z]/, { message: "Contain at least one letter." })
-      .regex(/[0-9]/, { message: "Contain at least one number." })
+      .min(8, { message: "Contener al menos 8 caracteres" })
+      .regex(/[a-zA-Z]/, { message: "Contener al menos una letra." })
+      .regex(/[0-9]/, { message: "Contener al menos un número." })
       .trim(),
     confirmPassword: z.string().trim(),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
+    message: "Las contraseñas no coinciden.",
     path: ["confirmPassword"],
   });
 
 export const LoginFormSchema = z.object({
   usernameOrEmail: z
     .string()
-    .min(1, { message: "Username or email is required." })
+    .min(1, { message: "Nombre de usuario o email es requerido." })
     .trim(),
-  password: z.string().min(1, { message: "Password is required." }).trim(),
+  password: z
+    .string()
+    .min(1, { message: "La contraseña es requerida." })
+    .trim(),
 });
 
 export const ForgotPasswordFormSchema = z.object({
   email: z
     .string()
-    .min(1, { message: "Email is required." })
-    .email({ message: "Please enter a valid email." })
+    .min(1, { message: "Email es requerido." })
+    .email({ message: "Ingrese un email válido." })
     .trim(),
 });
 
@@ -40,14 +45,14 @@ export const ResetPasswordFormSchema = z
   .object({
     newPassword: z
       .string()
-      .min(8, { message: "Be at least 8 characters long" })
-      .regex(/[a-zA-Z]/, { message: "Contain at least one letter." })
-      .regex(/[0-9]/, { message: "Contain at least one number." })
+      .min(8, { message: "Contener al menos 8 caracteres" })
+      .regex(/[a-zA-Z]/, { message: "Contener al menos una letra." })
+      .regex(/[0-9]/, { message: "Contener al menos un número." })
       .trim(),
     confirmPassword: z.string().trim(),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
-    message: "Passwords don't match",
+    message: "Las contraseñas no coinciden.",
     path: ["confirmPassword"],
   });
 

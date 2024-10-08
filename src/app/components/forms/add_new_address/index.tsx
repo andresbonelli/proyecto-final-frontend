@@ -34,11 +34,11 @@ export default function AddNewAddressForm({
           htmlFor="street-name"
           className="w-full font-MontserratLight text-xs ml-2"
         >
-          Street name:
+          Calle:
         </label>
         <input
           type="text"
-          placeholder="street name"
+          placeholder="calle"
           value={streetName}
           onChange={(e) => setStreetName(e.target.value)}
           className="w-full py-1 px-3 rounded-md border border-gray-300 "
@@ -49,11 +49,11 @@ export default function AddNewAddressForm({
           htmlFor="street-no"
           className="w-full font-MontserratLight text-xs ml-2"
         >
-          Street Nº:
+          Nº:
         </label>
         <input
           type="text"
-          placeholder="street number"
+          placeholder="número"
           value={streetNo}
           onChange={(e) => setStreetNo(e.target.value)}
           className="w-full py-1 px-3 rounded-md border border-gray-300"
@@ -64,11 +64,11 @@ export default function AddNewAddressForm({
           htmlFor="city-name"
           className="w-full font-MontserratLight text-xs ml-2"
         >
-          City:
+          Ciudad:
         </label>
         <input
           type="text"
-          placeholder="city-name"
+          placeholder="ciudad"
           value={cityName}
           onChange={(e) => setCityName(e.target.value)}
           className="w-full py-1 px-3 rounded-md border border-gray-300 "
@@ -79,11 +79,11 @@ export default function AddNewAddressForm({
           htmlFor="state-name"
           className="w-full font-MontserratLight text-xs ml-2"
         >
-          Province/State:
+          Provincia/Estado:
         </label>
         <input
           type="text"
-          placeholder="province / state"
+          placeholder="provincia, estado o región"
           value={stateName}
           onChange={(e) => setStateName(e.target.value)}
           className="w-full py-1 px-3 rounded-md border border-gray-300"
@@ -94,7 +94,7 @@ export default function AddNewAddressForm({
           htmlFor="country-name"
           className="w-full font-MontserratLight text-xs ml-2"
         >
-          Country:
+          País:
         </label>
         <select
           id="countrySelect"
@@ -105,7 +105,7 @@ export default function AddNewAddressForm({
           className="w-full py-1 px-3 rounded-md border border-gray-300 text-xs"
         >
           <option value="" disabled>
-            Select a country
+            Seleccionar país
           </option>
           {Object.entries(countryCodes).map(([key, value]) => {
             return (
@@ -121,11 +121,11 @@ export default function AddNewAddressForm({
           htmlFor="postal-code"
           className="w-full font-MontserratLight text-xs ml-2"
         >
-          ZIP Code:
+          CP:
         </label>
         <input
           type="text"
-          placeholder="ZIP Code"
+          placeholder="CP"
           value={postalCode}
           onChange={(e) => setPostalCode(e.target.value)}
           className="w-full py-1 px-3 rounded-md border border-gray-300"
@@ -136,7 +136,7 @@ export default function AddNewAddressForm({
         onClick={() => handleAddNewAddress()}
         className="w-full bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md mt-3"
       >
-        Add new address
+        Agregar nueva dirección
       </button>
     </form>
   );

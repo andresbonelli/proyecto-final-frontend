@@ -26,7 +26,7 @@ export function RegisterForm() {
         <input
           id="username"
           name="username"
-          placeholder="Username (*)"
+          placeholder="Nombre de usuario (*)"
           className="bg-gray-200 flex-auto  text-sm"
         />
       </div>
@@ -55,7 +55,7 @@ export function RegisterForm() {
           type={showPassword ? "text" : "password"}
           id="password"
           name="password"
-          placeholder="password"
+          placeholder="contraseña"
           className="bg-gray-200 flex-auto text-sm"
         />
         <button type="button" onClick={() => setShowPassword(!showPassword)}>
@@ -82,7 +82,7 @@ export function RegisterForm() {
           type={showPassword ? "text" : "password"}
           id="confirmPassword"
           name="confirmPassword"
-          placeholder="confirm password"
+          placeholder="confirmar contraseña"
           className="bg-gray-200 flex-auto text-sm"
         />
         <button type="button" onClick={() => setShowPassword(!showPassword)}>
@@ -105,7 +105,7 @@ function SubmitButton() {
       type="submit"
       className="w-full bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md"
     >
-      {pending ? <Loader /> : "Register"}
+      {pending ? <Loader /> : "Registro"}
     </button>
   );
 }

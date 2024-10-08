@@ -40,10 +40,10 @@ export default function EditAddressForm({
     <form>
       <div>
         <label
-          htmlFor="street-name"
+          htmlFor="calle"
           className="w-full font-MontserratLight text-xs ml-2"
         >
-          Street name:
+          Calle:
         </label>
         <input
           type="text"
@@ -54,10 +54,10 @@ export default function EditAddressForm({
       </div>
       <div>
         <label
-          htmlFor="street-no"
+          htmlFor="numero"
           className="w-full font-MontserratLight text-xs ml-2"
         >
-          Street Nº:
+          Nº:
         </label>
         <input
           type="text"
@@ -68,10 +68,10 @@ export default function EditAddressForm({
       </div>
       <div>
         <label
-          htmlFor="city-name"
+          htmlFor="ciudad"
           className="w-full font-MontserratLight text-xs ml-2"
         >
-          City:
+          Ciudad:
         </label>
         <input
           type="text"
@@ -82,10 +82,10 @@ export default function EditAddressForm({
       </div>
       <div>
         <label
-          htmlFor="state-name"
+          htmlFor="provincia, estado o región"
           className="w-full font-MontserratLight text-xs ml-2"
         >
-          Province/State:
+          Provincia/Estado:
         </label>
         <input
           type="text"
@@ -96,10 +96,10 @@ export default function EditAddressForm({
       </div>
       <div>
         <label
-          htmlFor="country-name"
+          htmlFor="pais"
           className="w-full font-MontserratLight text-xs ml-2"
         >
-          Country:
+          País:
         </label>
         <select
           id="countrySelect"
@@ -110,7 +110,7 @@ export default function EditAddressForm({
           className="w-full py-1 px-3 rounded-md border border-gray-300 text-xs"
         >
           <option value="" disabled>
-            Select a country
+            Seleccionar país
           </option>
           {Object.entries(countryCodes).map(([key, value]) => {
             return (
@@ -123,10 +123,10 @@ export default function EditAddressForm({
       </div>
       <div>
         <label
-          htmlFor="postal-code"
+          htmlFor="código postal"
           className="w-full font-MontserratLight text-xs ml-2"
         >
-          ZIP Code:
+          CP:
         </label>
         <input
           type="text"
@@ -140,14 +140,14 @@ export default function EditAddressForm({
         onClick={() => handleEditAddress()}
         className="w-full bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md mt-3"
       >
-        Edit Address
+        Editar dirección
       </button>
       <button
         type="button"
         onClick={() => onDeleteAddress()}
         className="w-full bg-red hover:bg-redder text-white py-2 px-4 rounded-md mt-3"
       >
-        Delete Address
+        Eliminar dirección
       </button>
     </form>
   );

@@ -39,17 +39,20 @@ export default function LoginOrSignupForm({
         >
           <ArrowIcon width={40} height={40} fill={colors.softBlue} />
         </button>
-        <h1 className="font-MontserratBold text-xl text-center">{formType}</h1>
+        <h1 className="font-MontserratBold text-xl text-center">
+          {formType === "Login" && "Ingresar"}
+          {formType === "Register" && "Registrarse"}
+          {formType === "Password Reset" && "Reestablecer contraseña"}
+        </h1>
 
         {formType === "Password Reset" ? (
           <p className="text-center text-sm text-wrap">
-            Please enter your account email.<br></br>If your account is active
-            you will
-            <br></br>
-            get a link to set a new password.
+            Ingresá la direccion de email con la que te registraste. Si la
+            cuenta está activa, te enviaremos un link para reestablecer la
+            contraseña.
           </p>
         ) : (
-          <p className="text-center">Access to our dashboard</p>
+          <p className="text-center">Entrar al panel de usuario</p>
         )}
 
         {/* LOGIN/SIGNUP/RESET PASSWORD FORM */}
@@ -62,13 +65,13 @@ export default function LoginOrSignupForm({
               onClick={() => setFormType("Password Reset")}
               className="w-full text-right text-xs text-red"
             >
-              forgot password?
+              olvidé mi contraseña
             </button>
             <p className="text-center mt-5">
-              "Don't have an account yet?"
+              ¿Aún no estas registrado?
               {"  "}
               <button onClick={() => setFormType("Register")}>
-                <strong>Register</strong>
+                <strong>Registrarse</strong>
               </button>
             </p>
           </>
@@ -77,10 +80,10 @@ export default function LoginOrSignupForm({
           <>
             <RegisterForm />
             <p className="text-center  mt-5">
-              "Have an account?"
+              ¿Ya tienes una cuenta?
               {"  "}
               <button onClick={() => setFormType("Login")}>
-                <strong>Login</strong>
+                <strong>Ingresar</strong>
               </button>
             </p>
           </>
@@ -89,7 +92,7 @@ export default function LoginOrSignupForm({
           <>
             <ForgotPasswordForm />
             <button onClick={() => setFormType("Login")}>
-              Back to <strong>login</strong>
+              Volver al <strong>ingreso</strong>
             </button>
           </>
         )}

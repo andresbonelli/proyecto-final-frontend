@@ -16,7 +16,7 @@ export default async function ProductDetailsPage({
       <ProductDetailsComponent product={product} />
       <ProductCarrouselSection
         query={{ filter: `tags~${product.tags}` }}
-        title="Similar Products"
+        title="Productos relacionados"
       />
     </>
   );
