@@ -35,6 +35,11 @@ export default function CheckoutComponent({ token }: { token?: string }) {
         setStatus("error");
         setMessage(state?.error ?? "Error al crear la orden");
       }
+    } else {
+      setStatus("error");
+      setMessage(
+        "Error de autenticación. Por favor ingresar o registrarse antes de realizar una compra"
+      );
     }
   }
   function handleCompleteOrder() {
