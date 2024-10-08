@@ -8,8 +8,8 @@ import UserIcon from "../../icons/User";
 import AccountForm from "../../sections/account";
 import LoginOrSignupForm from "../../sections/login_signup";
 import Sidebar from "../../sidebar";
-import { UserFromDB } from "@/app/utils/interfaces";
-import { useCart } from "@/app/context/CartContextProvider";
+import { UserFromDB } from "@/utils/interfaces";
+import { useCart } from "@/context/CartContextProvider";
 import { useState } from "react";
 
 export default function CustomerDashboard({

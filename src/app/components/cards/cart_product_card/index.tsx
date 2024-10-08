@@ -1,6 +1,6 @@
-import { useCart } from "@/app/context/CartContextProvider";
-import { calculateDiscountPerc } from "@/app/utils";
-import { ProductFromCart } from "@/app/utils/interfaces";
+import { useCart } from "@/context/CartContextProvider";
+import { calculateDiscountPerc } from "@/utils";
+import { ProductFromCart } from "@/utils/interfaces";
 import Image from "next/image";
 import Link from "next/link";
 

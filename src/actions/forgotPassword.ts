@@ -1,6 +1,6 @@
 "use server";
 
-import { ForgotPasswordFormSchema } from "@/app/lib/definitions";
+import { ForgotPasswordFormSchema } from "@/lib/definitions";
 import api from "../services/api";
 
 export async function forgotPassword(state: any, formData: FormData) {

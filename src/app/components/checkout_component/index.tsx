@@ -1,12 +1,12 @@
 "use client";
 
-import { createOrder } from "@/app/actions/orders";
-import { useCart } from "@/app/context/CartContextProvider";
-import { ProductFromCart } from "@/app/utils/interfaces";
+import { createOrder } from "@/actions/orders";
+import { useCart } from "@/context/CartContextProvider";
+import { ProductFromCart } from "@/utils/interfaces";
 import { useEffect, useState } from "react";
 import Modal from "../modal";
 import SuccessIcon from "../icons/Success";
-import { colors } from "@/app/utils/constants";
+import { colors } from "@/utils/constants";
 import X from "../icons/X";
 
 export default function CheckoutComponent({ token }: { token?: string }) {

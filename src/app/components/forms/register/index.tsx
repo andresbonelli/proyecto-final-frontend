@@ -2,7 +2,7 @@
 
 import { useFormState, useFormStatus } from "react-dom";
 import { useState } from "react";
-import { signup } from "@/app/actions/auth";
+import { signup } from "@/actions/auth";
 import UserIcon from "../../icons/User";
 import EmailIcon from "../../icons/Email";
 import EyeIcon from "../../icons/Eye";

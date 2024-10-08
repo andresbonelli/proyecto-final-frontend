@@ -1,4 +1,4 @@
-import { navLinks } from "@/app/utils/constants";
+import { navLinks } from "@/utils/constants";
 import Link from "next/link";
 
 interface navLink {

@@ -1,7 +1,7 @@
 import ProductDetailsComponent from "@/app/components/product_details";
 import ProductCarrouselSection from "@/app/components/sections/product_carrousel";
-import api from "@/app/services/api";
-import { ProductFromDB } from "@/app/utils/interfaces";
+import api from "@/services/api";
+import { ProductFromDB } from "@/utils/interfaces";
 
 export default async function ProductDetailsPage({
   params,

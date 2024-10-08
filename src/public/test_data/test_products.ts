@@ -1,4 +1,4 @@
-import { ProductFromDB } from "@/app/utils/interfaces";
+import { ProductFromDB } from "@/utils/interfaces";
 
 export const test_products: ProductFromDB[] = [
   {

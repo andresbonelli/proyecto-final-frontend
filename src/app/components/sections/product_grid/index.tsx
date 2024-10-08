@@ -1,6 +1,6 @@
-import { ProductQuery } from "@/app/utils/interfaces";
+import { ProductQuery } from "@/utils/interfaces";
 import ProductGridComponent from "../../product_grid_component";
-import useProducts from "@/app/hooks/useProducts";
+import useProducts from "@/hooks/useProducts";
 
 export default async function ProductGridSection({
   query,

@@ -1,6 +1,6 @@
 "use client";
 
-import { resetPassword } from "@/app/actions/resetPassword";
+import { resetPassword } from "@/actions/resetPassword";
 import EyeIcon from "@/app/components/icons/Eye";
 import LockIcon from "@/app/components/icons/Lock";
 import Loader from "@/app/components/loader";

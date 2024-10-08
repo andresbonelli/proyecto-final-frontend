@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
-import { forgotPassword } from "@/app/actions/forgotPassword";
+import { forgotPassword } from "@/actions/forgotPassword";
 import EmailIcon from "../../icons/Email";
 import Loader from "../../loader";
 

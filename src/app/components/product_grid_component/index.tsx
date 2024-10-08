@@ -1,11 +1,11 @@
 "use client";
 
-import { colors } from "@/app/utils/constants";
+import { colors } from "@/utils/constants";
 import Link from "next/link";
 import ArrowIcon from "../icons/Arrow";
 import ProductCard from "../cards/product_card";
 import { useState } from "react";
-import { ProductFromDB } from "@/app/utils/interfaces";
+import { ProductFromDB } from "@/utils/interfaces";
 
 export default function ProductGridComponent({
   products,

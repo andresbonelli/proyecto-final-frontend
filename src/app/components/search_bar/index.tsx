@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import useAutocomplete from "@/app/hooks/useAutocomplete";
-import { colors } from "@/app/utils/constants";
+import useAutocomplete from "@/hooks/useAutocomplete";
+import { colors } from "@/utils/constants";
 import SearchIcon from "../icons/Search";
 import Link from "next/link";
 import MicIcon from "../icons/Mic";

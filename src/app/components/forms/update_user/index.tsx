@@ -6,8 +6,8 @@ import AddIcon from "../../icons/Add";
 import PencilIcon from "../../icons/Pencil";
 import AddNewAddressForm from "../add_new_address";
 import EditAddressForm from "../edit_address";
-import { Address, UserFromDB } from "@/app/utils/interfaces";
-import { updateUserInfo } from "@/app/actions/user";
+import { Address, UserFromDB } from "@/utils/interfaces";
+import { updateUserInfo } from "@/actions/user";
 
 export function UpdateUserForm({
   user,

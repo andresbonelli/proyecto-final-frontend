@@ -2,7 +2,7 @@ import "./globals.css";
 import Footer from "./components/footer/index";
 import Header from "./components/header/index";
 import type { Metadata } from "next";
-import { CartProvider } from "./context/CartContextProvider";
+import { CartProvider } from "../context/CartContextProvider";
 
 export const metadata: Metadata = {
   title: "E-Commerce by Bootcamps 3.0",

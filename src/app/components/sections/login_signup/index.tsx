@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ArrowIcon from "../../icons/Arrow";
-import { colors } from "@/app/utils/constants";
+import { colors } from "@/utils/constants";
 import { RegisterForm } from "../../forms/register";
 import { LoginForm } from "../../forms/login";
 import { ForgotPasswordForm } from "../../forms/forgot_password";

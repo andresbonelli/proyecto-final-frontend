@@ -1,6 +1,6 @@
 "use client";
 
-import { verify } from "@/app/actions/verify";
+import { verify } from "@/actions/verify";
 import Loader from "@/app/components/loader";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";

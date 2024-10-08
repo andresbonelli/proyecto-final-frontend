@@ -2,11 +2,11 @@ import Link from "next/link";
 import Navbar from "../navbar";
 import SearchBar from "../search_bar";
 import Logo from "../icons/Logo";
-import { colors } from "../../utils/constants";
+import { colors } from "../../../utils/constants";
 import { cookies } from "next/headers";
 import CustomerDashboard from "./customer_dashboard";
-import { verifySession as verifySession } from "@/app/lib/session";
-import { getUserData } from "@/app/actions/auth";
+import { verifySession as verifySession } from "@/lib/session";
+import { getUserData } from "@/actions/auth";
 
 export default async function Header() {
   const cookie = cookies().get("access_token_cookie");

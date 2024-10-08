@@ -1,6 +1,6 @@
 "use server";
 
-import { ResetPasswordFormSchema } from "@/app/lib/definitions";
+import { ResetPasswordFormSchema } from "@/lib/definitions";
 import api from "../services/api";
 import { redirect } from "next/navigation";
 

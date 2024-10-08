@@ -1,4 +1,4 @@
-import { svgProps } from "@/app/utils/interfaces";
+import { svgProps } from "@/utils/interfaces";
 
 export default function GoToCartIcon({ width, height, fill }: svgProps) {
   return (

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useCart } from "@/app/context/CartContextProvider";
-import { calculateDiscountPerc } from "@/app/utils";
-import { ProductFromCart, ProductFromDB } from "@/app/utils/interfaces";
+import { useCart } from "@/context/CartContextProvider";
+import { calculateDiscountPerc } from "@/utils";
+import { ProductFromCart, ProductFromDB } from "@/utils/interfaces";
 import FingerIcon from "../icons/Finger";
 import Modal from "../modal";
 import GoToCartIcon from "../icons/GoToCart";

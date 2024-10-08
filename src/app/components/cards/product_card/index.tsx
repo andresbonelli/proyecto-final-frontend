@@ -1,10 +1,10 @@
-import { colors } from "@/app/utils/constants";
+import { colors } from "@/utils/constants";
 import StarFilledIcon from "../../icons/StarFilled";
 import StarHalfIcon from "../../icons/StarHalf";
 import FingerIcon from "../../icons/Finger";
 import HeartIcon from "../../icons/Heart";
-import { calculateDiscountPerc } from "@/app/utils";
-import { ProductFromDB } from "@/app/utils/interfaces";
+import { calculateDiscountPerc } from "@/utils";
+import { ProductFromDB } from "@/utils/interfaces";
 import Image from "next/image";
 
 export default function ProductCard({

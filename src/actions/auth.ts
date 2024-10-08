@@ -5,7 +5,7 @@ import {
   RegisterFormState,
   LoginFormState,
   LoginFormSchema,
-} from "@/app/lib/definitions";
+} from "@/lib/definitions";
 import api from "../services/api";
 import { RegisterUserDto } from "../utils/interfaces";
 import { LoginDto } from "../utils/interfaces";

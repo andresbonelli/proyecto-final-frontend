@@ -1,18 +1,18 @@
 "use client";
 
-import { UserFromDB } from "@/app/utils/interfaces";
-import { colors } from "@/app/utils/constants";
+import { UserFromDB } from "@/utils/interfaces";
+import { colors } from "@/utils/constants";
 import ArrowIcon from "../../icons/Arrow";
 import UserIcon from "../../icons/User";
 import EditCircleIcon from "../../icons/EditCircle";
-import { logout } from "@/app/actions/auth";
+import { logout } from "@/actions/auth";
 import { UpdateUserForm } from "../../forms/update_user";
 
 export default function AccountForm({
   isOpen,
   onClose,
   user,
-  token
+  token,
 }: {
   isOpen: boolean;
   onClose: Function;

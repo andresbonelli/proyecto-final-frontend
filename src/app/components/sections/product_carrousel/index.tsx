@@ -1,5 +1,5 @@
-import useProducts from "@/app/hooks/useProducts";
-import { ProductQuery } from "@/app/utils/interfaces";
+import useProducts from "@/hooks/useProducts";
+import { ProductQuery } from "@/utils/interfaces";
 import ProductCarrouselComponent from "../../product_carrousel_component";
 
 export default async function ProductCarrouselSection({
