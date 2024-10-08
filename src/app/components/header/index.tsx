@@ -5,17 +5,17 @@ import Logo from "../icons/Logo";
 import { colors } from "../../utils/constants";
 import { cookies } from "next/headers";
 import HeaderLinks from "./header_links";
-import { decrypt } from "@/app/lib/session";
+import { verifySession as verifySession } from "@/app/lib/session";
 import { getUserData } from "@/app/actions/auth";
 
 export default async function Header() {
   const cookie = cookies().get("access_token_cookie");
 
-  const user = await decrypt(cookie?.value);
-  if (user) {
-    console.log(user);
-    const userFromDB = await getUserData(user.id);
-    console.log(userFromDB);
+  let user = await verifySession(cookie?.value);
+  if (cookie && user) {
+    console.log("user in token:", user);
+    user = await getUserData(user.id, cookie.value);
+    console.log("user from DB", user);
   }
 
   return (
