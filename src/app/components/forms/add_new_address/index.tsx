@@ -100,7 +100,7 @@ export default function AddNewAddressForm({
           id="countrySelect"
           aria-label="Default select example"
           name="country"
-          value={countryCode}
+          value={countryCode ?? ""}
           onChange={(e) => setCountryCode(e.target.value)}
           className="w-full py-1 px-3 rounded-md border border-gray-300 text-xs"
         >

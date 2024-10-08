@@ -13,9 +13,7 @@ export default async function Header() {
 
   let user = await verifySession(cookie?.value);
   if (cookie && user) {
-    console.log("user in token:", user);
     user = await getUserData(user.id, cookie.value);
-    console.log("user from DB", user);
   }
 
   return (
@@ -46,7 +44,7 @@ export default async function Header() {
           <SearchBar />
         </div>
         {/* Right Side Links */}
-        <CustomerDashboard user={user} />
+        <CustomerDashboard user={user} token={cookie?.value} />
       </div>
       <div className="sm:hidden bg-background -mt-2 pb-3">
         <SearchBar />

@@ -62,9 +62,12 @@ export default function CartPage() {
                 ${totalPrice + shippingCost}
               </p>
             </div>
-            <button className="w-full bg-red hover:bg-redder text-white py-2 px-4 rounded-md text-center mt-5">
+            <Link
+              href="/checkout"
+              className="w-full bg-red hover:bg-redder text-white py-2 px-4 rounded-md text-center mt-5"
+            >
               Continuar compra
-            </button>
+            </Link>
           </div>
         )}
       </div>
