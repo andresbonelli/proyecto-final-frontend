@@ -12,7 +12,7 @@ import { UserFromDB } from "@/app/utils/interfaces";
 import { useCart } from "@/app/context/CartContextProvider";
 import { useState } from "react";
 
-export default function HeaderLinks({ user }: { user: UserFromDB }) {
+export default function CustomerDashboard({ user }: { user: UserFromDB }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { totalItems } = useCart();

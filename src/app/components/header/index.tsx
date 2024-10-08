@@ -4,7 +4,7 @@ import SearchBar from "../search_bar";
 import Logo from "../icons/Logo";
 import { colors } from "../../utils/constants";
 import { cookies } from "next/headers";
-import HeaderLinks from "./header_links";
+import CustomerDashboard from "./customer_dashboard";
 import { decrypt } from "@/app/lib/session";
 import { getUserData } from "@/app/actions/auth";
 
@@ -46,7 +46,7 @@ export default async function Header() {
           <SearchBar />
         </div>
         {/* Right Side Links */}
-        <HeaderLinks user={user} />
+        <CustomerDashboard user={user} />
       </div>
       <div className="sm:hidden bg-background -mt-2 pb-3">
         <SearchBar />
