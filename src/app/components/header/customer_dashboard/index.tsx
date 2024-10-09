@@ -18,7 +18,7 @@ export default function CustomerDashboard({ user }: { user: UserFromDB }) {
   const { totalItems } = useCart();
   return (
     <div
-      id="user-and-cart-icon-container"
+      id="user-dashboard-container"
       className="flex flex-row justify-between place-items-center sm:gap-8 gap-5 sm:ml-3 "
     >
       <button onClick={() => setIsModalOpen(!isModalOpen)}>
@@ -45,8 +45,8 @@ export default function CustomerDashboard({ user }: { user: UserFromDB }) {
           {totalItems > 0 && (
             <p
               className="absolute -top-3 right-0
-                              font-MontserratBold text-sm text-pink
-                              w-4 h-4 rounded-full text-center bg-background "
+                         font-MontserratBold text-sm text-pink
+                         w-4 h-4 rounded-full text-center bg-background "
             >
               {totalItems}
             </p>

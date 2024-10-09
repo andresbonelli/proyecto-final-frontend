@@ -6,6 +6,7 @@ import { colors } from "../../../utils/constants";
 import CustomerDashboard from "./customer_dashboard";
 import { verifySession as verifySession } from "@/lib/session";
 import { getUserData } from "@/actions/auth";
+import AdminIcon from "../icons/Admin";
 
 export default async function Header() {
   const session = await verifySession();
@@ -42,6 +43,15 @@ export default async function Header() {
           <SearchBar />
         </div>
         {/* Right Side Links */}
+        {(user?.role === "staff" || user?.role === "admin") && (
+          <Link
+            href="/dashboard"
+            className="flex flex-row justify-between gap-2 items-center"
+          >
+            <AdminIcon height={25} width={25} fill="black" />
+            <p className="text-sm sm:block hidden">Admin</p>
+          </Link>
+        )}
         <CustomerDashboard user={user} />
       </div>
       <div className="sm:hidden bg-background -mt-2 pb-3">
