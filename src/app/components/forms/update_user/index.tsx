@@ -9,13 +9,7 @@ import EditAddressForm from "../edit_address";
 import { Address, UserFromDB } from "@/utils/interfaces";
 import { updateUserInfo } from "@/actions/user";
 
-export function UpdateUserForm({
-  user,
-  token,
-}: {
-  user: UserFromDB;
-  token?: string;
-}) {
+export function UpdateUserForm({ user }: { user: UserFromDB }) {
   const { firstname, lastname, address, id } = user;
   const [firstnameInput, setFirstnameInput] = useState(firstname ?? "");
   const [lastnameInput, setLastnameInput] = useState(lastname ?? "");
@@ -52,23 +46,18 @@ export function UpdateUserForm({
 
   async function handleUpdateUser() {
     setStatus("loading");
-    if (token) {
-      const actionResult = await updateUserInfo(
-        id,
-        {
-          firstname: firstnameInput,
-          lastname: lastnameInput,
-          address: addresses,
-        },
-        token
-      );
-      if (actionResult?.success) {
-        setStatus("success");
-        window.location.reload();
-      } else {
-        setStatus("error");
-        setMessage(actionResult?.error);
-      }
+
+    const actionResult = await updateUserInfo(id, {
+      firstname: firstnameInput,
+      lastname: lastnameInput,
+      address: addresses,
+    });
+    if (actionResult?.success) {
+      setStatus("success");
+      window.location.reload();
+    } else {
+      setStatus("error");
+      setMessage(actionResult?.error);
     }
   }
 

@@ -24,19 +24,6 @@ export default function CartPage() {
         </div>
       </div>
       <div className="md:w-1/3 flex flex-col justify-start place-items-end min-h-screen py-10 gap-5">
-        <div
-          id="address-container"
-          className="w-full flex flex-row justify-between gap-2"
-        >
-          <div className="flex flex-col gap-2 bg-white shadow-xl px-5 py-3 h-20 flex-auto overflow-hidden">
-            <h1 className="font-MontserratSemibold">Domicilio de envío:</h1>
-            <p className="text-xs">123 Fake St., Santa Monica, CA 23946 USA</p>
-          </div>
-          <div className="flex flex-col justify-center place-items-center bg-white shadow-xl p-3 w-20 h-20">
-            <button></button>
-            <AddIcon height={30} width={30} fill="black" />
-          </div>
-        </div>
         {totalItems > 0 && (
           <div
             id="cart-summary-container"

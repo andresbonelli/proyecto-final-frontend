@@ -12,13 +12,7 @@ import { UserFromDB } from "@/utils/interfaces";
 import { useCart } from "@/context/CartContextProvider";
 import { useState } from "react";
 
-export default function CustomerDashboard({
-  user,
-  token,
-}: {
-  user: UserFromDB;
-  token?: string;
-}) {
+export default function CustomerDashboard({ user }: { user: UserFromDB }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { totalItems } = useCart();
@@ -73,7 +67,6 @@ export default function CustomerDashboard({
       {user ? (
         <AccountForm
           user={user}
-          token={token}
           onClose={() => {
             setIsModalOpen(false);
           }}

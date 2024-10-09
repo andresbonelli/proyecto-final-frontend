@@ -9,11 +9,10 @@ import { verifySession as verifySession } from "@/lib/session";
 import { getUserData } from "@/actions/auth";
 
 export default async function Header() {
-  const cookie = cookies().get("access_token_cookie");
-
-  let user = await verifySession(cookie?.value);
-  if (cookie && user) {
-    user = await getUserData(user.id, cookie.value);
+  const session = await verifySession();
+  let user;
+  if (session) {
+    user = await getUserData(session.id);
   }
 
   return (
@@ -44,7 +43,7 @@ export default async function Header() {
           <SearchBar />
         </div>
         {/* Right Side Links */}
-        <CustomerDashboard user={user} token={cookie?.value} />
+        <CustomerDashboard user={user} />
       </div>
       <div className="sm:hidden bg-background -mt-2 pb-3">
         <SearchBar />

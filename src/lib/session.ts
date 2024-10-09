@@ -1,4 +1,6 @@
 import "server-only";
+
+import { getUserData } from "@/actions/auth";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { UserFromDB } from "../utils/interfaces";
@@ -6,18 +8,20 @@ import { UserFromDB } from "../utils/interfaces";
 const secretKey = process.env.SECRET_KEY;
 const encodedKey = new TextEncoder().encode(secretKey);
 
-export async function verifySession(
-  session: string | undefined = ""
-): Promise<UserFromDB | any> {
+export async function verifySession(): Promise<UserFromDB | any> {
   try {
-    const { payload } = await jwtVerify(session, encodedKey, {
-      algorithms: ["HS256"],
-    });
-    return payload["subject"];
+    const cookie = cookies().get("access_token_cookie");
+    if (cookie) {
+      const { payload } = await jwtVerify(cookie?.value, encodedKey, {
+        algorithms: ["HS256"],
+      });
+      return payload["subject"];
+    }
   } catch (error) {
     console.log("Failed to verify session");
   }
 }
+
 export function createSession({
   access_token,
   refresh_token,

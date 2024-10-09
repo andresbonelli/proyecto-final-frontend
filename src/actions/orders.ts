@@ -1,12 +1,15 @@
 "use server";
 
+import { cookies } from "next/headers";
 import api from "../services/api";
 
-export async function createOrder(order: any, token: string) {
+const cookie = cookies().get("access_token_cookie");
+
+export async function createOrder(order: any) {
   try {
     const res = await api.post("/api/orders/", order, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookie?.value}`,
       },
     });
     if (res.status === 201) {
@@ -28,11 +31,11 @@ export async function createOrder(order: any, token: string) {
   }
 }
 
-export async function completeOrder(id: string, token: string) {
+export async function completeOrder(id: string) {
   try {
     const res = await api.post("/api/orders/complete/" + id, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookie?.value}`,
       },
     });
     if (res.status === 200) {
@@ -50,11 +53,11 @@ export async function completeOrder(id: string, token: string) {
   }
 }
 
-export async function cancelOrder(id: string, token: string) {
+export async function cancelOrder(id: string) {
   try {
     const res = await api.post("/api/orders/cancel/" + id, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookie?.value}`,
       },
     });
     if (res.status === 200) {

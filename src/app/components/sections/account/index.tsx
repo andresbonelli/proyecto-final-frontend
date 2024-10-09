@@ -12,12 +12,10 @@ export default function AccountForm({
   isOpen,
   onClose,
   user,
-  token,
 }: {
   isOpen: boolean;
   onClose: Function;
   user: UserFromDB;
-  token?: string;
 }) {
   function handleLogout() {
     logout();
@@ -69,7 +67,7 @@ export default function AccountForm({
 
         {/* UPDATE USER INFO FORM */}
         <div className="w-full flex flex-col justify-between place-items-center gap-2 px-8 ">
-          <UpdateUserForm user={user} token={token} />
+          <UpdateUserForm user={user} />
           <button
             type="button"
             onClick={handleLogout}

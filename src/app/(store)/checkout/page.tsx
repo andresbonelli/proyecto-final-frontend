@@ -1,8 +1,13 @@
 import CheckoutComponent from "@/app/components/checkout_component";
-import { cookies } from "next/headers";
+import { verifySession } from "@/lib/session";
+import { getUserData } from "@/actions/auth";
 
 export default async function CheckoutPage() {
-  const cookie = cookies().get("access_token_cookie") || null;
+  const session = await verifySession();
+  let user;
+  if (session) {
+    user = await getUserData(session.id);
+  }
 
-  return <CheckoutComponent token={cookie?.value} />;
+  return <CheckoutComponent user={user} />;
 }

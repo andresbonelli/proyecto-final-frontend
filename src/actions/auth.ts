@@ -12,6 +12,7 @@ import { LoginDto } from "../utils/interfaces";
 import { redirect } from "next/navigation";
 import { AxiosResponse } from "axios";
 import { createSession, deleteSession } from "../lib/session";
+import { cookies } from "next/headers";
 
 export async function signup(
   state: RegisterFormState,
@@ -89,11 +90,12 @@ export async function login(state: LoginFormState, formData: FormData) {
   }
 }
 
-export async function getUserData(id: string, token: string) {
+export async function getUserData(id: string) {
+  const cookie = cookies().get("access_token_cookie");
   try {
     const res = await api.get(`/api/Users/${id}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookie?.value}`,
       },
     });
 
