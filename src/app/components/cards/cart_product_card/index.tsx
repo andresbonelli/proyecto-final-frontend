@@ -23,7 +23,7 @@ export default function CartProductCard({
             alt={product.name}
             height={200}
             width={200}
-            className="object-scale-down h-44"
+            className="object-scale-down h-44 w-44"
           />
         </Link>
       </div>

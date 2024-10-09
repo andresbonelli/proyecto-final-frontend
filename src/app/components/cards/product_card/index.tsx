@@ -61,7 +61,7 @@ export default function ProductCard({
         src={product.image ?? ""}
         width={200}
         height={200}
-        className="object-scale-down h-1/2"
+        className="object-scale-down h-1/2 w-1/2"
         alt={product.name}
       ></Image>
       <div className="flex flex-col justify-between h-1/2 py-2 sm:px-5 px-2 gap-1">
