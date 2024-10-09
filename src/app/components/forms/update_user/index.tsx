@@ -64,6 +64,9 @@ export function UpdateUserForm({ user }: { user: UserFromDB }) {
   return (
     <form onSubmit={handleUpdateUser}>
       {/* First name */}
+      {status === "error" && (
+        <p className="text-xs text-red text-center py-2">{message}</p>
+      )}
       <div>
         <label
           htmlFor="first-name"
