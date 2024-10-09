@@ -54,25 +54,31 @@ export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
   return (
     <div className="flex md:flex-row flex-col">
       <div id="summary-container" className="md:w-1/2 pt-10">
-        <div
-          id="address-container"
-          className="md:w-11/12 flex flex-row justify-between gap-2 mb-5"
-        >
-          {user?.address && (
+        {user && (
+          <div
+            id="address-container"
+            className="md:w-11/12 flex flex-row justify-between gap-2 mb-5"
+          >
             <div className="flex flex-col gap-4 bg-white shadow-xl px-8 pt-5 pb-8 flex-auto overflow-hidden">
               <h2 className="w-full text-xl text-left">Datos de envío:</h2>
+              <div
+                id="divider-line"
+                className="border border-grey w-full my-3"
+              ></div>
               <p className="text-lg font-MontserratSemibold">
-                {user.firstname} {user.lastname}
+                {user.firstname ?? ""} {user.lastname ?? ""}
               </p>
-              <p className="text-sm  font-MontserratSemibold">
-                {user.address[0].address_street_name ?? ""}{" "}
-                {user.address[0].address_street_no ?? ""},{" "}
-                {user.address[0].address_city ?? ""},{" "}
-                {user.address[0].address_country_code ?? ""}
-              </p>
+              {user.address && user.address.length > 0 && (
+                <p className="text-sm  font-MontserratSemibold">
+                  {user.address[0].address_street_name ?? ""}{" "}
+                  {user.address[0].address_street_no ?? ""},{" "}
+                  {user.address[0].address_city ?? ""},{" "}
+                  {user.address[0].address_country_code ?? ""}
+                </p>
+              )}
             </div>
-          )}
-        </div>
+          </div>
+        )}
         <div className="md:w-11/12 flex flex-col bg-white shadow-xl gap-5 pt-5 px-8 pb-8">
           <h2 className="w-full text-xl text-left  text-red">Medio de pago:</h2>
           <div

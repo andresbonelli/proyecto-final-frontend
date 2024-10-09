@@ -1,7 +1,6 @@
 import "server-only";
 
-import { getUserData } from "@/actions/auth";
-import { SignJWT, jwtVerify } from "jose";
+import { jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { UserFromDB } from "../utils/interfaces";
 

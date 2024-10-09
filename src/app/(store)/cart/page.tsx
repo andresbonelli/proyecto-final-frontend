@@ -1,7 +1,6 @@
 "use client";
 
 import CartProductCard from "@/app/components/cards/cart_product_card";
-import AddIcon from "@/app/components/icons/Add";
 import { useCart } from "@/context/CartContextProvider";
 import { ProductFromCart } from "@/utils/interfaces";
 import Link from "next/link";

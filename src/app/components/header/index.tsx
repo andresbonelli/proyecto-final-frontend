@@ -3,7 +3,6 @@ import Navbar from "../navbar";
 import SearchBar from "../search_bar";
 import Logo from "../icons/Logo";
 import { colors } from "../../../utils/constants";
-import { cookies } from "next/headers";
 import CustomerDashboard from "./customer_dashboard";
 import { verifySession as verifySession } from "@/lib/session";
 import { getUserData } from "@/actions/auth";

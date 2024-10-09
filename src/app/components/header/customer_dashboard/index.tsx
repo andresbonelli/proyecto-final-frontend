@@ -21,7 +21,7 @@ export default function CustomerDashboard({ user }: { user: UserFromDB }) {
       id="user-and-cart-icon-container"
       className="flex flex-row justify-between place-items-center sm:gap-8 gap-5 sm:ml-3 "
     >
-      <button onClick={() => setIsModalOpen(true)}>
+      <button onClick={() => setIsModalOpen(!isModalOpen)}>
         <div className="flex flex-row place-items-center sm:gap-2">
           {user ? (
             <>
@@ -68,14 +68,14 @@ export default function CustomerDashboard({ user }: { user: UserFromDB }) {
         <AccountForm
           user={user}
           onClose={() => {
-            setIsModalOpen(false);
+            setIsModalOpen(!isModalOpen);
           }}
           isOpen={isModalOpen}
         />
       ) : (
         <LoginOrSignupForm
           onClose={() => {
-            setIsModalOpen(false);
+            setIsModalOpen(!isModalOpen);
           }}
           isOpen={isModalOpen}
         />
