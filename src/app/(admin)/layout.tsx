@@ -1,13 +1,18 @@
+import AsideMenu from "../components/admin/aside_menu";
+import AdminHeader from "../components/admin/header";
+
 export default function AdminLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="relative flex flex-col font-Montserrat antialiased min-h-screen max-w-fit bg-background ">
-        <main className="flex flex-col min-h-screen">{children}</main>
-      </body>
-    </html>
+    <>
+      <AdminHeader />
+      <main className="flex flex-row w-screen min-h-screen bg-background mt-[100px] ">
+        <AsideMenu/>
+        <div className="w-5/6 p-5">{children}</div>
+      </main>
+    </>
   );
 }

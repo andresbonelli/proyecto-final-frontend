@@ -17,13 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="relative flex flex-col font-Montserrat antialiased min-h-screen max-w-fit bg-background ">
-        <CartProvider>
-          <Header />
-          <main className="flex flex-col min-h-screen sm:mt-[135px] mt-[150px] ">
-            {children}
-          </main>
-          <Footer />
-        </CartProvider>
+        {children}
       </body>
     </html>
   );
