@@ -9,9 +9,9 @@ export default function AdminLayout({
   return (
     <>
       <AdminHeader />
-      <main className="flex flex-row w-screen min-h-screen bg-background mt-[100px] ">
-        <AsideMenu/>
-        <div className="w-5/6 p-5">{children}</div>
+      <main className="flex flex-row w-screen min-h-screen bg-background  ">
+        <AsideMenu />
+        <div className="flex-auto">{children}</div>
       </main>
     </>
   );

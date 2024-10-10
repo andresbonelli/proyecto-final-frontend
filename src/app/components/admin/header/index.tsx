@@ -6,7 +6,7 @@ import AdminIcon from "../../icons/Admin";
 
 export default function AdminHeader() {
   return (
-    <header className="fixed top-0 w-full z-50 ">
+    <header className="w-screen ">
       <div
         id="header-container"
         className="bg-white border
@@ -21,7 +21,7 @@ export default function AdminHeader() {
             className="flex flex-row place-items-center  "
           >
             <Logo width={50} height={50} fill={colors.blue} />
-            <div className="flex flex-col text-left text-black ml-3 ">
+            <div className="flex flex-col text-left text-gray-500 ml-3 ">
               <p className=" lg:text-2xl text-sm font-MontserratBold">
                 E-Commerce
               </p>
@@ -29,8 +29,8 @@ export default function AdminHeader() {
             </div>
           </div>
         </Link>
-        <div className="flex flex-row justify-between items-center gap-5">
-          <h1 className="text-lg font-MontserratBold text-gray-500">
+        <div className="flex flex-row justify-end  items-center gap-5">
+          <h1 className="sm:text-lg font-MontserratBold text-gray-500">
             Admin Dashboard
           </h1>
           <AdminIcon height={40} width={40} fill={colors.blue} />
