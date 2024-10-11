@@ -155,8 +155,8 @@ export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
       </Modal>
       <Modal isOpen={status === "error"} onClose={() => setStatus("idle")}>
         <X size={150} fill={colors.red} />
-        <h1>Un error ha ocurrido!</h1>
-        <h1 className="text-sm">{message}</h1>
+
+        <h1 className="w-80 text-center">{message}</h1>
       </Modal>
     </div>
   );

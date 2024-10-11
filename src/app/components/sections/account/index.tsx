@@ -7,6 +7,7 @@ import UserIcon from "../../icons/User";
 import EditCircleIcon from "../../icons/EditCircle";
 import { logout } from "@/actions/auth";
 import { UpdateUserForm } from "../../forms/update_user";
+import Link from "next/link";
 
 export default function AccountForm({
   isOpen,
@@ -66,8 +67,14 @@ export default function AccountForm({
         </h1>
 
         {/* UPDATE USER INFO FORM */}
-        <div className="w-full flex flex-col justify-between place-items-center gap-2 px-8 ">
+        <div className="w-full flex flex-col justify-between place-items-center gap-5 px-8 ">
           <UpdateUserForm user={user} />
+          <Link
+            href="/orders"
+            className="w-full bg-softGreen hover:bg-green text-white text-center py-2 px-4 rounded-md"
+          >
+            Ver mis compras
+          </Link>
           <button
             type="button"
             onClick={handleLogout}

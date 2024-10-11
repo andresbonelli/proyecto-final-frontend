@@ -105,14 +105,14 @@ export function UpdateUserForm({ user }: { user: UserFromDB }) {
         id="my-addresses"
         className="w-full flex flex-col justify-between place-items-center gap-5  mb-2 "
       >
-        <div className="w-full flex flex-row justify-between place-items-center ">
+        <div className="w-full flex flex-row justify-between items-center ">
           <h1 className="font-MontserratBold text-lg  text-left">
             Mis direcciones:
           </h1>
           <div
             className={`${
               (isAddingNewAddress || isEditingAddress) && "rotate-45"
-            }  transition-transform duration-200 ease-in-out`}
+            }  transition-transform duration-300 ease-in-out flex items-center`}
           >
             <button
               type="button"
