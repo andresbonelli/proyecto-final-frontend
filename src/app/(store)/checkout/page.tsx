@@ -4,10 +4,8 @@ import { getUserData } from "@/actions/auth";
 
 export default async function CheckoutPage() {
   const session = await verifySession();
-  let user;
-  if (session) {
-    user = await getUserData(session.id);
-  }
+  
+  const user = session ? await getUserData(session.id) : null;
 
   return <CheckoutComponent user={user} />;
 }

@@ -1,8 +1,6 @@
 import "./globals.css";
-import Footer from "./components/footer/index";
-import Header from "./components/header/index";
+
 import type { Metadata } from "next";
-import { CartProvider } from "../context/CartContextProvider";
 
 export const metadata: Metadata = {
   title: "E-Commerce by Bootcamps 3.0",
@@ -16,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="relative flex flex-col font-Montserrat antialiased min-h-screen max-w-fit bg-background ">
+      <body className="relative flex flex-col font-Montserrat antialiased min-h-screen bg-background ">
         {children}
       </body>
     </html>

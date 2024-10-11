@@ -6,12 +6,12 @@ import AdminIcon from "../../icons/Admin";
 
 export default function AdminHeader() {
   return (
-    <header className="w-screen ">
+    <header className="max-w-screen">
       <div
         id="header-container"
         className="bg-white border
                    flex flex-row justify-between place-items-center
-                   w-full sm:gap-3 h-[100px]
+                    sm:gap-3 h-[100px]
                    xl:px-60 lg:px-40 md:px-20 px-5 sm:py-8 py-5"
       >
         {/* LOGO */}

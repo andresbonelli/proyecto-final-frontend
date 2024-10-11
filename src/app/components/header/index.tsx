@@ -10,10 +10,8 @@ import AdminIcon from "../icons/Admin";
 
 export default async function Header() {
   const session = await verifySession();
-  let user;
-  if (session) {
-    user = await getUserData(session.id);
-  }
+
+  const user = session ? await getUserData(session.id) : null;
 
   return (
     <header className="fixed top-0 w-full z-50 ">

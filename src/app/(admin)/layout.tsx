@@ -9,10 +9,7 @@ export default function AdminLayout({
   return (
     <>
       <AdminHeader />
-      <main className="flex flex-row w-screen min-h-screen bg-background  ">
-        <AsideMenu />
-        <div className="flex-auto">{children}</div>
-      </main>
+      <main className="flex flex-row h-screen bg-background  ">{children}</main>
     </>
   );
 }
