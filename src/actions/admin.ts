@@ -1,7 +1,7 @@
 "use server";
 
 import api from "@/services/api";
-import { ProductFromDB, UserFromDB } from "@/utils/interfaces";
+import { ProductFromDB, Role, UserFromDB } from "@/utils/interfaces";
 import { cookies } from "next/headers";
 
 const cookie = cookies().get("access_token_cookie");
@@ -10,7 +10,7 @@ export default async function getAdminProducts(session: UserFromDB) {
   const userID = session?.id;
   try {
     const res = await api.get(
-      session.role === "admin"
+      session.role === Role.ADMIN
         ? "/api/products"
         : `/api/products/get_by_staff/${userID}`,
       {
@@ -21,7 +21,7 @@ export default async function getAdminProducts(session: UserFromDB) {
     );
     if (res.status === 200) {
       const products: ProductFromDB[] =
-        session.role === "admin" ? res.data["product_list"] : res.data;
+        session.role === Role.ADMIN ? res.data["product_list"] : res.data;
 
       return products;
     } else {

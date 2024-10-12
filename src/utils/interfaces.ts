@@ -107,7 +107,7 @@ export interface Address {
   address_postal_code?: string | null;
 }
 
-enum Role {
+export enum Role {
   CUSTOMER = "customer",
   STAFF = "staff",
   ADMIN = "admin",

@@ -6,6 +6,7 @@ import { colors } from "../../../utils/constants";
 import CustomerDashboard from "./customer_dashboard";
 import { verifySession as verifySession } from "@/lib/session";
 import { getUserData } from "@/actions/auth";
+import { Role } from "@/utils/interfaces";
 import AdminIcon from "../icons/Admin";
 
 export default async function Header() {
@@ -41,7 +42,7 @@ export default async function Header() {
           <SearchBar />
         </div>
         {/* Right Side Links */}
-        {(user?.role === "staff" || user?.role === "admin") && (
+        {(user?.role === Role.STAFF || user?.role === Role.ADMIN) && (
           <Link
             href="/dashboard"
             className="flex flex-row justify-between gap-2 items-center"

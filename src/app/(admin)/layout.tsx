@@ -1,6 +1,7 @@
 import { verifySession } from "@/lib/session";
 import AsideMenu from "../components/admin/aside_menu";
 import AdminHeader from "../components/admin/header";
+import { Role } from "@/utils/interfaces";
 
 export default async function AdminLayout({
   children,
@@ -12,7 +13,7 @@ export default async function AdminLayout({
     <>
       <AdminHeader />
       <main className="flex flex-row h-screen bg-background  ">
-        <AsideMenu showUsers={session.role === "admin"} />
+        <AsideMenu showUsers={session.role === Role.ADMIN} />
         <div className="flex-auto">{children}</div>
       </main>
     </>
