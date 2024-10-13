@@ -1,4 +1,4 @@
-import getAdminProducts from "@/actions/admin";
+import { getAdminProducts } from "@/actions/admin";
 import { verifySession } from "@/lib/session";
 import { calculateDiscountPerc } from "@/utils";
 import Link from "next/link";

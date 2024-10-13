@@ -47,22 +47,22 @@ export function UpdateUserForm({ user }: { user: UserFromDB }) {
   async function handleUpdateUser() {
     setStatus("loading");
 
-    const actionResult = await updateUserInfo(id, {
+    const result = await updateUserInfo(id, {
       firstname: firstnameInput,
       lastname: lastnameInput,
       address: addresses,
     });
-    if (actionResult?.success) {
+    if (result?.success) {
       setStatus("success");
       window.location.reload();
     } else {
       setStatus("error");
-      setMessage(actionResult?.error);
+      setMessage(result?.error);
     }
   }
 
   return (
-    <form onSubmit={handleUpdateUser}>
+    <form onSubmit={handleUpdateUser} className="mt-3">
       {/* First name */}
       {status === "error" && (
         <p className="text-xs text-red text-center py-2">{message}</p>
@@ -70,7 +70,7 @@ export function UpdateUserForm({ user }: { user: UserFromDB }) {
       <div>
         <label
           htmlFor="first-name"
-          className="w-full font-MontserratLight text-sm ml-2"
+          className="w-full font-MontserratLight text-sm  ml-2"
         >
           Nombre:
         </label>
@@ -79,7 +79,7 @@ export function UpdateUserForm({ user }: { user: UserFromDB }) {
           placeholder="nombre"
           value={firstnameInput ?? ""}
           onChange={(e) => setFirstnameInput(e.target.value)}
-          className="w-full py-2 px-3 rounded-md border border-gray-300 mt-2"
+          className="w-full py-2 px-3 rounded-md border border-gray-300"
         ></input>
       </div>
       {/* Last Name */}
@@ -95,7 +95,7 @@ export function UpdateUserForm({ user }: { user: UserFromDB }) {
           placeholder="apellido"
           value={lastnameInput ?? ""}
           onChange={(e) => setLastnameInput(e.target.value)}
-          className="w-full py-2 px-3 rounded-md border border-gray-300 mt-2"
+          className="w-full py-2 px-3 rounded-md border border-gray-300 "
         ></input>
       </div>
 

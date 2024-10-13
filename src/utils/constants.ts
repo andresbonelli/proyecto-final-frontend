@@ -35,6 +35,14 @@ export const navLinks = [
   },
 ];
 
+export enum Categories {
+  ROPA = "clothing",
+  ACCESORIOS = "office",
+  CALZADO = "shoes",
+  PERFUMERIA = "perfumery",
+  MAQUILLAJE = "makeup",
+}
+
 export const countryCodes = {
   AFGHANISTAN: ["AFG", "004"],
   ALBANIA: ["ALB", "008"],

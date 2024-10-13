@@ -15,10 +15,16 @@ export function RegisterForm() {
 
   return (
     <form action={action} className="flex flex-col justify-between gap-5">
-      <p className="text-xs text-green text-center py-2">
-        {state?.success ?? ""}
-      </p>
-      <p className="text-xs text-red text-center py-2">{state?.error ?? ""}</p>
+      {state && (
+        <>
+          <p className="text-xs text-green text-center py-2">
+            {state.success ?? ""}
+          </p>
+          <p className="text-xs text-red text-center py-2">
+            {state?.error ?? ""}
+          </p>
+        </>
+      )}
       <div
         className={`flex flex-row place-items-center justify-start py-2 px-2 gap-2 bg-gray-200  rounded-md border border-gray-300`}
       >
