@@ -3,10 +3,11 @@
 import { createProduct } from "@/actions/admin";
 import Loader from "@/app/components/loader";
 import { ProductDto } from "@/utils/interfaces";
-import { useState } from "react";
+import { use, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Categories } from "@/utils/constants";
 import { set } from "zod";
+import AddIcon from "@/app/components/icons/Add";
 
 export default function CreateNewProduct() {
   const router = useRouter();
@@ -23,7 +24,8 @@ export default function CreateNewProduct() {
   const [tags, setTags] = useState<string[]>([]);
   const [tagInputValue, setTagInputValue] = useState("");
   const [addDetails, setAddDetails] = useState(false);
-  const [imageInputs, setImageInputs] = useState<string[]>([]);
+  const [extraImageInput, setExtraImageInput] = useState("");
+  const [imageList, setImageList] = useState<string[]>([]);
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("pending");
@@ -82,8 +84,8 @@ export default function CreateNewProduct() {
     });
   }
   function handleImageDelete(imgToDelete: string) {
-    const updatedImages = imageInputs.filter((img) => img !== imgToDelete);
-    setImageInputs(updatedImages);
+    const updatedImages = imageList.filter((img) => img !== imgToDelete);
+    setImageList(updatedImages);
     setFormData({
       ...formData,
       details: {
@@ -399,6 +401,39 @@ export default function CreateNewProduct() {
           >
             Agregar imágenes:
           </label>
+          <div className="flex flex-row items-center gap-3">
+            <input
+              type="text"
+              name="add-image"
+              onChange={(e) => setExtraImageInput(e.target.value)}
+              className="w-full py-2 px-3 rounded-md border border-gray-300"
+            />
+            <button
+              type="button"
+              onClick={() => setImageList([...imageList, extraImageInput])}
+            >
+              <AddIcon width={30} height={30} fill="blue" />
+            </button>
+          </div>
+          {imageList.length > 0 && (
+            <div className="w-full flex flex-col  gap-3">
+              {imageList.map((image, index) => (
+                <div
+                  key={index}
+                  className="w-full flex flex-row justify-between items-center gap-3"
+                >
+                  <p>{image}</p>
+                  <button
+                    type="button"
+                    onClick={() => handleImageDelete(image)}
+                    className="rotate-45"
+                  >
+                    <AddIcon width={30} height={30} fill="red" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <button
           disabled={status === "pending"}
