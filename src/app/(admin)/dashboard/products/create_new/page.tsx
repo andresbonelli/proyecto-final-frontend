@@ -3,10 +3,9 @@
 import { createProduct } from "@/actions/admin";
 import Loader from "@/app/components/loader";
 import { ProductDto } from "@/utils/interfaces";
-import { use, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Categories } from "@/utils/constants";
-import { set } from "zod";
+import { Categories, Sizes } from "@/utils/constants";
 import AddIcon from "@/app/components/icons/Add";
 
 export default function CreateNewProduct() {
@@ -26,19 +25,19 @@ export default function CreateNewProduct() {
   const [addDetails, setAddDetails] = useState(false);
   const [extraImageInput, setExtraImageInput] = useState("");
   const [imageList, setImageList] = useState<string[]>([]);
+  // TODO: Check for valid image URL with regex
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("pending");
     try {
-      console.log("submit");
       console.log(formData, "FORM DATA");
-      // const result = await createProduct(formData);
-      // if (result.success) {
-      //   setStatus("success");
-      //   setMessage("Se ha creado el producto");
-      //   setFormData(result.success);
-      //   router.push("/dashboard/products");
-      // }
+      const result = await createProduct(formData);
+      if (result.success) {
+        setStatus("success");
+        setMessage("Se ha creado el producto");
+        setFormData(result.success);
+        router.push("/dashboard/products");
+      }
     } catch (error) {
       setStatus("error");
       setMessage((error as Error).message);
@@ -83,6 +82,18 @@ export default function CreateNewProduct() {
       };
     });
   }
+
+  function handleAddImage(img: string) {
+    setImageList([...imageList, img]);
+    setFormData({
+      ...formData,
+      details: {
+        ...formData.details,
+        image_list: [...(formData.details?.image_list ?? []), img],
+      },
+    });
+  }
+
   function handleImageDelete(imgToDelete: string) {
     const updatedImages = imageList.filter((img) => img !== imgToDelete);
     setImageList(updatedImages);
@@ -373,66 +384,64 @@ export default function CreateNewProduct() {
               </label>
               <div className="flex flex-row justify-start gap-5">
                 <div className="flex flex-row justify-start items-center gap-5">
-                  {["xxs", "xs", "sm", "md", "lg", "xl", "xxl", "xxxl"].map(
-                    (size) => (
-                      <div
-                        key={size}
-                        className="flex flex-row justify-start items-center  gap-2"
-                      >
-                        <label className="font-MontserratLight ">{size}</label>
-                        <input
-                          type="checkbox"
-                          className="w-4 h-4"
-                          value={size}
-                          onChange={(e) =>
-                            handleSizeChange(size, e.target.checked)
-                          }
-                        />
-                      </div>
-                    )
-                  )}
+                  {Object.entries(Sizes).map(([key, value]) => (
+                    <div
+                      key={value}
+                      className="flex flex-row justify-start items-center  gap-2"
+                    >
+                      <label className="font-MontserratLight ">{key}</label>
+                      <input
+                        type="checkbox"
+                        className="w-4 h-4"
+                        value={value}
+                        onChange={(e) =>
+                          handleSizeChange(value, e.target.checked)
+                        }
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
-            </>
-          )}
-          <label
-            htmlFor="product-long-description"
-            className="w-full font-MontserratLight text-sm "
-          >
-            Agregar imágenes:
-          </label>
-          <div className="flex flex-row items-center gap-3">
-            <input
-              type="text"
-              name="add-image"
-              onChange={(e) => setExtraImageInput(e.target.value)}
-              className="w-full py-2 px-3 rounded-md border border-gray-300"
-            />
-            <button
-              type="button"
-              onClick={() => setImageList([...imageList, extraImageInput])}
-            >
-              <AddIcon width={30} height={30} fill="blue" />
-            </button>
-          </div>
-          {imageList.length > 0 && (
-            <div className="w-full flex flex-col  gap-3">
-              {imageList.map((image, index) => (
-                <div
-                  key={index}
-                  className="w-full flex flex-row justify-between items-center gap-3"
+              <label
+                htmlFor="product-long-description"
+                className="w-full font-MontserratLight text-sm "
+              >
+                Agregar imágenes:
+              </label>
+              <div className="flex flex-row items-center gap-3">
+                <input
+                  type="text"
+                  name="add-image"
+                  onChange={(e) => setExtraImageInput(e.target.value)}
+                  className="w-full py-2 px-3 rounded-md border border-gray-300"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleAddImage(extraImageInput)}
                 >
-                  <p>{image}</p>
-                  <button
-                    type="button"
-                    onClick={() => handleImageDelete(image)}
-                    className="rotate-45"
-                  >
-                    <AddIcon width={30} height={30} fill="red" />
-                  </button>
+                  <AddIcon width={30} height={30} fill="blue" />
+                </button>
+              </div>
+              {imageList.length > 0 && (
+                <div className="w-full flex flex-col  gap-3">
+                  {imageList.map((image, index) => (
+                    <div
+                      key={index}
+                      className="w-full flex flex-row justify-between items-center gap-3"
+                    >
+                      <p>{image}</p>
+                      <button
+                        type="button"
+                        onClick={() => handleImageDelete(image)}
+                        className="rotate-45"
+                      >
+                        <AddIcon width={30} height={30} fill="red" />
+                      </button>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              )}
+            </>
           )}
         </div>
         <button

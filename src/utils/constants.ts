@@ -43,6 +43,16 @@ export enum Categories {
   MAQUILLAJE = "makeup",
 }
 
+export enum Sizes {
+  XS = "xs",
+  S = "s",
+  M = "m",
+  L = "l",
+  XL = "xl",
+  XXL = "xxl",
+  XXXL = "3xl",
+}
+
 export const countryCodes = {
   AFGHANISTAN: ["AFG", "004"],
   ALBANIA: ["ALB", "008"],

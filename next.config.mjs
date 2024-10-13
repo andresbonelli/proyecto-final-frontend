@@ -5,6 +5,10 @@ const nextConfig = {
       {
         hostname: "acdn.mitiendanube.com",
       },
+      {
+        protocol: "https",
+        hostname: "fakestoreapi.com",
+      },
     ],
   },
 };
