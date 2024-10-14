@@ -6,7 +6,12 @@ import { ProductDto } from "@/utils/interfaces";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Categories, Sizes } from "@/utils/constants";
-import AddIcon from "@/app/components/icons/Add";
+import ProductFormInput from "@/app/components/inputs/single";
+import TagsInput from "@/app/components/inputs/tags";
+import CheckboxInput from "@/app/components/inputs/sizes";
+import ProductFormTextArea from "@/app/components/inputs/textarea";
+import ProductFormSelect from "@/app/components/inputs/select";
+import StringListInput from "@/app/components/inputs/multi";
 
 export default function CreateNewProduct() {
   const router = useRouter();
@@ -20,11 +25,8 @@ export default function CreateNewProduct() {
   });
   const [message, setMessage] = useState("");
   const [hasDiscount, setHasDiscount] = useState(false);
-  const [tags, setTags] = useState<string[]>([]);
-  const [tagInputValue, setTagInputValue] = useState("");
   const [addDetails, setAddDetails] = useState(false);
-  const [extraImageInput, setExtraImageInput] = useState("");
-  const [imageList, setImageList] = useState<string[]>([]);
+
   // TODO: Check for valid image URL with regex
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -42,68 +44,6 @@ export default function CreateNewProduct() {
       setStatus("error");
       setMessage((error as Error).message);
     }
-  }
-
-  function handleTagInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value;
-    setTagInputValue(value);
-
-    // Detect comma and space
-    if (value.endsWith(", ")) {
-      const newTag = value.slice(0, -2).trim(); // Remove the comma and space
-      if (newTag && !tags.includes(newTag)) {
-        setTags([...tags, newTag]);
-        setFormData({ ...formData, tags: [...tags, newTag] }); // Add new tag if not already present
-      }
-      setTagInputValue(""); // Clear input field
-    }
-  }
-
-  function handleTagDelete(tagToDelete: string) {
-    const updatedTags = tags.filter((tag) => tag !== tagToDelete);
-    setTags(updatedTags);
-    setFormData({
-      ...formData,
-      tags: updatedTags,
-    });
-  }
-
-  function handleSizeChange(size: string, isChecked: boolean) {
-    setFormData((prevState) => {
-      const sizes = isChecked
-        ? [...(prevState.details?.sizes ?? []), size] // Add size if checked
-        : prevState.details?.sizes?.filter((s) => s !== size); // Remove size if unchecked
-      return {
-        ...prevState,
-        details: {
-          ...prevState.details,
-          sizes,
-        },
-      };
-    });
-  }
-
-  function handleAddImage(img: string) {
-    setImageList([...imageList, img]);
-    setFormData({
-      ...formData,
-      details: {
-        ...formData.details,
-        image_list: [...(formData.details?.image_list ?? []), img],
-      },
-    });
-  }
-
-  function handleImageDelete(imgToDelete: string) {
-    const updatedImages = imageList.filter((img) => img !== imgToDelete);
-    setImageList(updatedImages);
-    setFormData({
-      ...formData,
-      details: {
-        ...formData.details,
-        image_list: updatedImages,
-      },
-    });
   }
 
   return (
@@ -128,62 +68,36 @@ export default function CreateNewProduct() {
           </p>
         )}
         <div className="flex flex-col gap-2">
-          <label
-            htmlFor="product-name"
-            className="w-full font-MontserratLight text-sm "
-          >
-            Nombre:
-          </label>
-          <input
-            required
+          <ProductFormInput
             type="text"
+            title="Nombre"
             name="name"
-            onChange={(e) => {
-              setFormData({ ...formData, [e.target.name]: e.target.value });
-              setMessage("");
-            }}
-            className="w-full py-2 px-3 rounded-md border border-gray-300 "
-          />
-          <label
-            htmlFor="product-description"
-            className="w-full font-MontserratLight text-sm "
-          >
-            Descripcion corta:
-          </label>
-          <input
             required
+            formData={formData}
+            setFormData={setFormData}
+            setMessage={setMessage}
+          />
+          <ProductFormInput
             type="text"
+            title="Descripción corta"
             name="description"
-            onChange={(e) => {
-              setFormData({ ...formData, [e.target.name]: e.target.value });
-              setMessage("");
-            }}
-            className="w-full py-2 px-3 rounded-md border border-gray-300 "
+            required
+            formData={formData}
+            setFormData={setFormData}
+            setMessage={setMessage}
           />
           <div className="flex flex-row justify-between items-center gap-5">
             <div className="flex flex-row gap-5">
-              <div className="flex flex-col gap-2">
-                <label
-                  htmlFor="product-price"
-                  className="w-full font-MontserratLight text-sm "
-                >
-                  Precio (en AR$):
-                </label>
-                <input
-                  required
-                  type="number"
-                  min="0"
-                  name="price"
-                  onChange={(e) => {
-                    setFormData({
-                      ...formData,
-                      [e.target.name]: e.target.value,
-                    });
-                    setMessage("");
-                  }}
-                  className="w-36 py-2 px-3 rounded-md border border-gray-300"
-                />
-              </div>
+              <ProductFormInput
+                required
+                type="number"
+                title="Precio"
+                name="price"
+                width="w-36"
+                formData={formData}
+                setFormData={setFormData}
+                setMessage={setMessage}
+              />
               <div className="flex flex-row h-full items-center gap-2">
                 <label
                   htmlFor="product-has-discount"
@@ -198,151 +112,55 @@ export default function CreateNewProduct() {
                 />
               </div>
               {hasDiscount && (
-                <div className="flex flex-col gap-2">
-                  <label
-                    htmlFor="product-old-price"
-                    className="w-full font-MontserratLight text-sm "
-                  >
-                    Precio anterior:
-                  </label>
-                  <input
-                    required
-                    type="number"
-                    min="0"
-                    name="old_price"
-                    onChange={(e) => {
-                      setFormData({
-                        ...formData,
-                        [e.target.name]: e.target.value,
-                      });
-                      setMessage("");
-                    }}
-                    className="w-36 py-2 px-3 rounded-md border border-gray-300"
-                  />
-                </div>
+                <ProductFormInput
+                  type="number"
+                  title="Precio anterior"
+                  name="old_price"
+                  width="w-36"
+                  formData={formData}
+                  setFormData={setFormData}
+                  setMessage={setMessage}
+                />
               )}
             </div>
             <div className="flex flex-row gap-5">
-              <div className="flex flex-col gap-2">
-                <label
-                  htmlFor="product-category"
-                  className="w-full font-MontserratLight text-sm "
-                >
-                  Categoría:
-                </label>
-                <select
-                  required
-                  name="category"
-                  className="w-44 py-2 px-3 rounded-md border border-gray-300 "
-                  onChange={(e) => {
-                    setFormData({
-                      ...formData,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                >
-                  <option value="" disabled>
-                    Seleccionar categoría
-                  </option>
-                  {Object.entries(Categories).map(([key, value]) => {
-                    return (
-                      <option aria-selected="true" key={key} value={value}>
-                        {key}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label
-                  htmlFor="product-sku"
-                  className="w-full font-MontserratLight text-sm "
-                >
-                  SKU:
-                </label>
-                <input
-                  type="text"
-                  name="sku"
-                  onChange={(e) => {
-                    setFormData({
-                      ...formData,
-                      [e.target.name]: e.target.value,
-                    });
-                    setMessage("");
-                  }}
-                  className="w-56 py-2 px-3 rounded-md border border-gray-300"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label
-                  htmlFor="product-stock"
-                  className="w-full font-MontserratLight text-sm "
-                >
-                  Stock:
-                </label>
-                <input
-                  required
-                  type="number"
-                  min="0"
-                  name="stock"
-                  onChange={(e) => {
-                    setFormData({
-                      ...formData,
-                      [e.target.name]: e.target.value,
-                    });
-                    setMessage("");
-                  }}
-                  className="w-24 py-2 px-3 rounded-md border border-gray-300"
-                />
-              </div>
+              <ProductFormSelect
+                title="Categoría"
+                name="category"
+                entries={Categories}
+                formData={formData}
+                setFormData={setFormData}
+              />
+              <ProductFormInput
+                type="text"
+                title="SKU"
+                name="sku"
+                width="w-56"
+                formData={formData}
+                setFormData={setFormData}
+                setMessage={setMessage}
+              />
+              <ProductFormInput
+                required
+                type="number"
+                title="Stock"
+                name="stock"
+                width="w-28"
+                formData={formData}
+                setFormData={setFormData}
+                setMessage={setMessage}
+              />
             </div>
           </div>
-          <label
-            htmlFor="product-name"
-            className="w-full font-MontserratLight text-sm "
-          >
-            Imagen de portada (URL):
-          </label>
-          <input
+          <ProductFormInput
             type="text"
+            title="Imagen de portada (URL)"
             name="image"
-            onChange={(e) => {
-              setFormData({ ...formData, [e.target.name]: e.target.value });
-              setMessage("");
-            }}
-            className="w-full py-2 px-3 rounded-md border border-gray-300 "
+            formData={formData}
+            setFormData={setFormData}
+            setMessage={setMessage}
           />
-          <label
-            htmlFor="product-tags"
-            className="w-full font-MontserratLight text-sm "
-          >
-            Tags (Separados por coma):
-          </label>
-          <div className="w-full flex flex-row justify-start items-center px-3 rounded-md border border-gray-300">
-            <div className="flex flex-row gap-2 ">
-              {tags.map((tag) => (
-                <p
-                  key={tag}
-                  className="bg-softBlue hover:bg-blue text-white text-nowrap text-sm font-MontserratSemibold py-1 px-3 rounded-full flex items-center "
-                >
-                  {tag}
-                  <button
-                    type="button"
-                    onClick={() => handleTagDelete(tag)}
-                    className="ml-2 text-red-200 hover:text-red-500"
-                  >
-                    &times;
-                  </button>
-                </p>
-              ))}
-            </div>
-            <input
-              type="text"
-              value={tagInputValue}
-              onChange={handleTagInputChange}
-              className="w-full outline-none py-2 px-3 "
-            />
-          </div>
+          <TagsInput formData={formData} setFormData={setFormData} />
           <div className="flex flex-row w-fit h-full items-center gap-2">
             <label
               htmlFor="product-price"
@@ -357,90 +175,25 @@ export default function CreateNewProduct() {
           </div>
           {addDetails && (
             <>
-              <label
-                htmlFor="product-long-description"
-                className="w-full font-MontserratLight text-sm "
-              >
-                Descripción larga:
-              </label>
-              <textarea
+              <ProductFormTextArea
+                title="Descripción larga"
                 name="long_description"
-                onChange={(e) => {
-                  setFormData({
-                    ...formData,
-                    details: {
-                      ...formData.details,
-                      [e.target.name]: e.target.value,
-                    },
-                  });
-                }}
-                className="w-full py-2 px-3 rounded-md border border-gray-300 "
+                formData={formData}
+                setFormData={setFormData}
+                setMessage={setMessage}
               />
-              <label
-                htmlFor="product-long-description"
-                className="w-full font-MontserratLight text-sm "
-              >
-                Talles disponibles:
-              </label>
-              <div className="flex flex-row justify-start gap-5">
-                <div className="flex flex-row justify-start items-center gap-5">
-                  {Object.entries(Sizes).map(([key, value]) => (
-                    <div
-                      key={value}
-                      className="flex flex-row justify-start items-center  gap-2"
-                    >
-                      <label className="font-MontserratLight ">{key}</label>
-                      <input
-                        type="checkbox"
-                        className="w-4 h-4"
-                        value={value}
-                        onChange={(e) =>
-                          handleSizeChange(value, e.target.checked)
-                        }
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <label
-                htmlFor="product-long-description"
-                className="w-full font-MontserratLight text-sm "
-              >
-                Agregar imágenes:
-              </label>
-              <div className="flex flex-row items-center gap-3">
-                <input
-                  type="text"
-                  name="add-image"
-                  onChange={(e) => setExtraImageInput(e.target.value)}
-                  className="w-full py-2 px-3 rounded-md border border-gray-300"
-                />
-                <button
-                  type="button"
-                  onClick={() => handleAddImage(extraImageInput)}
-                >
-                  <AddIcon width={30} height={30} fill="blue" />
-                </button>
-              </div>
-              {imageList.length > 0 && (
-                <div className="w-full flex flex-col  gap-3">
-                  {imageList.map((image, index) => (
-                    <div
-                      key={index}
-                      className="w-full flex flex-row justify-between items-center gap-3"
-                    >
-                      <p>{image}</p>
-                      <button
-                        type="button"
-                        onClick={() => handleImageDelete(image)}
-                        className="rotate-45"
-                      >
-                        <AddIcon width={30} height={30} fill="red" />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
+              <CheckboxInput
+                title="Talles disponibles"
+                entries={Sizes}
+                formData={formData}
+                setFormData={setFormData}
+              />
+              <StringListInput
+                title="Imagenes adicionales"
+                listName="image_list"
+                formData={formData}
+                setFormData={setFormData}
+              />
             </>
           )}
         </div>
