@@ -73,9 +73,12 @@ export default async function AdminProducts() {
                   <td className="p-4">{product.stock}</td>
                   <td className="p-4">{product.sales_count ?? "0"}</td>
                   <td className="p-4 flex flex-row items-center gap-2">
-                    <button className="text-sm font-MontserratSemibold bg-softBlue hover:bg-blue text-white p-2  rounded-md">
+                    <Link
+                      href={`/dashboard/products/edit/${product.id}`}
+                      className="text-sm font-MontserratSemibold bg-softBlue hover:bg-blue text-white p-2  rounded-md"
+                    >
                       Editar
-                    </button>
+                    </Link>
                     <button className="text-sm font-MontserratSemibold bg-red hover:bg-redder text-white p-2 rounded-md">
                       Eliminar
                     </button>

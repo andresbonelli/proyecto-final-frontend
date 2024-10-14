@@ -61,3 +61,26 @@ export async function createProduct(
     }
   }
 }
+export async function editProduct(
+  id: string,
+  product: ProductDto
+): Promise<ProductFromDB | any> {
+  try {
+    const res = await api.patch(`/api/products/${id}`, product, {
+      headers: {
+        Authorization: `Bearer ${cookie?.value}`,
+      },
+    });
+    if (res.status === 202) {
+      return { success: res.data };
+    } else {
+      console.error(res.data);
+      return { error: res.data.detail };
+    }
+  } catch (error: any) {
+    if (error.response) {
+      console.error(error.response.data);
+      return { error: error.response.data.detail };
+    }
+  }
+}
