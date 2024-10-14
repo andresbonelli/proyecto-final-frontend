@@ -44,7 +44,8 @@ export function UpdateUserForm({ user }: { user: UserFromDB }) {
     setIsEdittingAddress(!isEditingAddress);
   }
 
-  async function handleUpdateUser() {
+  async function handleUpdateUser(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setStatus("loading");
 
     const result = await updateUserInfo(id, {
@@ -54,7 +55,6 @@ export function UpdateUserForm({ user }: { user: UserFromDB }) {
     });
     if (result?.success) {
       setStatus("success");
-      window.location.reload();
     } else {
       setStatus("error");
       setMessage(result?.error);
@@ -62,7 +62,7 @@ export function UpdateUserForm({ user }: { user: UserFromDB }) {
   }
 
   return (
-    <form onSubmit={handleUpdateUser} className="mt-3">
+    <form onSubmit={(e) => handleUpdateUser(e)} className="mt-3">
       {/* First name */}
       {status === "error" && (
         <p className="text-xs text-red text-center py-2">{message}</p>

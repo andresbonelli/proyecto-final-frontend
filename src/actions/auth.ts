@@ -1,5 +1,6 @@
 "use server";
 
+/** Signup, Login, and Logout actions */
 import {
   RegisterFormSchema,
   RegisterFormState,
@@ -12,7 +13,6 @@ import { LoginDto } from "../utils/interfaces";
 import { redirect } from "next/navigation";
 import { AxiosResponse } from "axios";
 import { createSession, deleteSession } from "../lib/session";
-import { cookies } from "next/headers";
 
 export async function signup(
   state: RegisterFormState,
@@ -78,29 +78,6 @@ export async function login(state: LoginFormState, formData: FormData) {
       console.log(res.data);
       createSession(res.data);
       redirect("/");
-    } else {
-      console.error(res.data);
-      return { error: res.data };
-    }
-  } catch (error: any) {
-    if (error.response) {
-      console.error(error.response.data);
-      return { error: error.response.data.detail };
-    }
-  }
-}
-
-export async function getUserData(id: string) {
-  const cookie = cookies().get("access_token_cookie");
-  try {
-    const res = await api.get(`/api/Users/${id}`, {
-      headers: {
-        Authorization: `Bearer ${cookie?.value}`,
-      },
-    });
-
-    if (res.status === 200) {
-      return res.data;
     } else {
       console.error(res.data);
       return { error: res.data };

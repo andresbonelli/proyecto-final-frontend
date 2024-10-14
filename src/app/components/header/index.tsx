@@ -4,15 +4,14 @@ import SearchBar from "../search_bar";
 import Logo from "../icons/Logo";
 import { colors } from "../../../utils/constants";
 import CustomerDashboard from "./customer_dashboard";
-import { verifySession as verifySession } from "@/lib/session";
-import { getUserData } from "@/actions/auth";
+import { getUser } from "@/actions/user";
 import { Role } from "@/utils/interfaces";
 import AdminIcon from "../icons/Admin";
+import { verifySession } from "@/lib/session";
 
 export default async function Header() {
   const session = await verifySession();
-
-  const user = session ? await getUserData(session.id) : null;
+  const user = session ? await getUser(session?.id) : null;
 
   return (
     <header className="fixed top-0 w-full z-50 ">
