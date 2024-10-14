@@ -79,9 +79,12 @@ export default async function AdminProducts() {
                     >
                       Editar
                     </Link>
-                    <button className="text-sm font-MontserratSemibold bg-red hover:bg-redder text-white p-2 rounded-md">
+                    <Link
+                      href={`/dashboard/products/delete/${product.id}`}
+                      className="text-sm font-MontserratSemibold bg-red hover:bg-redder text-white p-2 rounded-md"
+                    >
                       Eliminar
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               );

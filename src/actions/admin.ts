@@ -16,7 +16,7 @@ export async function getAdminProducts(session: UserFromDB) {
   try {
     const res = await api.get(
       session.role === Role.ADMIN
-        ? "/api/products"
+        ? "/api/products?limit=100"
         : `/api/products/get_by_staff/${userID}`,
       {
         headers: {
@@ -67,6 +67,27 @@ export async function editProduct(
 ): Promise<ProductFromDB | any> {
   try {
     const res = await api.patch(`/api/products/${id}`, product, {
+      headers: {
+        Authorization: `Bearer ${cookie?.value}`,
+      },
+    });
+    if (res.status === 202) {
+      return { success: res.data };
+    } else {
+      console.error(res.data);
+      return { error: res.data.detail };
+    }
+  } catch (error: any) {
+    if (error.response) {
+      console.error(error.response.data);
+      return { error: error.response.data.detail };
+    }
+  }
+}
+
+export async function deleteProduct(id: string): Promise<ProductFromDB | any> {
+  try {
+    const res = await api.delete(`/api/products/${id}`, {
       headers: {
         Authorization: `Bearer ${cookie?.value}`,
       },
