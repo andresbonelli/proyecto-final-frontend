@@ -1,4 +1,5 @@
 import { ProductDto } from "@/utils/interfaces";
+import { useState } from "react";
 
 export default function ProductFormInput({
   title,
@@ -6,6 +7,7 @@ export default function ProductFormInput({
   type,
   required,
   width,
+  value,
   formData,
   setFormData,
   setMessage,
@@ -15,10 +17,12 @@ export default function ProductFormInput({
   type: string;
   required?: boolean;
   width?: string;
+  value?: string;
   formData: ProductDto;
   setFormData: (data: ProductDto) => void;
   setMessage: (message: string) => void;
 }) {
+  const [editValue, setEditValue] = useState<string>(value ?? "");
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={name} className="w-full font-MontserratLight text-sm ">
@@ -27,9 +31,11 @@ export default function ProductFormInput({
       <input
         required={required}
         type={type}
-        min={type === "number" ? "0" : undefined}
+        min={type === "number" ? 0 : undefined}
         name={name}
+        value={editValue}
         onChange={(e) => {
+          setEditValue(e.target.value);
           setFormData({ ...formData, [e.target.name]: e.target.value });
           setMessage("");
         }}

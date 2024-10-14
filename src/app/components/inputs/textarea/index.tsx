@@ -1,9 +1,11 @@
 import { ProductDto } from "@/utils/interfaces";
+import { useState } from "react";
 
 export default function ProductFormTextArea({
   title,
   name,
   required,
+  value,
   formData,
   setFormData,
   setMessage,
@@ -11,10 +13,12 @@ export default function ProductFormTextArea({
   title: string;
   name: string;
   required?: boolean;
+  value?: string;
   formData: ProductDto;
   setFormData: (data: ProductDto) => void;
   setMessage: (message: string) => void;
 }) {
+  const [editValue, setEditValue] = useState<string>(value ?? "");
   return (
     <>
       <label htmlFor={name} className="w-full font-MontserratLight text-sm ">
@@ -22,7 +26,9 @@ export default function ProductFormTextArea({
       </label>
       <textarea
         name={name}
+        value={editValue}
         onChange={(e) => {
+          setEditValue(e.target.value);
           setFormData({
             ...formData,
             details: {

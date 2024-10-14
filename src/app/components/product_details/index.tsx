@@ -94,11 +94,11 @@ export default function ProductDetailsComponent({
             <h3 className="text-left text-md font-MontserratSemibold ">
               ${price}
             </h3>
-            {old_price && (
+            {discount && (
               <>
-                <span className="text-xs font-MontserratLight text-grey line-through">
-                  {old_price}
-                </span>
+                <p className="text-xs font-MontserratLight text-grey line-through ">
+                  ${old_price}
+                </p>
                 <span className="text-sm font-MontserratSemibold text-red ml-4">
                   {discount}% OFF
                 </span>

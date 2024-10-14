@@ -1,23 +1,29 @@
 import { Sizes } from "@/utils/constants";
 import { ProductDto } from "@/utils/interfaces";
+import { useState } from "react";
 
 export default function CheckboxInput({
   title,
   required,
   entries,
+  values,
   formData,
   setFormData,
 }: {
   title: string;
   required?: boolean;
   entries: Object;
+  values?: string[];
   formData: ProductDto;
   setFormData: (data: ProductDto) => void;
 }) {
+  const [sizes, setSizes] = useState(values ?? []);
   function handleSizeChange(size: string, isChecked: boolean) {
     const sizes = isChecked
       ? [...(formData.details?.sizes ?? []), size] // Add size if checked
       : formData.details?.sizes?.filter((s) => s !== size); // Remove size if unchecked
+
+    setSizes(sizes ?? []);
     setFormData({
       ...formData,
       details: {
@@ -26,10 +32,11 @@ export default function CheckboxInput({
       },
     });
   }
+
   return (
     <>
       <label
-        htmlFor="product-long-description"
+        htmlFor={entries.toString()}
         className="w-full font-MontserratLight text-sm "
       >
         {title}:
@@ -45,6 +52,7 @@ export default function CheckboxInput({
               <input
                 required={required}
                 type="checkbox"
+                checked={sizes?.includes(value)}
                 className="w-4 h-4"
                 value={value}
                 onChange={(e) => handleSizeChange(value, e.target.checked)}

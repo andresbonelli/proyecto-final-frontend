@@ -25,7 +25,7 @@ export default function CreateNewProduct() {
   });
   const [message, setMessage] = useState("");
   const [hasDiscount, setHasDiscount] = useState(false);
-  const [addDetails, setAddDetails] = useState(false);
+  const [hasDetails, setHasDetails] = useState(false);
 
   // TODO: Check for valid image URL with regex
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -160,7 +160,7 @@ export default function CreateNewProduct() {
             setFormData={setFormData}
             setMessage={setMessage}
           />
-          <TagsInput formData={formData} setFormData={setFormData} />
+          <TagsInput  formData={formData} setFormData={setFormData} />
           <div className="flex flex-row w-fit h-full items-center gap-2">
             <label
               htmlFor="product-price"
@@ -170,10 +170,10 @@ export default function CreateNewProduct() {
             </label>
             <input
               type="checkbox"
-              onChange={() => setAddDetails(!addDetails)}
+              onChange={() => setHasDetails(!hasDetails)}
             />
           </div>
-          {addDetails && (
+          {hasDetails && (
             <>
               <ProductFormTextArea
                 title="Descripción larga"

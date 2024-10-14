@@ -5,12 +5,14 @@ export default function ProductFormSelect({
   name,
   required,
   entries,
+  value,
   formData,
   setFormData,
 }: {
   title: string;
   name: string;
   entries: Object;
+  value?: string;
   required?: boolean;
   formData: ProductDto;
   setFormData: (data: ProductDto) => void;
@@ -18,7 +20,7 @@ export default function ProductFormSelect({
   return (
     <div className="flex flex-col gap-2">
       <label
-        htmlFor="product-category"
+        htmlFor={name}
         className="w-full font-MontserratLight text-sm "
       >
         {title}:
@@ -37,6 +39,11 @@ export default function ProductFormSelect({
         <option value="" disabled>
           Seleccionar categoría
         </option>
+        {value && (
+          <option selected value={value}>
+            {value}
+          </option>
+        )}
         {Object.entries(entries).map(([key, value]) => {
           return (
             <option aria-selected="true" key={key} value={value}>

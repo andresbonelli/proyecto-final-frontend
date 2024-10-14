@@ -2,13 +2,15 @@ import { ProductDto } from "@/utils/interfaces";
 import { useState } from "react";
 
 export default function TagsInput({
+  values,
   formData,
   setFormData,
 }: {
+  values?: string[];
   formData: ProductDto;
   setFormData: (data: ProductDto) => void;
 }) {
-  const [tags, setTags] = useState<string[]>([]);
+  const [tags, setTags] = useState<string[]>(values ?? []);
   const [tagInputValue, setTagInputValue] = useState("");
   function handleTagInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
@@ -36,10 +38,7 @@ export default function TagsInput({
 
   return (
     <>
-      <label
-        htmlFor="product-tags"
-        className="w-full font-MontserratLight text-sm "
-      >
+      <label htmlFor="tags" className="w-full font-MontserratLight text-sm ">
         Tags (Separados por coma):
       </label>
       <div className="w-full flex flex-row justify-start items-center px-3 rounded-md border border-gray-300">

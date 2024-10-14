@@ -78,7 +78,7 @@ export default function ProductCard({
           <div className="flex flex-row justify-between place-items-center">
             <h3 className="text-left text-lg font-MontserratSemibold mb-3">
               ${product.price}
-              {product.old_price && (
+              {discount && (
                 <span className="pl-2 text-xs font-MontserratLight text-grey line-through">
                   ${product.old_price}
                 </span>

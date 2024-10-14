@@ -8,7 +8,7 @@ export interface svgProps {
 export interface ProductDetails {
   image_list?: string[] | null;
   sizes?: string[] | null;
-  long_description?: string | null; 
+  long_description?: string | null;
   // using snake case to match with Python backend.
   // (Python likes snakes :D)
 }
@@ -17,7 +17,7 @@ export interface ProductFromDB {
   name: string;
   description: string;
   price: number;
-  old_price?: any;
+  old_price?: number | null;
   stock: number;
   staff_id: string;
   sku?: string | null;

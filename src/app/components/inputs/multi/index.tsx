@@ -5,18 +5,20 @@ import { useState } from "react";
 export default function StringListInput({
   title,
   listName,
+  values,
   required,
   formData,
   setFormData,
 }: {
   title: string;
   listName: string;
+  values?: string[];
   required?: boolean;
   formData: ProductDto;
   setFormData: (data: ProductDto) => void;
 }) {
   const [extraInput, setExtraInput] = useState("");
-  const [inputList, setInputList] = useState<string[]>([]);
+  const [inputList, setInputList] = useState<string[]>(values ?? []);
   function handleAddInput(img: string) {
     setInputList([...inputList, img]);
     setFormData({
@@ -42,7 +44,7 @@ export default function StringListInput({
   return (
     <>
       <label
-        htmlFor="product-long-description"
+        htmlFor={listName}
         className="w-full font-MontserratLight text-sm "
       >
         {title}:
