@@ -10,7 +10,6 @@ export default function OrderCard({ order }: { order: OrderFromDB }) {
   const orderDate = formatDate(created_at);
   return (
     <div
-      key={order.id}
       id="order-card-container"
       className="w-full flex flex-col bg-white shadow-xl gap-5 py-8 px-5"
     >

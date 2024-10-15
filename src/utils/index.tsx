@@ -1,4 +1,7 @@
 // round difference between price and old_price
+
+import { OrderFromDB } from "./interfaces";
+
 // into a fixed percentage, eg:5%, 10%, 15%, etc..
 export function calculateDiscountPerc(
   old_price: number,
@@ -37,6 +40,36 @@ export function formatDate(dateString: string) {
   } else {
     return `${day} de ${month} de ${year}`;
   }
+}
+
+export function getMonthlySales(orders: OrderFromDB[]) {
+  if (!orders) return;
+  const now = new Date();
+  const oneYearAgo = new Date();
+  oneYearAgo.setFullYear(now.getFullYear() - 1);
+
+  type MonthlySales = {
+    [monthYear: string]: number;
+  };
+
+  const monthlySales: MonthlySales = {};
+
+  orders.forEach((order) => {
+    const createdAt = new Date(order.created_at);
+    if (createdAt >= oneYearAgo) {
+      const monthYear = `${createdAt.getFullYear()}-${
+        createdAt.getMonth() + 1
+      }`;
+
+      if (!monthlySales[monthYear]) {
+        monthlySales[monthYear] = 0;
+      }
+
+      monthlySales[monthYear] += order.total_price || 0;
+    }
+  });
+
+  return monthlySales;
 }
 
 export enum CountryCode {

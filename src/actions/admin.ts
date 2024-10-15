@@ -2,6 +2,7 @@
 
 import api from "@/services/api";
 import {
+  OrderFromDB,
   ProductDto,
   ProductFromDB,
   Role,
@@ -29,6 +30,33 @@ export async function getAdminProducts(session: UserFromDB) {
         session.role === Role.ADMIN ? res.data["product_list"] : res.data;
 
       return products;
+    } else {
+      console.error(res.data);
+    }
+  } catch (error: any) {
+    if (error.response) {
+      console.error(error.response.data);
+    }
+  }
+}
+export async function getAdminOrders(session: UserFromDB) {
+  const userID = session?.id;
+  try {
+    const res = await api.get(
+      session.role === Role.ADMIN
+        ? "/api/orders/get_all?limit=100"
+        : `/api/orders/get_by_staff/${userID}`,
+      {
+        headers: {
+          Authorization: `Bearer ${cookie?.value}`,
+        },
+      }
+    );
+    if (res.status === 200) {
+      const orders: OrderFromDB[] =
+        session.role === Role.ADMIN ? res.data["orders"] : res.data;
+
+      return orders;
     } else {
       console.error(res.data);
     }

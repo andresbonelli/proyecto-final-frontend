@@ -14,7 +14,7 @@ export default async function AdminLayout({
       <AdminHeader />
       <main className="flex flex-row flex-auto bg-background  ">
         <AsideMenu showUsers={session.role === Role.ADMIN} />
-        <div className="flex-auto">{children}</div>
+        <div className="w-5/6 flex-auto">{children}</div>
       </main>
     </>
   );
