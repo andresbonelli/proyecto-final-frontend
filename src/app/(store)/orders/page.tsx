@@ -8,7 +8,7 @@ export default async function OrdersPage() {
   const orders: OrderFromDB[] = session
     ? await getUserOrders(session?.id)
     : null;
-  
+
   return (
     <div className="flex flex-col pt-10 gap-5">
       <div
@@ -17,9 +17,13 @@ export default async function OrdersPage() {
       >
         <h2 className="w-full text-xl text-left">Mis Compras</h2>
       </div>
-      {orders.map((order) => (
-        <OrderCard order={order} />
-      ))}
+      {orders.length > 0 && (
+        <>
+          {orders.map((order) => (
+            <OrderCard order={order} />
+          ))}
+        </>
+      )}
     </div>
   );
 }
