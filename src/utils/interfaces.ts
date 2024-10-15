@@ -51,6 +51,30 @@ export interface ProductFromCart extends Partial<ProductFromDB> {
   quantity: number;
 }
 
+interface ProductFromOrder extends Partial<ProductFromCart> {
+  product_id: string;
+  name: string;
+  description: string;
+  price: number;
+  quantity: number;
+}
+
+enum OrderStatus {
+  PENDING = "pending",
+  COMPLETED = "completed",
+  CANCELLED = "cancelled",
+}
+
+export interface OrderFromDB {
+  products: ProductFromOrder[];
+  id: string;
+  customer_id: string;
+  created_at: string;
+  status: OrderStatus;
+  total_price?: number | null;
+  modified_at?: string | null;
+}
+
 export interface ProductQuery {
   filter?: string | null;
   limit?: number;

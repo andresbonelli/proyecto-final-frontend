@@ -11,6 +11,34 @@ export function calculateDiscountPerc(
   return roundedDiscount;
 }
 
+export function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const monthNames = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
+  const month = monthNames[date.getMonth()];
+  const year = date.getFullYear();
+  const currentYear = new Date().getFullYear();
+
+  if (year === currentYear) {
+    return `${day} de ${month}`;
+  } else {
+    return `${day} de ${month} de ${year}`;
+  }
+}
+
 export enum CountryCode {
   AFGHANISTAN = "AFG:004",
   ALBANIA = "ALB:008",
