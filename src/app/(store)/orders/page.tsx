@@ -25,7 +25,9 @@ export default async function OrdersPage() {
       {orders.length > 0 && (
         <>
           {orders.map((order) => (
-            <OrderCard order={order} />
+            <div key={order.id}>
+              <OrderCard order={order} />
+            </div>
           ))}
         </>
       )}
