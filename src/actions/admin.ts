@@ -2,6 +2,7 @@
 
 import api from "@/services/api";
 import {
+  OrderFromDB,
   ProductDto,
   ProductFromDB,
   Role,
@@ -52,7 +53,7 @@ export async function getAdminOrders(session: UserFromDB) {
       }
     );
     if (res.status === 200) {
-      const orders: OrderFromDb[] =
+      const orders: OrderFromDB[] =
         session.role === Role.ADMIN ? res.data["orders"] : res.data;
 
       return orders;

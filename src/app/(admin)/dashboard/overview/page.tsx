@@ -1,11 +1,21 @@
-import { getAdminProducts } from "@/actions/admin";
+import { getAdminOrders, getAdminProducts } from "@/actions/admin";
 import { verifySession } from "@/lib/session";
 import Image from "next/image";
 
 export default async function AdminOverview() {
   const session = await verifySession();
   const products = await getAdminProducts(session);
+  const orders = await getAdminOrders(session);
 
+  const now = new Date();
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(now.getDate() - 30);
+
+  const lastMonthOrders = orders?.filter((order) => {
+    const createdAt = new Date(order.created_at);
+    return createdAt >= thirtyDaysAgo && createdAt <= now;
+  });
+  
   return (
     <div className="flex flex-col justify-start ">
       <div className="flex flex-col justify-start p-8 gap-8 border-b bg-white">
@@ -17,7 +27,10 @@ export default async function AdminOverview() {
         <div className="flex flex-col w-2/3 bg-white border rounded-lg shadow-sm p-6">
           <div className="flex flex-col justify-between">
             <h1 className="w-full text-left font-MontserratBold text-2xl ">
-              $1050150
+              $
+              {lastMonthOrders?.reduce((sum, order) => {
+                return sum + (order.total_price || 0);
+              }, 0)}
             </h1>
             <p className="font-MontserratLight text-grey">Ventas este mes</p>
           </div>
@@ -38,6 +51,7 @@ export default async function AdminOverview() {
           <div className="flex flex-col justify-start gap-3 ">
             {products &&
               products
+                .filter((product) => product.sales_count != null)
                 .sort((a, b) => {
                   const salesA = a.sales_count ?? 0;
                   const salesB = b.sales_count ?? 0;
@@ -49,7 +63,7 @@ export default async function AdminOverview() {
                       key={product.id}
                       className="flex flex-row justify-between items-center"
                     >
-                      <div className="flex flex-row justify-between gap-3">
+                      <div className="flex flex-row justify-between items-center gap-3">
                         <Image
                           src={product.image ?? ""}
                           alt={product.name.substring(0, 8)}
