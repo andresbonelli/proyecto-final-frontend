@@ -1,4 +1,5 @@
 import { getAdminOrders, getAdminProducts } from "@/actions/admin";
+import SalesChart from "@/app/components/admin/charts";
 import { verifySession } from "@/lib/session";
 import Image from "next/image";
 
@@ -15,7 +16,7 @@ export default async function AdminOverview() {
     const createdAt = new Date(order.created_at);
     return createdAt >= thirtyDaysAgo && createdAt <= now;
   });
-  
+
   return (
     <div className="flex flex-col justify-start ">
       <div className="flex flex-col justify-start p-8 gap-8 border-b bg-white">
@@ -38,6 +39,7 @@ export default async function AdminOverview() {
             id="divider-line"
             className="border border-grey w-full my-3"
           ></div>
+          {orders && <SalesChart orders={orders} />}
         </div>
         <div className="flex flex-col w-1/3 bg-white border rounded-lg shadow-sm  py-6 px-3 gap-3">
           <h1 className="w-full text-left font-MontserratSemibold text-lg ">

@@ -1,4 +1,4 @@
-import EditProductForm from "@/app/components/forms/edit_product";
+import EditProductForm from "@/app/components/admin/forms/edit_product";
 import api from "@/services/api";
 import { ProductFromDB } from "@/utils/interfaces";
 

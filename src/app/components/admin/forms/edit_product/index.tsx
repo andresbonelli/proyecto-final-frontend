@@ -4,13 +4,13 @@ import { Categories, Sizes } from "@/utils/constants";
 import { ProductDto, ProductFromDB } from "@/utils/interfaces";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import StringListInput from "../../inputs/multi";
-import ProductFormSelect from "../../inputs/select";
-import ProductFormInput from "../../inputs/single";
-import CheckboxInput from "../../inputs/sizes";
-import TagsInput from "../../inputs/tags";
-import ProductFormTextArea from "../../inputs/textarea";
-import Loader from "../../loader";
+import StringListInput from "../../../inputs/multi";
+import ProductFormSelect from "../../../inputs/select";
+import ProductFormInput from "../../../inputs/single";
+import CheckboxInput from "../../../inputs/sizes";
+import TagsInput from "../../../inputs/tags";
+import ProductFormTextArea from "../../../inputs/textarea";
+import Loader from "../../../loader";
 import { editProduct } from "@/actions/admin";
 
 export default function EditProductForm({
