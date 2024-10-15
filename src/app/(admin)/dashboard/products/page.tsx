@@ -53,7 +53,7 @@ export default async function AdminProducts() {
                       {product.name}
                     </td>
                     <td className="p-4 font-MontserratSemibold">
-                      {product.category ?? "-"}
+                      {product.category ?? "—"}
                     </td>
                     <td className="p-4 text-gray-500">
                       {product.description ?? "Sin descripción"}
@@ -67,11 +67,11 @@ export default async function AdminProducts() {
                             product.old_price,
                             product.price
                           )}%`
-                        : "-"}
+                        : "—"}
                     </td>
-                    <td className="p-4">{product.sku ?? "-"}</td>
+                    <td className="p-4">{product.sku ?? "—"}</td>
                     <td className="p-4">{product.stock}</td>
-                    <td className="p-4">{product.sales_count ?? "0"}</td>
+                    <td className="p-4">{product.sales_count ?? "—"}</td>
                     <td className="p-4 flex flex-row items-center gap-2">
                       <Link
                         href={`/dashboard/products/edit/${product.id}`}
