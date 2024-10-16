@@ -116,6 +116,11 @@ export interface UserInfoDto {
   address?: Address[] | null;
 }
 
+export interface AdminUserInfoDto extends UserInfoDto {
+  role?: Role | null;
+  is_active?: boolean | null;
+}
+
 export interface AccessToken {
   subject: UserFromDB;
   type: string;

@@ -2,7 +2,7 @@
 
 import api from "@/services/api";
 import {
-  OrderFromDB,
+  OrderFromDB as UserFromDb,
   ProductDto,
   ProductFromDB,
   Role,
@@ -53,10 +53,28 @@ export async function getAdminOrders(session: UserFromDB) {
       }
     );
     if (res.status === 200) {
-      const orders: OrderFromDB[] =
+      const orders: UserFromDb[] =
         session.role === Role.ADMIN ? res.data["orders"] : res.data;
 
       return orders;
+    } else {
+      console.error(res.data);
+    }
+  } catch (error: any) {
+    if (error.response) {
+      console.error(error.response.data);
+    }
+  }
+}
+export async function getAdminUsers(): Promise<UserFromDB | any> {
+  try {
+    const res = await api.get("/api/Users/?limit=100&projection=address%3D0", {
+      headers: {
+        Authorization: `Bearer ${cookie?.value}`,
+      },
+    });
+    if (res.status === 200) {
+      return res.data["users"];
     } else {
       console.error(res.data);
     }

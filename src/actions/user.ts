@@ -3,9 +3,9 @@
 /** Get and update User info actions */
 import { cookies } from "next/headers";
 import api from "../services/api";
-import { UserInfoDto } from "../utils/interfaces";
+import { AdminUserInfoDto, UserInfoDto } from "../utils/interfaces";
 
-export async function updateUserInfo(id: string, userInfo: UserInfoDto) {
+export async function updateUserInfo(id: string, userInfo: UserInfoDto | AdminUserInfoDto) {
   const cookie = cookies().get("access_token_cookie");
   try {
     const res = await api.put(`/api/Users/${id}`, userInfo, {
