@@ -74,7 +74,7 @@ export async function verifySession(): Promise<UserFromDB | any> {
     return payload["subject"];
   } catch (error) {
     console.log("Failed to verify session");
-    return await refreshSession();
+    // return await refreshSession();
   }
 }
 
