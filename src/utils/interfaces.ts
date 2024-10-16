@@ -87,7 +87,8 @@ export interface ProductQuery {
     | "stock"
     | "category"
     | "created_at"
-    | "modified_at";
+    | "modified_at"
+    | "sales_count";
   sortDir?: "asc" | "desc";
   projection?: string;
 }

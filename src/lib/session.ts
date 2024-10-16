@@ -28,9 +28,10 @@ export function createSession({
     sameSite: "lax",
     path: "/",
   });
+  console.log("session created");
 }
 
-async function refreshSession() {
+async function refreshSession(): Promise<UserFromDB | any> {
   const refreshCookie = cookies().get("refresh_token_cookie");
   if (!refreshCookie) return null;
   try {
@@ -47,31 +48,33 @@ async function refreshSession() {
       );
     if (res.status === 200) {
       const { access_token, refresh_token } = res.data;
-      createSession({ access_token, refresh_token });
+      // createSession({ access_token, refresh_token });
       const { payload } = await jwtVerify(access_token, encodedKey, {
         algorithms: ["HS256"],
       });
+      console.log(payload);
       return payload["subject"];
+    } else {
+      console.error("Failed to refresh tokens", res.data);
+      return null;
     }
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error during token refresh:", error);
+    return null;
+  }
 }
 
 export async function verifySession(): Promise<UserFromDB | any> {
   const cookie = cookies().get("access_token_cookie");
   if (!cookie) return null;
   try {
-    const now = Date.now() / 1000;
     const { payload } = await jwtVerify(cookie.value, encodedKey, {
       algorithms: ["HS256"],
     });
-    console.log("NOW", now);
-    console.log("EXP", payload.exp);
-    if (payload.exp && payload.exp < now) {
-      return await refreshSession();
-    }
     return payload["subject"];
   } catch (error) {
     console.log("Failed to verify session");
+    return await refreshSession();
   }
 }
 
