@@ -6,12 +6,12 @@ import { ProductDto } from "@/utils/interfaces";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Categories, Sizes } from "@/utils/constants";
-import ProductFormInput from "@/app/components/inputs/single";
-import TagsInput from "@/app/components/inputs/tags";
-import CheckboxInput from "@/app/components/inputs/sizes";
-import ProductFormTextArea from "@/app/components/inputs/textarea";
-import ProductFormSelect from "@/app/components/inputs/select";
-import StringListInput from "@/app/components/inputs/multi";
+import ProductFormInput from "@/app/components/inputs/product/single";
+import TagsInput from "@/app/components/inputs/product/tags";
+import CheckboxInput from "@/app/components/inputs/product/sizes";
+import ProductFormTextArea from "@/app/components/inputs/product/textarea";
+import ProductFormSelect from "@/app/components/inputs/product/select";
+import StringListInput from "@/app/components/inputs/product/multi";
 
 export default function CreateNewProduct() {
   const router = useRouter();
@@ -160,7 +160,7 @@ export default function CreateNewProduct() {
             setFormData={setFormData}
             setMessage={setMessage}
           />
-          <TagsInput  formData={formData} setFormData={setFormData} />
+          <TagsInput formData={formData} setFormData={setFormData} />
           <div className="flex flex-row w-fit h-full items-center gap-2">
             <label
               htmlFor="product-price"

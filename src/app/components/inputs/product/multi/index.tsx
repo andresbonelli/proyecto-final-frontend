@@ -1,5 +1,5 @@
 import { ProductDto } from "@/utils/interfaces";
-import AddIcon from "../../icons/Add";
+import AddIcon from "../../../icons/Add";
 import { useState } from "react";
 
 export default function StringListInput({

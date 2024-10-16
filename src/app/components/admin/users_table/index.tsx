@@ -15,7 +15,7 @@ export default function AdminUsersTable({ users }: { users: UserFromDB[] }) {
   }
 
   async function handleMakeUserAdmin(userId: string) {
-    await updateUserInfo(userId, { role: Role.ADMIN });
+    await updateUserInfo(userId,{ role: Role.ADMIN },true);
     window.location.reload();
   }
 
@@ -60,11 +60,13 @@ export default function AdminUsersTable({ users }: { users: UserFromDB[] }) {
                 </td>
                 <td className="p-4 text-gray-500">{user.email}</td>
                 <td className="p-4 font-MontserratSemibold">{user.role}</td>
-
                 <td className="p-4 flex flex-row justify-center items-center gap-2">
                   <button
+                    disabled={user.role === Role.ADMIN}
                     className={`w-24 text-sm font-MontserratSemibold text-white p-2  rounded-md ${
-                      user.is_active
+                      user.role === Role.ADMIN
+                        ? "bg-grey"
+                        : user.is_active
                         ? "bg-red hover:bg-redder"
                         : "bg-softGreen hover:bg-green"
                     }`}

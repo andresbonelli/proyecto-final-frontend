@@ -121,6 +121,14 @@ export interface AdminUserInfoDto extends UserInfoDto {
   is_active?: boolean | null;
 }
 
+export interface NewUserDto extends AdminUserInfoDto {
+  username: string;
+  email: string;
+  password: string;
+  role: Role.STAFF;
+  is_active: true;
+}
+
 export interface AccessToken {
   subject: UserFromDB;
   type: string;
@@ -157,3 +165,5 @@ export enum Role {
   STAFF = "staff",
   ADMIN = "admin",
 }
+
+
