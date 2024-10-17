@@ -39,6 +39,9 @@ export default function CreateNewProduct() {
         setMessage("Se ha creado el producto");
         setFormData(result.success);
         router.push("/dashboard/products");
+      } else {
+        setStatus("error");
+        setMessage(result.error);
       }
     } catch (error) {
       setStatus("error");

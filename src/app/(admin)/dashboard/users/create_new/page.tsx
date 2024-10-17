@@ -1,7 +1,6 @@
 "use client";
 
 import { createUser } from "@/actions/user";
-import ProductFormInput from "@/app/components/inputs/product/single";
 import UserFormInput from "@/app/components/inputs/user";
 import Loader from "@/app/components/loader";
 import { NewUserDto, Role } from "@/utils/interfaces";
@@ -37,6 +36,9 @@ export default function CreateNewUser() {
         setMessage("Se ha creado el usuario");
         setFormData(result.success);
         router.push("/dashboard/users");
+      } else {
+        setStatus("error");
+        setMessage(result.error);
       }
     } catch (error) {
       setStatus("error");

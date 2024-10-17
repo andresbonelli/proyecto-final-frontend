@@ -49,6 +49,9 @@ export default function EditProductForm({
         setMessage("Se ha editado el producto");
         setFormData(result.success);
         router.push("/dashboard/products");
+      } else {
+        setStatus("error");
+        setMessage(result.error);
       }
     } catch (error) {
       setStatus("error");

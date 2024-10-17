@@ -23,18 +23,18 @@ export default function FerifyUser() {
         const actionResult = await verify({ token, email });
 
         if (actionResult.success) {
-          setMessage(actionResult.success);
           setStatus("success");
+          setMessage(actionResult.success);
         } else {
+          setStatus("error");
           setMessage(
             actionResult.error ||
               "La verificación falló. Podes contactarte con nosotros en la sección de 'ayuda'."
           );
-          setStatus("error");
         }
       } else {
-        setMessage("Link no válido.");
         setStatus("error");
+        setMessage("Link no válido.");
       }
     };
 
