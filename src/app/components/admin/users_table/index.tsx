@@ -15,7 +15,7 @@ export default function AdminUsersTable({ users }: { users: UserFromDB[] }) {
   }
 
   async function handleMakeUserAdmin(userId: string) {
-    await updateUserInfo(userId,{ role: Role.ADMIN },true);
+    await updateUserInfo(userId, { role: Role.ADMIN }, true);
     window.location.reload();
   }
 
@@ -29,9 +29,7 @@ export default function AdminUsersTable({ users }: { users: UserFromDB[] }) {
           className="w-40 p-2 rounded-md border border-gray-300 text-sm"
           onChange={(e) => setUserFilter(e.target.value)}
         >
-          <option defaultValue={Role.STAFF}>
-            empleados
-          </option>
+          <option value={Role.STAFF}>empleados</option>
           <option value={Role.CUSTOMER}>compradores</option>
           <option value={Role.ADMIN}>administradores</option>
         </select>
