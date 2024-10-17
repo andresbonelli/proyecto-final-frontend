@@ -7,7 +7,7 @@ export default async function AdminOverview() {
   const session = await verifySession();
   const products = await getAdminProducts(session);
   const orders = await getAdminOrders(session);
-
+  
   const now = new Date();
   const thirtyDaysAgo = new Date();
   thirtyDaysAgo.setDate(now.getDate() - 30);

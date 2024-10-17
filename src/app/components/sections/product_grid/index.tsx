@@ -35,6 +35,7 @@ export default function ProductGridSection({ query }: { query: ProductQuery }) {
           onChange={(e) => {
             setProductQuery({
               ...productQuery,
+              //@ts-ignore
               sortBy: e.target.value,
               sortDir: "desc",
             });
@@ -53,6 +54,7 @@ export default function ProductGridSection({ query }: { query: ProductQuery }) {
             setProductQuery({
               ...productQuery,
               sortBy: "price",
+              //@ts-ignore
               sortDir: e.target.value,
             });
           }}
