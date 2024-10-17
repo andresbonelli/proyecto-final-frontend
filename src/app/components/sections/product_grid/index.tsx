@@ -41,9 +41,7 @@ export default function ProductGridSection({ query }: { query: ProductQuery }) {
             });
           }}
         >
-          <option selected value="created_at">
-            mas nuevos
-          </option>
+          <option defaultValue="created_at">mas nuevos</option>
           <option value="sales_count">mas relevantes</option>
         </select>
         <select

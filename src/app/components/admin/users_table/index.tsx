@@ -29,7 +29,7 @@ export default function AdminUsersTable({ users }: { users: UserFromDB[] }) {
           className="w-40 p-2 rounded-md border border-gray-300 text-sm"
           onChange={(e) => setUserFilter(e.target.value)}
         >
-          <option selected value={Role.STAFF}>
+          <option defaultValue={Role.STAFF}>
             empleados
           </option>
           <option value={Role.CUSTOMER}>compradores</option>

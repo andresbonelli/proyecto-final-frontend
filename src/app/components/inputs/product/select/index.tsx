@@ -40,7 +40,7 @@ export default function ProductFormSelect({
           Seleccionar categoría
         </option>
         {value && (
-          <option selected value={value}>
+          <option defaultValue={value}>
             {value}
           </option>
         )}
