@@ -1,21 +1,43 @@
 "use client";
 
-import { createOrder } from "@/actions/orders";
-import { useCart } from "@/context/CartContextProvider";
-import { ProductFromCart, UserFromDB } from "@/utils/interfaces";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useCart } from "@/context/CartContextProvider";
+import Image from "next/image";
+import { completeOrder, createOrder } from "@/actions/orders";
+import { detectCardType, formatCardNumber, validateCardNumber } from "@/utils";
+import { colors } from "@/utils/constants";
+import { ProductFromCart, UserFromDB } from "@/utils/interfaces";
 import Modal from "../modal";
 import SuccessIcon from "../icons/Success";
-import { colors } from "@/utils/constants";
 import X from "../icons/X";
+import Link from "next/link";
+import visa from "../../../public/images/visa.png";
+import master from "../../../public/images/card.png";
+import amex from "../../../public/images/american-express.png";
 
 export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
   const { cart, totalItems, totalPrice, clearCart } = useCart();
   const [shippingCost, setShippingCost] = useState(0);
+  const [cardNumber, setCreditCardNumber] = useState("4111111111111111");
+  const [cardType, setCardType] = useState("");
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
+  const router = useRouter();
 
   async function handleCheckout() {
+    if (!cardNumber || !validateCardNumber(cardNumber)) {
+      setStatus("error");
+      setMessage("Ingrese una tarjeta válida");
+      return;
+    }
+    if (!user) {
+      setStatus("error");
+      setMessage(
+        "Error de autenticación. Por favor ingresar o registrarse antes de realizar una compra"
+      );
+      return;
+    }
     const convertToOrder = (cart: ProductFromCart[]) => {
       return {
         products: cart.map((item) => ({
@@ -24,32 +46,42 @@ export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
         })),
       };
     };
-
-    if (user) {
-      const order = convertToOrder(cart);
-      const state = await createOrder(order);
-      if (state?.success) {
-        setStatus("success");
-        setMessage(state.success.message);
-        clearCart();
-      } else {
+    const order = convertToOrder(cart);
+    // Simulating successful payment:
+    // Merge Two actions (create pending order and complete)
+    try {
+      const pendingOrder = await createOrder(order);
+      if (pendingOrder?.success) {
+        const insertedOrderId = pendingOrder.success.id;
+        const completedOrder = await completeOrder(insertedOrderId);
+        if (completedOrder?.success) {
+          setStatus("success");
+          setMessage(completedOrder.success.message);
+          clearCart();
+          setTimeout(() => {
+            router.push("/home");
+          }, 2000);
+          return;
+        }
         setStatus("error");
-        setMessage(state?.error ?? "Error al crear la orden");
+        setMessage(completedOrder?.error ?? "Error al completar la orden");
+        return;
       }
-    } else {
+      setStatus("error");
+      setMessage(pendingOrder?.error ?? "Error al crear la orden");
+    } catch (error) {
       setStatus("error");
       setMessage(
-        "Error de autenticación. Por favor ingresar o registrarse antes de realizar una compra"
+        "Ocurrió un error inesperado. Por favor, inténtelo de nuevo más tarde."
       );
     }
   }
-  function handleCompleteOrder() {
-    console.log("complete order");
-  }
 
-  function handleCancelOrder() {
-    console.log("cancel order");
-  }
+  const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    const formattedValue = formatCardNumber(inputValue);
+    setCreditCardNumber(formattedValue);
+  };
 
   return (
     <div className="flex md:flex-row flex-col">
@@ -69,12 +101,22 @@ export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
                 {user.firstname ?? ""} {user.lastname ?? ""}
               </p>
               {user.address && user.address.length > 0 && (
-                <p className="text-sm  font-MontserratSemibold">
-                  {user.address[0].address_street_name ?? ""}{" "}
-                  {user.address[0].address_street_no ?? ""},{" "}
-                  {user.address[0].address_city ?? ""},{" "}
-                  {user.address[0].address_country_code ?? ""}
-                </p>
+                <select name="shipping-address" id="shipping-address">
+                  {user.address.map((address, index) => {
+                    return (
+                      <option
+                        key={index}
+                        value={address.address_street_name?.toString()}
+                        className="text-sm  font-MontserratSemibold"
+                      >
+                        {address.address_street_name ?? ""}{" "}
+                        {address.address_street_no ?? ""},{" "}
+                        {address.address_city ?? ""},{" "}
+                        {address.address_country_code ?? ""}
+                      </option>
+                    );
+                  })}
+                </select>
               )}
             </div>
           </div>
@@ -91,12 +133,33 @@ export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
           >
             Numero de tarjeta:
           </label>
-          <input
-            type="text"
-            placeholder="credit / debit"
-            id="card-number"
-            className="w-full py-2 px-3 rounded-md border border-red mt-2"
-          ></input>
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="credit / debit"
+              value={cardNumber}
+              onChange={(e) => {
+                handleCardNumberChange(e);
+                setCardType(detectCardType(cardNumber));
+              }}
+              id="card-number"
+              className="w-full py-2 px-3 rounded-md border border-red mt-2 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            />
+
+            {cardType && (
+              <div className="absolute top-1 right-2 mt-2">
+                {cardType === "Visa" && (
+                  <Image src={visa} alt={cardType} width={35} />
+                )}
+                {cardType === "MasterCard" && (
+                  <Image src={master} alt={cardType} width={35} />
+                )}
+                {cardType === "American Express" && (
+                  <Image src={amex} alt={cardType} width={35} />
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div id="payment-container" className="md:w-1/2 pt-10">
@@ -133,12 +196,12 @@ export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
               >
                 Pagar
               </button>
-              <button
-                onClick={handleCancelOrder}
-                className="w-full bg-red hover:bg-redder text-white py-2 px-4 rounded-md text-center "
+              <Link
+                href="/cart"
+                className="w-full bg-white hover:bg-gray-100 border py-2 px-4 rounded-md text-center "
               >
-                Cancelar orden
-              </button>
+                Volver al carrito
+              </Link>
             </>
           )}
         </div>

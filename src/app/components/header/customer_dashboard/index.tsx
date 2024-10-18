@@ -37,9 +37,6 @@ export default function CustomerDashboard({ user }: { user: UserFromDB }) {
         </div>
       </button>
       <div className="flex flex-row place-items-center gap-4">
-        <Link href="/favorites">
-          <HeartIcon width={25} height={25} fill="none" stroke="black" />
-        </Link>
         <Link href="/cart" className="relative">
           <CartIcon width={25} height={25} fill="black" />
           {totalItems > 0 && (

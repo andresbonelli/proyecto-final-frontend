@@ -34,14 +34,24 @@ export async function createOrder(order: any) {
 
 export async function completeOrder(id: string) {
   try {
-    const res = await api.post("/api/orders/complete/" + id, {
-      headers: {
-        Authorization: `Bearer ${cookie?.value}`,
-      },
-    });
+    const res = await api.put(
+      `/api/orders/complete/${id}`,
+      {},
+      {
+        //passing an empty body!
+        headers: {
+          Authorization: `Bearer ${cookie?.value}`,
+        },
+      }
+    );
     if (res.status === 200) {
       console.log(res.data);
-      return res.data;
+      return {
+        success: {
+          message: res.data["message"],
+          order: res.data["order"],
+        },
+      };
     } else {
       console.error(res.data);
       return { error: res.data };

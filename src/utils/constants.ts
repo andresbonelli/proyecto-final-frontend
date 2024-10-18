@@ -26,12 +26,12 @@ export const navLinks = [
     link: "/products/category/office",
   },
   {
-    label: "Contacto",
-    link: "/contact",
+    label: "Calzado",
+    link: "/products/category/shoes",
   },
   {
-    label: "Ayuda",
-    link: "/https://wa.me/5491160198300",
+    label: "Contacto",
+    link: "/contact",
   },
 ];
 

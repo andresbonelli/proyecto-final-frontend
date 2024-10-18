@@ -1,6 +1,6 @@
 "use client";
 
-import { UserFromDB } from "@/utils/interfaces";
+import { Role, UserFromDB } from "@/utils/interfaces";
 import { colors } from "@/utils/constants";
 import ArrowIcon from "../../icons/Arrow";
 import UserIcon from "../../icons/User";
@@ -69,12 +69,14 @@ export default function AccountForm({
         {/* UPDATE USER INFO FORM */}
         <div className="w-full flex flex-col justify-between place-items-center gap-5 px-8 ">
           <UpdateUserForm user={user} />
-          <Link
-            href="/orders"
-            className="w-full bg-softGreen hover:bg-green text-white text-center py-2 px-4 rounded-md"
-          >
-            Ver mis compras
-          </Link>
+          {user.role === Role.CUSTOMER && (
+            <Link
+              href="/orders"
+              className="w-full bg-softGreen hover:bg-green text-white text-center py-2 px-4 rounded-md"
+            >
+              Ver mis compras
+            </Link>
+          )}
           <button
             type="button"
             onClick={handleLogout}
