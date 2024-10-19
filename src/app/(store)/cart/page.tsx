@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function CartPage() {
-  const [shippingCost, setShippingCost] = useState(0);
+  const shippingCost = 0;
   const { cart, totalItems, totalPrice } = useCart();
 
   return (
@@ -18,7 +18,11 @@ export default function CartPage() {
             Carrito de compras{totalItems === 0 && " vacío"}
           </h2>
           {cart.map((product: ProductFromCart) => {
-            return <CartProductCard product={product} />;
+            return (
+              <div key={product.id}>
+                <CartProductCard product={product} />;
+              </div>
+            );
           })}
         </div>
       </div>

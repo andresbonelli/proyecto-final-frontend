@@ -10,10 +10,10 @@ export default function ProductGridSection({ query }: { query: ProductQuery }) {
   const [products, setProducts] = useState<ProductFromDB[]>([]);
 
   useEffect(() => {
-    getProducts();
+    GetProducts();
   }, [productQuery]);
 
-  async function getProducts() {
+  async function GetProducts() {
     const { products, validationErrors } = await useProducts(productQuery);
     if (validationErrors.length > 0) {
       console.error(
@@ -35,7 +35,7 @@ export default function ProductGridSection({ query }: { query: ProductQuery }) {
           onChange={(e) => {
             setProductQuery({
               ...productQuery,
-              //@ts-ignore
+              //@ts-expect-error
               sortBy: e.target.value,
               sortDir: "desc",
             });
@@ -52,7 +52,7 @@ export default function ProductGridSection({ query }: { query: ProductQuery }) {
             setProductQuery({
               ...productQuery,
               sortBy: "price",
-              //@ts-ignore
+              //@ts-expect-error
               sortDir: e.target.value,
             });
           }}

@@ -18,7 +18,7 @@ export default async function EditProductPage({
           Eliminar Producto
         </h1>
         <h3 className="w-full text-left font-MontserratBold text-lg">
-          ¿Borrar <span className="text-blue">"{product.name}"</span> de la base
+          ¿Borrar <span className="text-blue">{product.name}</span> de la base
           de datos?
         </h3>
         <p className="w-full text-left font-MontserratLight">

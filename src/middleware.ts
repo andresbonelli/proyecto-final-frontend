@@ -1,4 +1,4 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextRequest } from "next/server";
 import { verifySession } from "./lib/session";
 import { Role } from "./utils/interfaces";
 

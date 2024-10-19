@@ -3,8 +3,8 @@ import "server-only";
 import { jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { UserFromDB } from "../utils/interfaces";
-import api from "@/services/api";
-import { AxiosResponse } from "axios";
+// import api from "@/services/api";
+// import { AxiosResponse } from "axios";
 
 const secretKey = process.env.SECRET_KEY;
 const encodedKey = new TextEncoder().encode(secretKey);
@@ -30,7 +30,7 @@ export function createSession({
   });
   console.log("session created");
 }
-
+/*
 async function refreshSession(): Promise<UserFromDB | any> {
   const refreshCookie = cookies().get("refresh_token_cookie");
   if (!refreshCookie) return null;
@@ -63,6 +63,7 @@ async function refreshSession(): Promise<UserFromDB | any> {
     return null;
   }
 }
+*/
 
 export async function verifySession(): Promise<UserFromDB | any> {
   const cookie = cookies().get("access_token_cookie");

@@ -5,7 +5,7 @@ import EyeIcon from "@/app/components/icons/Eye";
 import LockIcon from "@/app/components/icons/Lock";
 import Loader from "@/app/components/loader";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
 export default function ResetPassword() {

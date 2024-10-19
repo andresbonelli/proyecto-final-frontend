@@ -18,7 +18,7 @@ import amex from "../../../public/images/american-express.png";
 
 export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
   const { cart, totalItems, totalPrice, clearCart } = useCart();
-  const [shippingCost, setShippingCost] = useState(0);
+  const shippingCost = 0
   const [cardNumber, setCreditCardNumber] = useState("4111111111111111");
   const [cardType, setCardType] = useState("");
   const [status, setStatus] = useState("idle");
