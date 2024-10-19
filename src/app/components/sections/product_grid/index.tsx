@@ -35,7 +35,7 @@ export default function ProductGridSection({ query }: { query: ProductQuery }) {
           onChange={(e) => {
             setProductQuery({
               ...productQuery,
-              //@ts-expect-error
+              //@ts-expect-error: Type 'string' is not assignable to type '"name" | "description" | "price" | "old_price" | "stock" | "category" | "created_at" | "modified_at" | "sales_count" | undefined'.ts
               sortBy: e.target.value,
               sortDir: "desc",
             });
@@ -52,7 +52,7 @@ export default function ProductGridSection({ query }: { query: ProductQuery }) {
             setProductQuery({
               ...productQuery,
               sortBy: "price",
-              //@ts-expect-error
+              //@ts-expect-error: Type 'string' is not assignable to type '"asc" | "desc" | undefined'
               sortDir: e.target.value,
             });
           }}

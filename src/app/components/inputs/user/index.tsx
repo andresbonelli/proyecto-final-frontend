@@ -1,4 +1,4 @@
-import { NewUserDto, ProductDto } from "@/utils/interfaces";
+import { NewUserDto } from "@/utils/interfaces";
 import { useState } from "react";
 
 export default function UserFormInput({

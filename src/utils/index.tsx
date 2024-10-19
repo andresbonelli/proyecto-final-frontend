@@ -82,7 +82,7 @@ export function validateCardNumber(value: string): boolean {
   value = value.replace(/\D/g, "");
 
   for (let n = value.length - 1; n >= 0; n--) {
-    let cDigit = value.charAt(n);
+    const cDigit = value.charAt(n);
     let nDigit = parseInt(cDigit, 10);
 
     if (bEven) {

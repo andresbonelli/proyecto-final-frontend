@@ -12,7 +12,7 @@ export default function CheckboxInput({
 }: {
   title: string;
   required?: boolean;
-  entries: Object;
+  entries: object;
   values?: string[];
   formData: ProductDto;
   setFormData: (data: ProductDto) => void;

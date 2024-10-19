@@ -4,19 +4,15 @@ import { useState } from "react";
 export default function ProductFormTextArea({
   title,
   name,
-  required,
   value,
   formData,
   setFormData,
-  setMessage,
 }: {
   title: string;
   name: string;
-  required?: boolean;
   value?: string;
   formData: ProductDto;
   setFormData: (data: ProductDto) => void;
-  setMessage: (message: string) => void;
 }) {
   const [editValue, setEditValue] = useState<string>(value ?? "");
   return (

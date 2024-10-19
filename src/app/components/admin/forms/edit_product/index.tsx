@@ -203,7 +203,6 @@ export default function EditProductForm({
               value={product.details?.long_description ?? ""}
               formData={formData}
               setFormData={setFormData}
-              setMessage={setMessage}
             />
             <CheckboxInput
               title="Talles disponibles"

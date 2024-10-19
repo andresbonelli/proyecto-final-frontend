@@ -146,7 +146,12 @@ export default function ProductDetailsComponent({
       </div>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(!isModalOpen)}>
         <div className="w-24 h-24 m-8 overflow-hidden rounded-full border-4 border-green">
-          <img src={product.image ?? ""} alt={name} />
+          <Image
+            height={150}
+            width={150}
+            src={product.image ?? ""}
+            alt={name}
+          />
         </div>
         <h1 className="w-full text-left font-MontserratSemibold text-lg ">
           Agregado al carrito:
