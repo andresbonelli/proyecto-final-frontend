@@ -4,7 +4,6 @@ import CartProductCard from "@/app/components/cards/cart_product_card";
 import { useCart } from "@/context/CartContextProvider";
 import { ProductFromCart } from "@/utils/interfaces";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function CartPage() {
   const shippingCost = 0;

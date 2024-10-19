@@ -15,7 +15,7 @@ export default function AccountForm({
   user,
 }: {
   isOpen: boolean;
-  onClose: Function;
+  onClose: () => void;
   user: UserFromDB;
 }) {
   function handleLogout() {

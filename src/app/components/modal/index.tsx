@@ -6,7 +6,7 @@ export default function Modal({
   children,
 }: {
   isOpen: boolean;
-  onClose: Function;
+  onClose: () => void;
   children?: React.ReactNode;
 }) {
   return (

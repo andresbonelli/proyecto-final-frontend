@@ -39,7 +39,7 @@ export default function FerifyUser() {
     };
 
     verifyUser();
-  }, []);
+  }, [email, token]);
 
   return (
     <div className="w-full flex flex-col justify-start items-center py-10">

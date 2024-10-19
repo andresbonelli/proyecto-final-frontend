@@ -3,7 +3,7 @@ import ArrowIcon from "../../icons/Arrow";
 
 interface CarrouselArrowProps {
   isDisabled?: boolean;
-  onPress: Function;
+  onPress: () => void;
   xOffset: string;
   direction: "rotate-90" | "-rotate-90" | "" | "rotate-180";
 }

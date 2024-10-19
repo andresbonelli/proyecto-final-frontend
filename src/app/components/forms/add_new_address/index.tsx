@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function AddNewAddressForm({
   onAddNewAddress,
 }: {
-  onAddNewAddress: Function;
+  onAddNewAddress: (address: Address) => void;
 }) {
   const [streetName, setStreetName] = useState("");
   const [streetNo, setStreetNo] = useState("");

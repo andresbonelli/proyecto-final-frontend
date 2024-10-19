@@ -8,8 +8,8 @@ export default function EditAddressForm({
   onDeleteAddress,
 }: {
   address: Address;
-  onEditAddress: Function;
-  onDeleteAddress: Function;
+  onEditAddress: (address: Address) => void;
+  onDeleteAddress: () => void;
 }) {
   const [streetName, setStreetName] = useState(
     address.address_street_name || ""

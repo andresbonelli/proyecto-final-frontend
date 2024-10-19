@@ -12,7 +12,7 @@ export default function LoginOrSignupForm({
   onClose,
 }: {
   isOpen: boolean;
-  onClose: Function;
+  onClose: () => void;
 }) {
   const [formType, setFormType] = useState("Login");
 

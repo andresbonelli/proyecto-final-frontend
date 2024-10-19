@@ -2,7 +2,6 @@
 
 import { ResetPasswordFormSchema } from "@/lib/definitions";
 import api from "../services/api";
-import { redirect } from "next/navigation";
 
 export async function resetPassword(state: any, formData: FormData) {
   const validatedFields = ResetPasswordFormSchema.safeParse({

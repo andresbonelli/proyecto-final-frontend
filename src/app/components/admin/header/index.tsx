@@ -1,7 +1,6 @@
 import { colors } from "@/utils/constants";
 import Link from "next/link";
 import Logo from "../../icons/Logo";
-import AddIcon from "../../icons/Add";
 import AdminIcon from "../../icons/Admin";
 
 export default function AdminHeader() {
