@@ -1,20 +1,62 @@
-import Logo from "../icons/Logo";
 import Link from "next/link";
+import Navbar from "../navbar";
+import SearchBar from "../search_bar";
+import Logo from "../icons/Logo";
+import { colors } from "../../../utils/constants";
+import CustomerDashboard from "./customer_dashboard";
+import { getUser } from "@/actions/user";
+import { Role } from "@/utils/interfaces";
+import AdminIcon from "../icons/Admin";
+import { verifySession } from "@/lib/session";
 
-export default function Header() {
+export default async function Header() {
+  const session = await verifySession();
+  const user = session ? await getUser(session?.id) : null;
+
   return (
-    <header className=" w-full fixed top-0 bg-background text-black flex flex-row xl:px-60 lg:px-40 md:px-20 px-10 py-10">
-      <div className="flex flex-row justify-between">
+    <header className="fixed top-0 w-full z-50 ">
+      <div
+        id="header-container"
+        className="bg-background
+                   flex flex-row justify-between place-items-center
+                   w-full sm:gap-3 h-[100px]
+                   xl:px-60 lg:px-40 md:px-20 px-5 sm:py-8 py-5"
+      >
+        {/* LOGO */}
         <Link href="/">
-          <div className="flex flex-row">
-            <Logo width={60} height={45} fill="blue" />
-            <div className="flex flex-col text-left text-black">
-              <p className=" text-lg font-MontserratBold">E-Commerce</p>
-              <p className="text-xs font-Montserrat">By Bootcamps 3.0</p>{" "}
+          <div
+            id="brand-container"
+            className="flex flex-row place-items-center  "
+          >
+            <Logo width={50} height={50} fill={colors.blue} />
+            <div className="flex flex-col text-left text-black ml-3 ">
+              <p className=" lg:text-2xl text-sm font-MontserratBold">
+                E-Commerce
+              </p>
+              <p className="text-xs font-Montserrat">By Bootcamps 3.0</p>
             </div>
           </div>
         </Link>
+        <div className="hidden sm:block">
+          <SearchBar />
+        </div>
+        {/* Right Side Links */}
+        {(user?.role === Role.STAFF || user?.role === Role.ADMIN) && (
+          <Link
+            href="/dashboard"
+            className="flex flex-row justify-between gap-2 items-center"
+          >
+            <AdminIcon height={25} width={25} fill="black" />
+            <p className="text-sm sm:block hidden">Admin</p>
+          </Link>
+        )}
+        <CustomerDashboard user={user} />
       </div>
+      <div className="sm:hidden bg-background -mt-2 pb-3">
+        <SearchBar />
+      </div>
+
+      <Navbar />
     </header>
   );
 }

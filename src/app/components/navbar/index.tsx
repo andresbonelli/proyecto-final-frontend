@@ -1,18 +1,31 @@
+import { navLinks } from "@/utils/constants";
 import Link from "next/link";
 
+interface navLink {
+  label: string;
+  link: string;
+}
+interface navbarProps {
+  fixed?: boolean;
+  padded?: boolean;
+  inverted?: boolean;
+  links?: navLink[];
+}
+
 export default function Navbar({
-  fixed,
   padded,
   inverted,
-  links,
+  links = navLinks,
 }: navbarProps) {
-  const position = fixed ? "fixed top-28" : "";
   const padding = padded ? "py-10" : "py-2";
   const bgColor = inverted ? "bg-white" : "bg-pink";
   const textColor = inverted ? "text-pink" : "text-white";
   return (
     <nav
-      className={`w-full ${position} ${padding} ${bgColor} ${textColor} flex flex-row place-items-center justify-center gap-5`}
+      className={`${padding} ${bgColor} ${textColor}
+                 hidden sm:flex flex-row 
+                 place-items-center justify-center
+                 gap-5 h-[35px]`}
     >
       {links.map((nav, index) => {
         return (

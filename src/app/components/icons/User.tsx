@@ -1,6 +1,9 @@
+import { svgProps } from "@/utils/interfaces";
+
 export default function UserIcon({ width, height, fill }: svgProps) {
   return (
     <svg
+      className="flex-shrink-0"
       width={width}
       height={height}
       viewBox="0 0 24 24"
