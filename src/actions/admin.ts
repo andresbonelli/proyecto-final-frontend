@@ -10,9 +10,8 @@ import {
 } from "@/utils/interfaces";
 import { cookies } from "next/headers";
 
-const cookie = cookies().get("access_token_cookie");
-
 export async function getAdminProducts(session: UserFromDB) {
+  const cookie = cookies().get("access_token_cookie");
   const userID = session?.id;
   try {
     const res = await api.get(
@@ -40,6 +39,7 @@ export async function getAdminProducts(session: UserFromDB) {
   }
 }
 export async function getAdminOrders(session: UserFromDB) {
+  const cookie = cookies().get("access_token_cookie");
   const userID = session?.id;
   try {
     const res = await api.get(
@@ -67,6 +67,7 @@ export async function getAdminOrders(session: UserFromDB) {
   }
 }
 export async function getAdminUsers(): Promise<UserFromDB | any> {
+  const cookie = cookies().get("access_token_cookie");
   try {
     const res = await api.get("/api/Users/?limit=100&projection=address%3D0", {
       headers: {
@@ -88,6 +89,7 @@ export async function getAdminUsers(): Promise<UserFromDB | any> {
 export async function createProduct(
   product: ProductDto
 ): Promise<ProductFromDB | any> {
+  const cookie = cookies().get("access_token_cookie");
   try {
     const res = await api.post("/api/products", product, {
       headers: {
@@ -111,6 +113,7 @@ export async function editProduct(
   id: string,
   product: ProductDto
 ): Promise<ProductFromDB | any> {
+  const cookie = cookies().get("access_token_cookie");
   try {
     const res = await api.patch(`/api/products/${id}`, product, {
       headers: {
@@ -132,6 +135,7 @@ export async function editProduct(
 }
 
 export async function deleteProduct(id: string): Promise<ProductFromDB | any> {
+  const cookie = cookies().get("access_token_cookie");
   try {
     const res = await api.delete(`/api/products/${id}`, {
       headers: {

@@ -4,9 +4,8 @@ import { cookies } from "next/headers";
 import api from "../services/api";
 import { OrderFromDB } from "@/utils/interfaces";
 
-const cookie = cookies().get("access_token_cookie");
-
 export async function createOrder(order: any) {
+  const cookie = cookies().get("access_token_cookie");
   try {
     const res = await api.post("/api/orders/", order, {
       headers: {
@@ -33,6 +32,7 @@ export async function createOrder(order: any) {
 }
 
 export async function completeOrder(id: string) {
+  const cookie = cookies().get("access_token_cookie");
   try {
     const res = await api.put(
       `/api/orders/complete/${id}`,
@@ -65,6 +65,7 @@ export async function completeOrder(id: string) {
 }
 
 export async function cancelOrder(id: string) {
+  const cookie = cookies().get("access_token_cookie");
   try {
     const res = await api.post("/api/orders/cancel/" + id, {
       headers: {
