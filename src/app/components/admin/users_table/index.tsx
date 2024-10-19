@@ -72,7 +72,7 @@ export default function AdminUsersTable({ users }: { users: UserFromDB[] }) {
                   >
                     {user.is_active ? "desactivar" : "activar"}
                   </button>
-                  {user.role === Role.STAFF && (
+                  {user.role === Role.STAFF && user.is_active && (
                     <button
                       className="text-sm font-MontserratSemibold text-white p-2 bg-softBlue hover:bg-blue rounded-md"
                       onClick={() => handleMakeUserAdmin(user.id)}
