@@ -25,6 +25,7 @@
   - Ver lista de productos y estadísticas básicas de ventas (filtrado unicamente a sus productos creados).
 - Como usuario administrador:
   - Todos los privilegios de empleado.
+  - Ver y editar todos los productos.
   - Ver lista de usuarios.
   - Crear nuevos usuarios con rol de empleado (vendedor)
   - Activar y desactivar usuarios, otorgar rol de administrador a los empleados.
@@ -65,9 +66,11 @@ echo '.env.local' >> .gitignore
 <details>
 <summary>(ver variables)</summary>
 
-> NEXT_PUBLIC_API_URL="https://vocal-nelie-andresbonelli-1d085aa1.koyeb.app"
-> SECRET_KEY="encryption_key"  
-> NODE_ENV="development"
+```
+NEXT_PUBLIC_API_URL="https://vocal-nelie-andresbonelli-1d085aa1.koyeb.app"  
+SECRET_KEY="encryption_key" 
+NODE_ENV="development"
+```
 
 </details>
 
