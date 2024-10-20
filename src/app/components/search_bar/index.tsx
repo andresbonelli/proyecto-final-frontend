@@ -5,8 +5,8 @@ import useAutocomplete from "@/hooks/useAutocomplete";
 import { colors } from "@/utils/constants";
 import SearchIcon from "../icons/Search";
 import Link from "next/link";
-import MicIcon from "../icons/Mic";
 import Loader from "../loader";
+// import MicIcon from "../icons/Mic";
 
 export default function SearchBar() {
   const { search, results, status } = useAutocomplete();
@@ -41,9 +41,10 @@ export default function SearchBar() {
           placeholder="Buscar productos..."
           className="flex-grow  outline-none bg-transparent text-grey text-sm"
         />
-        <a href="/">
+        {/* TODO: speak to text search input */}
+        {/* <a href="/">
           <MicIcon width={20} height={20} fill={colors.grey} />
-        </a>
+        </a> */}
       </div>
       {results.length > 0 && (
         <div
