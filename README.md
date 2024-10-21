@@ -86,3 +86,10 @@ npm run dev
 
 > [!NOTE]  
 > En una futura implementación del backend se añadirá servicio de mail transaccional para verificación de nuevos registros, cambio de contraseña y confirmación de compra.
+
+### Usuario administrador de prueba:
+<details>
+<summary>(ver credenciales)</summary>
+- Username: "admin"
+- Password: "admin"
+</details>
