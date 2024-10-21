@@ -37,7 +37,7 @@ export default function ProductCarrouselComponent({
                 key={product.id}
                 className="w-1/4"
               >
-                <ProductCard props={{ product: product, isFavorite: false }} />
+                <ProductCard product={product} />
               </Link>
             );
           })}
