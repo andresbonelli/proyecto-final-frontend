@@ -30,7 +30,9 @@ export async function resetPassword(state: any, formData: FormData) {
       return { error: res.data };
     }
   } catch (error: any) {
-    console.error(error.response.data);
-    return { error: error.response.data.detail };
+    if (error.response) {
+      console.error(error.response.data);
+      return { error: error.response.data.detail };
+    }
   }
 }

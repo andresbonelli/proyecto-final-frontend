@@ -1,14 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { useCart } from "@/context/CartContextProvider";
 import { calculateDiscountPerc } from "@/utils";
 import { ProductFromCart, ProductFromDB } from "@/utils/interfaces";
-import FingerIcon from "../icons/Finger";
 import Modal from "../modal";
+import FingerIcon from "../icons/Finger";
 import GoToCartIcon from "../icons/GoToCart";
-import Image from "next/image";
 
 export default function ProductDetailsComponent({
   product,
@@ -19,6 +20,7 @@ export default function ProductDetailsComponent({
   const { category, name, description, image, price, old_price, details } =
     product;
   const { addToCart } = useCart();
+  const router = useRouter();
 
   const discount = product.old_price
     ? calculateDiscountPerc(product.old_price, product.price)
@@ -36,6 +38,20 @@ export default function ProductDetailsComponent({
     };
     addToCart(addingProduct);
     setIsModalOpen(!isModalOpen);
+  }
+
+  function handleBuyNow() {
+    const addingProduct: ProductFromCart = {
+      id: product.id,
+      name: name,
+      price: price,
+      image: image ?? null,
+      old_price: old_price ?? null,
+      description: description ?? null,
+      quantity: 1,
+    };
+    addToCart(addingProduct);
+    router.push("/checkout");
   }
 
   return (
@@ -135,7 +151,7 @@ export default function ProductDetailsComponent({
               <p>Agregar</p>
             </button>
             <button
-              onClick={() => {}}
+              onClick={handleBuyNow}
               className="flex flex-row justify-around w-40 place-items-center bg-softGreen hover:bg-green text-white text-md font-MontserratRegular py-2 px-4 rounded gap-2"
             >
               <FingerIcon width={22} height={22} fill="white" />

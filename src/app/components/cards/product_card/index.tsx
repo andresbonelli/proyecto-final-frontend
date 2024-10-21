@@ -1,21 +1,20 @@
-import { colors } from "@/utils/constants";
-import StarFilledIcon from "../../icons/StarFilled";
-import StarHalfIcon from "../../icons/StarHalf";
-import FingerIcon from "../../icons/Finger";
-import HeartIcon from "../../icons/Heart";
+import React from "react";
+import Image from "next/image";
 import { calculateDiscountPerc } from "@/utils";
 import { ProductFromDB } from "@/utils/interfaces";
-import Image from "next/image";
+import { colors } from "@/utils/constants";
+import FingerIcon from "../../icons/Finger";
+import HeartIcon from "../../icons/Heart";
+// import StarFilledIcon from "../../icons/StarFilled";
+// import StarHalfIcon from "../../icons/StarHalf";
 
 export default function ProductCard({
-  props,
+  product,
+  isFavorite,
 }: {
-  props: {
-    product: ProductFromDB;
-    isFavorite: boolean;
-  };
+  product: ProductFromDB;
+  isFavorite?: boolean;
 }) {
-  const { product, isFavorite } = props;
   const outOfStock = product.stock === 0;
   const discount =
     product.old_price && !outOfStock
@@ -88,7 +87,7 @@ export default function ProductCard({
               <FingerIcon width={22} height={22} fill="white" />
             </div>
           </div>
-          <div className="flex flex-row justify-between place-items-center">
+          {/* <div className="flex flex-row justify-between place-items-center">
             <div className="sm:flex flex-row place-items-start hidden mr-5">
               <StarFilledIcon width={17} height={17} fill="orange" />
               <StarFilledIcon width={17} height={17} fill="orange" />
@@ -96,11 +95,7 @@ export default function ProductCard({
               <StarFilledIcon width={17} height={17} fill="orange" />
               <StarHalfIcon width={17} height={17} fill={colors.grey} />
             </div>
-            <button className="sm:flex hidden flex-row bg-softGreen hover:bg-green text-white text-xs font-MontserratBold py-2 px-4 rounded  gap-1">
-              <FingerIcon width={17} height={17} fill="white" />
-              <p>comprar</p>
-            </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

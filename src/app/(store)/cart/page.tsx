@@ -6,7 +6,6 @@ import { ProductFromCart } from "@/utils/interfaces";
 import Link from "next/link";
 
 export default function CartPage() {
-  const shippingCost = 0;
   const { cart, totalItems, totalPrice } = useCart();
 
   return (
@@ -41,15 +40,8 @@ export default function CartPage() {
               <p className="text-right">${totalPrice}</p>
             </div>
             <div className="w-full flex flex-row justify-between place-items-center">
-              <p className="flex-auto text-left">Envío:</p>
-              <p className="text-right">${shippingCost}</p>
-            </div>
-
-            <div className="w-full flex flex-row justify-between place-items-center">
               <p className="flex-auto text-left font-MontserratBold">TOTAL:</p>
-              <p className="text-right font-MontserratBold">
-                ${totalPrice + shippingCost}
-              </p>
+              <p className="text-right font-MontserratBold">${totalPrice}</p>
             </div>
             <Link
               href="/checkout"

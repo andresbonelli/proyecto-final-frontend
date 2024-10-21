@@ -15,10 +15,10 @@ import Link from "next/link";
 import visa from "../../../public/images/visa.png";
 import master from "../../../public/images/card.png";
 import amex from "../../../public/images/american-express.png";
+import Loader from "../loader";
 
 export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
   const { cart, totalItems, totalPrice, clearCart } = useCart();
-  const shippingCost = 0
   const [cardNumber, setCreditCardNumber] = useState("4111111111111111");
   const [cardType, setCardType] = useState("");
   const [status, setStatus] = useState("idle");
@@ -26,6 +26,7 @@ export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
   const router = useRouter();
 
   async function handleCheckout() {
+    setStatus("loading");
     if (!cardNumber || !validateCardNumber(cardNumber)) {
       setStatus("error");
       setMessage("Ingrese una tarjeta válida");
@@ -177,18 +178,12 @@ export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
                 </p>
                 <p className="text-right">${totalPrice}</p>
               </div>
-              <div className="w-full flex flex-row justify-between place-items-center">
-                <p className="flex-auto text-left">Envios:</p>
-                <p className="text-right">${shippingCost}</p>
-              </div>
 
               <div className="w-full flex flex-row justify-between place-items-center">
                 <p className="flex-auto text-left font-MontserratBold">
                   TOTAL:
                 </p>
-                <p className="text-right font-MontserratBold">
-                  ${totalPrice + shippingCost}
-                </p>
+                <p className="text-right font-MontserratBold">${totalPrice}</p>
               </div>
               <button
                 onClick={handleCheckout}
@@ -206,6 +201,10 @@ export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
           )}
         </div>
       </div>
+      <Modal isOpen={status === "loading"} onClose={() => setStatus("idle")}>
+        <h1>Preparando orden...</h1>
+        <Loader />
+      </Modal>
       <Modal isOpen={status === "success"} onClose={() => setStatus("idle")}>
         <SuccessIcon
           width={150}
@@ -213,12 +212,10 @@ export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
           fill={colors.red}
           stroke="white"
         />
-        <h1>Orden creada!</h1>
         <h1 className="text-sm">{message}</h1>
       </Modal>
       <Modal isOpen={status === "error"} onClose={() => setStatus("idle")}>
         <X size={150} fill={colors.red} />
-
         <h1 className="w-80 text-center">{message}</h1>
       </Modal>
     </div>

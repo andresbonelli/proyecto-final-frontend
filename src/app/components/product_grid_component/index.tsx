@@ -25,7 +25,7 @@ export default function ProductGridComponent({
         {products.slice(0, sliceIndex).map((product) => {
           return (
             <Link href={`/products/${product.id}`} key={product.id}>
-              <ProductCard props={{ product: product, isFavorite: false }} />
+              <ProductCard product={product} />
             </Link>
           );
         })}

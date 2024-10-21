@@ -18,7 +18,9 @@ export async function verify({
       return { error: res.data };
     }
   } catch (error: any) {
-    console.error(error.response.data);
-    return { error: error.response.data.detail };
+    if (error.response) {
+      console.error(error.response.data);
+      return { error: error.response.data.detail };
+    }
   }
 }
