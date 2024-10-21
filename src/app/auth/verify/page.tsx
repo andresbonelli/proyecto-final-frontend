@@ -20,15 +20,15 @@ export default function FerifyUser() {
     const verifyUser = async () => {
       if (token && email) {
         setStatus("loading");
-        const actionResult = await verify({ token, email });
+        const verification = await verify({ token, email });
 
-        if (actionResult.success) {
+        if (verification?.success) {
           setStatus("success");
-          setMessage(actionResult.success);
+          setMessage(verification.success);
         } else {
           setStatus("error");
           setMessage(
-            actionResult.error ||
+            verification?.error ||
               "La verificación falló. Podes contactarte con nosotros en la sección de 'ayuda'."
           );
         }
