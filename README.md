@@ -9,11 +9,11 @@
 ## Características
 
 - Como usuario visitante:
-  - Navegar la tienda, filtrar productos por categoría (en sub paginas).
+  - Navegar la tienda, buscar productos por nombre, filtrar productos por categoría (en sub paginas).
   - Ver página de detalles de un producto.
-  - Ordenar por precio, más vendidos y más nuevos.
+  - Ordenar por mayor y menor precio, más vendidos y más nuevos.
   - Agregar productos a carrito de compras persistente en almacenamiento local.
-  - Llegar a última instancia de check-out, donde será instado a regitrarse para completar una compra.
+  - Llegar a instancia de check-out, donde será instado a regitrarse para completar una compra.
 - Como usuario registrado (comprador):
   - Crear una cuenta distinguida tanto por nombre de usuario como e-mail.
   - Modificar datos personales (Nombre, apellido y lista de domicilios de envío), persistente en base de datos.
@@ -30,7 +30,14 @@
   - Crear nuevos usuarios con rol de empleado (vendedor)
   - Activar y desactivar usuarios, otorgar rol de administrador a los empleados.
 
-## Requisitos
+## Tecnologías y frameworks utilizados
+
+- Next.JS (v14.2.15)
+- Tailwind CSS
+- Axios (v1.7)
+- Zod (v3.23)
+
+## Requisitos previos
 
 - Node.js (v18.x +)
 - npm (v10.x +)
@@ -67,8 +74,8 @@ echo '.env.local' >> .gitignore
 <summary>(ver variables)</summary>
 
 ```
-NEXT_PUBLIC_API_URL="https://vocal-nelie-andresbonelli-1d085aa1.koyeb.app"  
-SECRET_KEY="encryption_key" 
+NEXT_PUBLIC_API_URL="https://vocal-nelie-andresbonelli-1d085aa1.koyeb.app"
+SECRET_KEY="encryption_key"
 NODE_ENV="development"
 ```
 
