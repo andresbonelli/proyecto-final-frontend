@@ -70,7 +70,7 @@ export function RegisterForm() {
       </div>
       {state?.errors?.password && (
         <div>
-          <p className="text-xs text-red">Password must:</p>
+          <p className="text-xs text-red">La contraseña debe:</p>
           <ul>
             {state.errors.password.map((error: string) => (
               <li className="text-xs text-red" key={error}>
