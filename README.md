@@ -29,6 +29,10 @@
   - Ver lista de usuarios.
   - Crear nuevos usuarios con rol de empleado (vendedor)
   - Activar y desactivar usuarios, otorgar rol de administrador a los empleados.
+- Servicio de Email transaccional:
+  - Verificación de cuenta a través de link de activación.
+  - Cambio de contraseña con link de autenticación.
+  - Confirmación de compra.
 
 ## Tecnologías y frameworks utilizados
 
@@ -90,9 +94,6 @@ npm run dev
 > Navegar a la App expuesta en [http://localhost:3000](http://localhost:3000)
 
 ## Despliegue demo: https://proyecto-final-frontend-navy.vercel.app/
-
-> [!NOTE]  
-> En una futura implementación del backend se añadirá servicio de mail transaccional para verificación de nuevos registros, cambio de contraseña y confirmación de compra.
 
 ### Usuario administrador de prueba:
 <details>
