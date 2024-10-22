@@ -2,7 +2,7 @@
 
 import api from "@/services/api";
 import {
-  OrderFromDB as UserFromDb,
+  OrderFromDB,
   ProductDto,
   ProductFromDB,
   Role,
@@ -27,6 +27,11 @@ export async function getAdminProducts(session: UserFromDB) {
     if (res.status === 200) {
       const products: ProductFromDB[] =
         session.role === Role.ADMIN ? res.data["product_list"] : res.data;
+      const validationErrors =
+        session.role === Role.ADMIN ? res.data["errors"] : [];
+      if (validationErrors.length > 0) {
+        console.error(validationErrors);
+      }
 
       return products;
     } else {
@@ -53,17 +58,23 @@ export async function getAdminOrders(session: UserFromDB) {
       }
     );
     if (res.status === 200) {
-      const orders: UserFromDb[] =
+      const orders: OrderFromDB[] =
         session.role === Role.ADMIN ? res.data["orders"] : res.data;
-
+      const validationErrors =
+        session.role === Role.ADMIN ? res.data["errors"] : [];
+      if (validationErrors.length > 0) {
+        console.error(validationErrors);
+      }
       return orders;
     } else {
       console.error(res.data);
+      return [];
     }
   } catch (error: any) {
     if (error.response) {
       console.error(error.response.data);
     }
+    return [];
   }
 }
 export async function getAdminUsers(): Promise<UserFromDB | any> {
@@ -75,7 +86,12 @@ export async function getAdminUsers(): Promise<UserFromDB | any> {
       },
     });
     if (res.status === 200) {
-      return res.data["users"];
+      const users: UserFromDB[] = res.data["users"];
+      const validationErrors = res.data["errors"];
+      if (validationErrors.length > 0) {
+        console.error(validationErrors);
+      }
+      return users;
     } else {
       console.error(res.data);
     }

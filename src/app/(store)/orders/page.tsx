@@ -24,11 +24,17 @@ export default async function OrdersPage() {
       </div>
       {orders.length > 0 && (
         <>
-          {orders.map((order) => (
-            <div key={order.id}>
-              <OrderCard order={order} />
-            </div>
-          ))}
+          {orders
+            .sort(
+              (a, b) =>
+                new Date(a.created_at).getDate() -
+                new Date(b.created_at).getDate()
+            )
+            .map((order) => (
+              <div key={order.id}>
+                <OrderCard order={order} />
+              </div>
+            ))}
         </>
       )}
     </div>

@@ -10,7 +10,9 @@ export default async function ProductCarrouselSection({
   title: string;
 }) {
   const { products, validationErrors } = await useProducts(query);
-  console.log(validationErrors, "VALIDATION ERRORS");
+  if (validationErrors.length > 0) {
+    console.error("Validation Errors: ", validationErrors);
+  }
   return (
     <section
       id="ofertas-section-container"

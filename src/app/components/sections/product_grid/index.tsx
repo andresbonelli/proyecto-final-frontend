@@ -16,10 +16,7 @@ export default function ProductGridSection({ query }: { query: ProductQuery }) {
   async function GetProducts() {
     const { products, validationErrors } = await useProducts(productQuery);
     if (validationErrors.length > 0) {
-      console.error(
-        "[Encountered validation errors from DB] - ",
-        validationErrors
-      );
+      console.error("Validation Errors: ", validationErrors);
     }
     setProducts(products);
   }
