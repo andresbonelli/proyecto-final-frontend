@@ -19,8 +19,10 @@ import Loader from "../loader";
 
 export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
   const { cart, totalItems, totalPrice, clearCart } = useCart();
-  const [cardNumber, setCreditCardNumber] = useState("4111111111111111");
-  const [cardType, setCardType] = useState("");
+  const [cardNumber, setCreditCardNumber] = useState("4111 1111 1111 1111");
+  const [cardType, setCardType] = useState(() => {
+    return detectCardType(cardNumber);
+  });
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
   const router = useRouter();
@@ -155,7 +157,7 @@ export default function CheckoutComponent({ user }: { user?: UserFromDB }) {
                 {cardType === "MasterCard" && (
                   <Image src={master} alt={cardType} width={35} />
                 )}
-                {cardType === "American Express" && (
+                {cardType === "American" && (
                   <Image src={amex} alt={cardType} width={35} />
                 )}
               </div>

@@ -18,10 +18,10 @@ export default function ResetPassword() {
   return (
     <div className="w-full flex flex-col justify-start items-center py-10">
       <h1 className="font-MontserratBold text-xl text-center mb-5">
-        Reset password
+        Restablecer contraseña
       </h1>
       <p className="text-center text-sm text-wrap">
-        Please enter a new password below.
+        Ingresá tu nueva contraseña abajo.
       </p>
       {token && email ? (
         <form action={action} className=" flex flex-col justify-between gap-5">
@@ -97,7 +97,7 @@ export default function ResetPassword() {
           <SubmitButton />
         </form>
       ) : (
-        <p>Missing token or email.</p>
+        <p>Token o Email faltantes en el link.</p>
       )}
     </div>
   );
@@ -111,7 +111,7 @@ function SubmitButton() {
       type="submit"
       className="w-full bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md"
     >
-      {pending ? <Loader /> : "Reset Password"}
+      {pending ? <Loader /> : "Cambiar contraseña"}
     </button>
   );
 }
