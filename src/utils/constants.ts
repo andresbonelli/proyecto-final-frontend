@@ -19,7 +19,7 @@ export const navLinks = [
   },
   {
     label: "Ropa",
-    link: "/products/category/ropa",
+    link: "/products/category/indumentaria",
   },
   {
     label: "Accesorios",
@@ -39,7 +39,7 @@ export enum Categories {
   ROPA = "ropa",
   ACCESORIOS = "accesorios",
   CALZADO = "zapatos",
-  PERFUMERIA = "perfumeria"
+  PERFUMERIA = "perfumeria",
 }
 
 export enum Sizes {
