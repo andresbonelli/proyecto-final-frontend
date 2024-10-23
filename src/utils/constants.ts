@@ -19,15 +19,15 @@ export const navLinks = [
   },
   {
     label: "Ropa",
-    link: "/products/category/clothing",
+    link: "/products/category/indumentaria",
   },
   {
     label: "Accesorios",
-    link: "/products/category/office",
+    link: "/products/category/accesorios",
   },
   {
     label: "Calzado",
-    link: "/products/category/shoes",
+    link: "/products/category/calzado",
   },
   {
     label: "Contacto",
@@ -36,11 +36,10 @@ export const navLinks = [
 ];
 
 export enum Categories {
-  ROPA = "clothing",
-  ACCESORIOS = "office",
-  CALZADO = "shoes",
-  PERFUMERIA = "perfumery",
-  MAQUILLAJE = "makeup",
+  INDUMENTARIA = "indumentaria",
+  ACCESORIOS = "accesorios",
+  CALZADO = "zapatos",
+  PERFUMERIA = "perfumeria",
 }
 
 export enum Sizes {
