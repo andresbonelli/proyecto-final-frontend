@@ -38,7 +38,7 @@ export const navLinks = [
 export enum Categories {
   INDUMENTARIA = "indumentaria",
   ACCESORIOS = "accesorios",
-  CALZADO = "zapatos",
+  CALZADO = "calzado",
   PERFUMERIA = "perfumeria",
 }
 
