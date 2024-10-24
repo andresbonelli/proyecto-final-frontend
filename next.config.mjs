@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "fakestoreapi.com",
       },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+      },
     ],
   },
 };
