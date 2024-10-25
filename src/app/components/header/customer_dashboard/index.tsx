@@ -3,7 +3,7 @@
 import Link from "next/link";
 import AccountIcon from "../../icons/Account";
 import CartIcon from "../../icons/Cart";
-import HeartIcon from "../../icons/Heart";
+// import HeartIcon from "../../icons/Heart";
 import UserIcon from "../../icons/User";
 import AccountForm from "../../sections/account";
 import LoginOrSignupForm from "../../sections/login_signup";
@@ -16,6 +16,7 @@ export default function CustomerDashboard({ user }: { user: UserFromDB }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { totalItems } = useCart();
+
   return (
     <div
       id="user-dashboard-container"
@@ -77,7 +78,10 @@ export default function CustomerDashboard({ user }: { user: UserFromDB }) {
           isOpen={isModalOpen}
         />
       )}
-      <Sidebar isOpen={isSidebarOpen} />
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
     </div>
   );
 }
