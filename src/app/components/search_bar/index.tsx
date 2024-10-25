@@ -11,17 +11,19 @@ import Loader from "../loader";
 export default function SearchBar() {
   const { search, results, status } = useAutocomplete();
   const searchResultsRef = useRef<HTMLDivElement>(null);
-
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      searchResultsRef.current &&
+      !searchResultsRef.current.contains(event.target as Node)
+    ) {
+      search("");
+    }
+  };
+  
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        searchResultsRef.current &&
-        !searchResultsRef.current.contains(event.target as Node)
-      ) {
-        search("");
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
+    if (search.length > 0) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -55,7 +57,11 @@ export default function SearchBar() {
 
           {results.map((result) => {
             return (
-              <Link href={`/products/${result.id}`} key={result.id}>
+              <Link
+                onClick={() => search("")}
+                href={`/products/${result.id}`}
+                key={result.id}
+              >
                 <p className="text-sm text-grey">{result.name}</p>
               </Link>
             );

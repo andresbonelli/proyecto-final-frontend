@@ -23,12 +23,6 @@ export default function AsideMenu({ showUsers }: { showUsers: boolean }) {
           Usuarios
         </Link>
       )}
-      <Link
-        href="/dashboard/setings"
-        className="text-lg text-left font-MontserratBold text-gray-500 hover:bg-background p-2 rounded-md"
-      >
-        Ajustes
-      </Link>
     </aside>
   );
 }
