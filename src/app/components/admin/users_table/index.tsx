@@ -4,10 +4,34 @@ import { updateUserInfo } from "@/actions/user";
 import { Role, UserFromDB } from "@/utils/interfaces";
 import { useState } from "react";
 
+type UsersSortCriteria = keyof UserFromDB;
+
 export default function AdminUsersTable({ users }: { users: UserFromDB[] }) {
   const [userFilter, setUserFilter] = useState("staff");
-
   const filteredUsers = users.filter((user) => user.role === userFilter);
+  const [sortCriteria, setSortCriteria] =
+    useState<UsersSortCriteria>("username");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">(() => "desc");
+
+  function handleSort(criteria: UsersSortCriteria) {
+    if (sortCriteria === criteria) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortCriteria(criteria);
+      setSortOrder("asc");
+    }
+  }
+
+  const sortedUsers = [...filteredUsers].sort((a, b) => {
+    if (sortCriteria) {
+      const aValue = a[sortCriteria] ?? "";
+      const bValue = b[sortCriteria] ?? "";
+      const comparison = String(aValue).localeCompare(String(bValue));
+      return sortOrder === "asc" ? comparison : -comparison;
+    } else {
+      return 0;
+    }
+  });
 
   async function handleActivateUser(userId: string, isActive: boolean) {
     await updateUserInfo(userId, { is_active: !isActive });
@@ -36,17 +60,43 @@ export default function AdminUsersTable({ users }: { users: UserFromDB[] }) {
       </div>
       <table className="w-full">
         <thead>
-          <tr className="bg-background border-b text-xs text-gray-500">
-            <th className="p-2">USUARIO</th>
-            <th className="p-2">NOMBRE</th>
-            <th className="p-2">EMAIL</th>
+          <tr className="bg-background border-b border-t text-xs text-gray-500 h-12">
+            <th
+              className="p-2 cursor-pointer"
+              onClick={() => handleSort("username")}
+            >
+              USUARIO{"  "}
+              {sortCriteria === "username" && (sortOrder === "asc" ? "▲" : "▼")}
+            </th>
+            <th
+              className="p-2 cursor-pointer"
+              onClick={() => handleSort("firstname")}
+            >
+              NOMBRE{"  "}
+              {sortCriteria === "firstname" &&
+                (sortOrder === "asc" ? "▲" : "▼")}
+            </th>
+            <th
+              className="p-2 cursor-pointer"
+              onClick={() => handleSort("lastname")}
+            >
+              APELLIDO{"  "}
+              {sortCriteria === "lastname" && (sortOrder === "asc" ? "▲" : "▼")}
+            </th>
+            <th
+              className="p-2 cursor-pointer"
+              onClick={() => handleSort("email")}
+            >
+              EMAIL{"  "}
+              {sortCriteria === "email" && (sortOrder === "asc" ? "▲" : "▼")}
+            </th>
             <th className="p-2">ROL</th>
             <th className="p-2">ACCIONES</th>
           </tr>
         </thead>
 
         <tbody>
-          {filteredUsers.map((user) => {
+          {sortedUsers.map((user) => {
             return (
               <tr
                 key={user.id}
@@ -54,7 +104,10 @@ export default function AdminUsersTable({ users }: { users: UserFromDB[] }) {
               >
                 <td className="p-4 font-MontserratSemibold">{user.username}</td>
                 <td className="p-4 font-MontserratSemibold">
-                  {user.firstname ?? ""} {user.lastname ?? ""}
+                  {user.firstname ?? ""}
+                </td>
+                <td className="p-4 font-MontserratSemibold">
+                  {user.lastname ?? ""}
                 </td>
                 <td className="p-4 text-gray-500">{user.email}</td>
                 <td className="p-4 font-MontserratSemibold">{user.role}</td>
