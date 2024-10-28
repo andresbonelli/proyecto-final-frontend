@@ -1,3 +1,5 @@
+"use server";
+
 import { ProductFromDB, ProductQuery } from "../utils/interfaces";
 import api from "../services/api";
 
