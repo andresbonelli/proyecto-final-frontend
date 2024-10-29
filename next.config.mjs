@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
+        hostname: process.env.NEXT_PUBLIC_API_URL,
+      },
+      {
         hostname: "acdn.mitiendanube.com",
       },
       {
