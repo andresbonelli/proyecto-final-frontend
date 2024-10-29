@@ -16,11 +16,11 @@ export default async function AdminUsers() {
           Usuarios
         </h1>
         <div className="flex flex-row justify-between items-center  ">
-          <input
+          {/* <input
             type="text"
             placeholder="buscar..."
             className="bg-background border p-2 text-grey rounded-md"
-          />
+          /> */}
           <Link
             href="/dashboard/users/create_new"
             className="text-sm font-MontserratSemibold bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md"

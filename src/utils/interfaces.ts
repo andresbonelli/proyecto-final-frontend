@@ -166,4 +166,7 @@ export enum Role {
   ADMIN = "admin",
 }
 
-
+export interface SideBarLink {
+  label: string;
+  link: string;
+}

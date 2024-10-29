@@ -9,6 +9,7 @@ import AccountForm from "../../sections/account";
 import LoginOrSignupForm from "../../sections/login_signup";
 import Sidebar from "../../sidebar";
 import { UserFromDB } from "@/utils/interfaces";
+import { navLinks } from "@/utils/constants";
 import { useCart } from "@/context/CartContextProvider";
 import { useState } from "react";
 
@@ -79,6 +80,7 @@ export default function CustomerDashboard({ user }: { user: UserFromDB }) {
         />
       )}
       <Sidebar
+        links={navLinks}
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(!isSidebarOpen)}
       />

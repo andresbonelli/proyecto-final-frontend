@@ -10,12 +10,12 @@ export default async function AdminLayout({
 }>) {
   const session = await verifySession();
   return (
-    <>
+    <div className="relative overflow-hidden">
       <AdminHeader />
       <main className="flex flex-row flex-auto bg-background  ">
         <AsideMenu showUsers={session.role === Role.ADMIN} />
         <div className="w-5/6 flex-auto">{children}</div>
       </main>
-    </>
+    </div>
   );
 }

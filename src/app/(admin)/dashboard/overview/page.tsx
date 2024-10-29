@@ -24,8 +24,8 @@ export default async function AdminOverview() {
           Resumen
         </h1>
       </div>
-      <div className="flex flex-row justify-between gap-8 p-5">
-        <div className="flex flex-col w-2/3 bg-white border rounded-lg shadow-sm p-6">
+      <div className="flex flex-col sm:flex-row justify-between gap-8 p-5">
+        <div className="flex flex-col sm:w-2/3 bg-white border rounded-lg shadow-sm p-6">
           <div className="flex flex-col justify-between">
             <h1 className="w-full text-left font-MontserratBold text-2xl ">
               $
@@ -41,7 +41,7 @@ export default async function AdminOverview() {
           ></div>
           {orders && <SalesChart orders={orders} />}
         </div>
-        <div className="flex flex-col w-1/3 bg-white border rounded-lg shadow-sm  py-6 px-3 gap-3">
+        <div className="flex flex-col sm:w-1/3 bg-white border rounded-lg shadow-sm  py-6 px-3 gap-3">
           <h1 className="w-full text-left font-MontserratSemibold text-lg ">
             Productos más vendidos:
           </h1>

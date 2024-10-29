@@ -35,6 +35,21 @@ export const navLinks = [
   },
 ];
 
+export const adminNavLinks = [
+  {
+    label: "Resumen",
+    link: "/dashboard/overview",
+  },
+  {
+    label: "Productos",
+    link: "/dashboard/products",
+  },
+  {
+    label: "Usuarios",
+    link: "/dashboard/users",
+  },
+];
+
 export enum Categories {
   INDUMENTARIA = "indumentaria",
   ACCESORIOS = "accesorios",

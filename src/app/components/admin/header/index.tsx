@@ -1,14 +1,20 @@
+"use client";
+
 import { colors } from "@/utils/constants";
 import Link from "next/link";
 import Logo from "../../icons/Logo";
 import AdminIcon from "../../icons/Admin";
+import Sidebar from "../../sidebar";
+import { adminNavLinks } from "@/utils/constants";
+import { useState } from "react";
 
 export default function AdminHeader() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
-    <header className="max-w-screen">
+    <header className=" max-w-screen">
       <div
         id="header-container"
-        className="bg-white border
+        className=" bg-white border
                    flex flex-row justify-between place-items-center
                     sm:gap-3 h-[100px]
                    xl:px-60 lg:px-40 md:px-20 px-5 sm:py-8 py-5"
@@ -34,6 +40,22 @@ export default function AdminHeader() {
           </h1>
           <AdminIcon height={40} width={40} fill={colors.blue} />
         </div>
+        <div
+          id="hamburguer-container"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          className="sm:hidden flex flex-row  place-items-center"
+        >
+          <div className="tham tham-e-squeeze tham-w-8">
+            <div className="tham-box">
+              <div className="tham-inner bg-black" />
+            </div>
+          </div>
+        </div>
+        <Sidebar
+          links={adminNavLinks}
+          isOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(!isSidebarOpen)}
+        />
       </div>
     </header>
   );

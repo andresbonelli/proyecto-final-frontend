@@ -1,13 +1,16 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { navLinks } from "@/utils/constants";
+
 import Link from "next/link";
+import { SideBarLink } from "@/utils/interfaces";
 
 export default function Sidebar({
+  links,
   isOpen,
   onClose,
 }: {
+  links: SideBarLink[];
   isOpen: boolean;
   onClose: () => void;
 }) {
@@ -40,7 +43,7 @@ export default function Sidebar({
           isOpen ? "right-0 translate-x-0 " : "-right-full translate-x-full "
         }`}
     >
-      {navLinks.map((nav, index) => {
+      {links.map((nav, index) => {
         return (
           <Link
             onClick={onClose}
