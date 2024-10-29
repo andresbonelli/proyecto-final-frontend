@@ -4,7 +4,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: process.env.NEXT_PUBLIC_API_URL,
+        hostname: process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000",
       },
       {
         hostname: "acdn.mitiendanube.com",
