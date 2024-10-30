@@ -58,7 +58,7 @@ export default function ProductGridSection({ query }: { query: ProductQuery }) {
           <option value="desc">mayor precio</option>
         </select>
       </div>
-      <ProductGridComponent products={products} />;
+      <ProductGridComponent products={products} />
     </div>
   );
 }

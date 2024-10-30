@@ -18,7 +18,7 @@ export default function CartPage() {
           {cart.map((product: ProductFromCart) => {
             return (
               <div key={product.id}>
-                <CartProductCard product={product} />;
+                <CartProductCard product={product} />
               </div>
             );
           })}
