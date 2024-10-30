@@ -3,6 +3,7 @@ import WhatsappIcon from "../../icons/Whatsapp";
 import MailIcon from "../../icons/Mail";
 import PhoneIcon from "../../icons/Phone";
 import LocationIcon from "../../icons/Location";
+import { navLinks } from "@/utils/constants";
 
 export default function Info() {
   const fore = "black";
@@ -15,27 +16,16 @@ export default function Info() {
       <div className="flex flex-row justify-evenly place-items-start flex-wrap gap-3 my-5 px-1">
         <div className="flex flex-col justify-around gap-3 text-left w-44">
           <h5 className="font-MontserratBold text-lg mb-3">Categorías</h5>
-          <Link href="/" className="font-MontserratMedium text-sm">
-            Inicio
-          </Link>
-          <Link
-            href="/products/clothing"
-            className="font-MontserratMedium text-sm"
-          >
-            Ropa
-          </Link>
-          <Link
-            href="/products/office"
-            className="font-MontserratMedium text-sm"
-          >
-            Accesorios
-          </Link>
-          <Link href="/contact" className="font-MontserratMedium text-sm">
-            Contacto
-          </Link>
-          <Link href="/login" className="font-MontserratMedium text-sm">
-            Ingresar
-          </Link>
+          {/* Links */}
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.link}
+              className="font-MontserratMedium text-sm"
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
         <div className="flex flex-col justify-start gap-3 text-left w-44 ">
           <h5 className="font-MontserratBold text-lg mb-3">Contactanos</h5>
