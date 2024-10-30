@@ -19,6 +19,7 @@ export default function ProductDetailsComponent({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { category, name, description, image, price, old_price, details } =
     product;
+  const [showImage, setShowImage] = useState(() => image ?? "");
   const { addToCart } = useCart();
   const router = useRouter();
 
@@ -81,8 +82,9 @@ export default function ProductDetailsComponent({
                   src={img}
                   width={200}
                   height={200}
-                  className="object-scale-down  sm:h-1/3"
+                  className="object-scale-down  sm:h-1/3 cursor-pointer"
                   alt={name + "img" + index}
+                  onClick={() => setShowImage(img)}
                 ></Image>
               ))}
             </>
@@ -93,7 +95,7 @@ export default function ProductDetailsComponent({
           className="w-1/2 hidden sm:flex flex-row justify-center place-items-center "
         >
           <Image
-            src={image ?? ""}
+            src={showImage}
             height={400}
             width={400}
             className="object-scale-down h-full"
