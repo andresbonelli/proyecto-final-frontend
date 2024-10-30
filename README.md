@@ -73,7 +73,7 @@ touch .env.local
 echo '.env.local' >> .gitignore
 ```
 
-5. Añadir variables de entorno a `.env.local`:
+5. Añadir variables de entorno a `.env.local` (ver `.env.example`):
 <details>
 <summary>(ver variables)</summary>
 
