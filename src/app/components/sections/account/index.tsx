@@ -7,7 +7,11 @@ import UserIcon from "../../icons/User";
 import EditCircleIcon from "../../icons/EditCircle";
 import { logout } from "@/actions/auth";
 import { UpdateUserForm } from "../../forms/update_user";
+import { uploadUserProfileImg } from "@/actions/user";
 import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AccountForm({
   isOpen,
@@ -21,6 +25,22 @@ export default function AccountForm({
   function handleLogout() {
     logout();
     onClose();
+  }
+  const [showImgForm, setShowImgForm] = useState(false);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
+  async function handleUploadImg(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (imageFile) {
+      const formData = new FormData();
+      formData.append("file", imageFile);
+      const result = await uploadUserProfileImg(user.id, formData);
+      if (result?.success) {
+        window.location.reload();
+      }
+      setImageFile(null);
+      setShowImgForm(false);
+    }
   }
 
   return (
@@ -40,7 +60,7 @@ export default function AccountForm({
         className="relative flex flex-col
                    justify-between place-items-center
                    min-w-96 max-h-full 
-                   px-5  pt-7 pb-10
+                   px-5 pt-7 pb-10
                    bg-white shadow-lg"
       >
         <button
@@ -57,11 +77,46 @@ export default function AccountForm({
                      flex flex-col justify-center place-items-center
                      rounded-full shadow-xl mb-8"
         >
-          <UserIcon width={35} height={35} fill="gray" />
-          <button type="button" className="absolute bottom-0 right-0 ">
+          {/* PROFILE PIC */}
+          {user.image ? (
+            <Image
+              src={user.image}
+              layout="fill"
+              objectFit="cover"
+              alt={user.username}
+              className="rounded-full"
+            />
+          ) : (
+            <UserIcon width={35} height={35} fill="gray" />
+          )}
+          <button
+            onClick={() => setShowImgForm(!showImgForm)}
+            type="button"
+            className="absolute bottom-0 right-0 "
+          >
             <EditCircleIcon height={20} width={20} fill="#3163E2" />
           </button>
         </div>
+        {showImgForm && (
+          <form
+            onSubmit={handleUploadImg}
+            className="w-full flex flex-col place-items-center"
+          >
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+              className="mb-4 text-xs"
+            />
+            <button
+              type="submit"
+              className="bg-softBlue hover:bg-blue text-white py-2 px-4 rounded-md"
+            >
+              subir
+            </button>
+          </form>
+        )}
+
         <h1 className="font-MontserratBold text-xl w-full text-center ">
           Hi, {user.username}
         </h1>
