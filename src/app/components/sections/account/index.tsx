@@ -9,9 +9,7 @@ import { logout } from "@/actions/auth";
 import { UpdateUserForm } from "../../forms/update_user";
 import { uploadUserProfileImg } from "@/actions/user";
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function AccountForm({
   isOpen,
@@ -79,10 +77,8 @@ export default function AccountForm({
         >
           {/* PROFILE PIC */}
           {user.image ? (
-            <Image
+            <img
               src={user.image}
-              layout="fill"
-              objectFit="cover"
               alt={user.username}
               className="rounded-full"
             />
