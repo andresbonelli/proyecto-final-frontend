@@ -83,6 +83,7 @@ export default function AccountForm({
               width={100}
               alt={user.username}
               src={user.image}
+              unoptimized={true}
             />
           ) : (
             // <img
