@@ -21,6 +21,7 @@ export default function AccountForm({
   onClose: () => void;
   user: UserFromDB;
 }) {
+  console.log(user.image, " USER IMAGE");
   function handleLogout() {
     logout();
     onClose();
