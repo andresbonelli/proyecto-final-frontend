@@ -74,30 +74,25 @@ export default function AccountForm({
           id="profile-pic-container"
           className="relative w-20 h-20
                      flex flex-col justify-center place-items-center
-                     rounded-full shadow-xl mb-8"
+                      mb-8"
         >
           {/* PROFILE PIC */}
           {user.image ? (
             <Image
-              height={100}
-              width={100}
+              height={35}
+              width={35}
               alt={user.username}
               src={user.image}
               unoptimized={true}
+              className="object-scale-down w-full h-full rounded-full  shadow-2xl"
             />
           ) : (
-            // <img
-
-            //   src={user.image}
-            //   alt={user.username}
-            //   className="rounded-full"
-            // />
             <UserIcon width={35} height={35} fill="gray" />
           )}
           <button
             onClick={() => setShowImgForm(!showImgForm)}
             type="button"
-            className="absolute bottom-0 right-0 "
+            className="absolute bottom-0 right-0"
           >
             <EditCircleIcon height={20} width={20} fill="#3163E2" />
           </button>
