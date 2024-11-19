@@ -81,8 +81,8 @@ export default function AccountForm({
             <Image
               height={100}
               width={100}
-              alt="test"
-              src="https://vocal-nelie-andresbonelli-1d085aa1.koyeb.app/static/images/users/370e5319-a92f-457b-b6cb-5157800d795a.jpg"
+              alt={user.username}
+              src={user.image}
             />
           ) : (
             // <img
