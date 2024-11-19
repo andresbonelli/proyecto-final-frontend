@@ -10,6 +10,7 @@ import { UpdateUserForm } from "../../forms/update_user";
 import { uploadUserProfileImg } from "@/actions/user";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function AccountForm({
   isOpen,
@@ -77,12 +78,19 @@ export default function AccountForm({
         >
           {/* PROFILE PIC */}
           {user.image ? (
-            <img
-              src={user.image}
-              alt={user.username}
-              className="rounded-full"
+            <Image
+              height={100}
+              width={100}
+              alt="test"
+              src="https://vocal-nelie-andresbonelli-1d085aa1.koyeb.app/static/images/users/370e5319-a92f-457b-b6cb-5157800d795a.jpg"
             />
           ) : (
+            // <img
+
+            //   src={user.image}
+            //   alt={user.username}
+            //   className="rounded-full"
+            // />
             <UserIcon width={35} height={35} fill="gray" />
           )}
           <button
