@@ -150,6 +150,29 @@ export async function editProduct(
   }
 }
 
+export async function uploadProductImg(id: string, formData: FormData) {
+  const cookie = cookies().get("access_token_cookie");
+  try {
+    const res = await api.post(`/api/products/upload_image/${id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${cookie?.value}`,
+      },
+    });
+    if (res.status === 200) {
+      console.log(res.data);
+      return { success: { updatedProduct: res.data } };
+    } else {
+      console.error(res.data);
+      return { error: res.data };
+    }
+  } catch (error: any) {
+    if (error.response) {
+      console.error(error.response.data);
+      return { error: error.response.data.detail };
+    }
+  }
+}
+
 export async function deleteProduct(id: string): Promise<ProductFromDB | any> {
   const cookie = cookies().get("access_token_cookie");
   try {

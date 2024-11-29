@@ -9,6 +9,10 @@ const nextConfig = {
         hostname: process.env.NEXT_PUBLIC_API_URL ?? "127.0.0.1",
       },
       {
+        protocol: "http",
+        hostname: "127.0.0.1",
+      },
+      {
         protocol: "https",
         hostname: "vocal-nelie-andresbonelli-1d085aa1.koyeb.app",
       },
