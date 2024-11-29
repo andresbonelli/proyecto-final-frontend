@@ -17,11 +17,13 @@
 - Como usuario registrado (comprador):
   - Crear una cuenta distinguida tanto por nombre de usuario como e-mail.
   - Modificar datos personales (Nombre, apellido y lista de domicilios de envío), persistente en base de datos.
+  - Cargar foto de perfil
   - Completar una compra en un simulacro de pago exitoso.
   - Ver historial de compras con detalle de fecha y productos, persistente en base de datos.
 - Como usuario empleado (vendedor):
   - Acceder a ruta protegida panel de administrador.
   - Crear, editar, eliminar productos.
+  - Cargar imagen de producto.
   - Ver lista de productos y estadísticas básicas de ventas (filtrado unicamente a sus productos creados).
 - Como usuario administrador:
   - Todos los privilegios de empleado.
