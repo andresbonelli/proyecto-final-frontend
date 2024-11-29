@@ -21,6 +21,7 @@ export default function CreateNewProduct() {
     description: "",
     price: 0,
     old_price: null,
+    category: Categories.INDUMENTARIA,
     stock: 0,
   });
   const [message, setMessage] = useState("");
