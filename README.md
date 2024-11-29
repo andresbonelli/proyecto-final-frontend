@@ -47,6 +47,7 @@
 
 - Node.js (v18.x +)
 - npm (v10.x +)
+- MongoDB Atlas (DBaaS)
 
 ## Instalación
 
