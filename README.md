@@ -96,7 +96,7 @@ npm run dev
 
 > Navegar a la App expuesta en [http://localhost:3000](http://localhost:3000)
 
-## Despliegue demo: https://proyecto-final-frontend-navy.vercel.app/
+## Despliegue demo: https://andresbonelli-ecommerce.vercel.app
 
 ### Usuario administrador de prueba:
 <details>
